@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Turbo Page</title>
+  <link rel="stylesheet" href="orion-framework.css">
+  <script src="orion-framework.js"></script>
+</head>
+
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  font-size: 1rem;
+  scroll-behavior: smooth;
+  background: var(--background);
+  color: var(--text1);
+  fill: var(--text1);
+}
+
+/*MENU*/
+.menu {
+  width: 100%;
+  height: fit-content;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+}
+
+/*MENU BUTTON*/
+.mbutton {
+  width: fit-content;
+  position: relative;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: background .2s;
+}
+
+.mbutton div:nth-of-type(1) {
+  padding: 0 5px; 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+  text-shadow: 2px 2px #00000020;
+}
+
+.mbutton div:nth-of-type(2) {
+  width: calc(100% - 20px); 
+  height: 5px; 
+  margin: 3px 0;
+  position: absolute;
+  bottom: 0;
+  border-radius: 2.5px; 
+  background-color: var(--accent);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.mbutton:hover {
+  background-color: #69696920;
+  opacity: 1;
+}
+
+.mbutton:hover div:nth-of-type(2) {
+  opacity: 1;
+}
+
+/*MENU BUTTON 2*/
+.mbutton2 {
+  width: 25px; 
+  height: 25px;
+  padding: 10px;
+  position: relative;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 10px;
+  transition: background .2s;
+}
+
+.mbutton2:hover {
+  background-color: #69696920;
+  opacity: 1;
+}
+
+.mbutton2 img {
+  width: 25px;
+  object-fit: cover;
+  text-shadow: 2px 2px #00000020;
+  filter: var(--filter);
+}
+
+/*PAGES*/
+.page {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/*CARD*/
+.pcard {
+  width: 25%; 
+  aspect-ratio: 1/1; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center;
+  background-color: var(--button); 
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.pcard img {
+  width: 80%; 
+  aspect-ratio: 1/1;
+  margin-bottom: -20px; 
+  object-fit: cover; 
+  border-radius: 10px; 
+  transform: translateY(-20px);
+  box-shadow: var(--shadow);
+  transition: all .2s;
+}
+
+.pcard:hover img {
+  margin-bottom: -80px; 
+  transform: translateY(-80px);
+}
+
+.pcard div:nth-of-type(1) {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.pcard div:nth-of-type(2) {
+  width: fit-content;
+  max-height: 0;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all .2s;
+  cursor: pointer;
+  outline: solid 1px transparent;
+}
+
+.pcard:hover div:nth-of-type(2) {
+  max-height: 100px;
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  outline: solid 1px var(--text1);
+}
+
+/*OTHER*/
+.shadow {
+  text-shadow: 2px 2px #00000020;
+}
+</style>
+
+<body class="scrollbar-invisible">
+  <!-- TOP MENU -->
+  <div class="menu">
+    <div class="mbutton" onclick="scrollElem('home')">
+      <div>Home</div>
+      <div></div>
+    </div>
+    <div class="mbutton" onclick="scrollElem('projects')">
+      <div>Projects</div>
+      <div></div>
+    </div>
+    <div class="mbutton" onclick="scrollElem('about')">
+      <div>About</div>
+      <div></div>
+    </div>
+    <div class="mbutton" onclick="scrollElem('socials')">
+      <div>Socials</div>
+      <div></div>
+    </div>
+    <div class="mbutton2" onclick="switchTheme()">
+      <img id="themeImg" src="Data/Images/theme_light.png">
+    </div>
+  </div>
+  <!-- HOME-->
+  <div id="home" class="page">
+    <div style="margin: 100px 80px; display: flex; flex-direction: column; z-index: 2;">
+      <div class="shadow" style="display: flex; font-family: Display; font-size: 10rem;">
+        Panco
+        <div style="font-size: 3rem;">
+          [アレックス]
+        </div>
+      </div>
+      <div style="margin: 20px 0 0 20px; font-size: 1.4rem;">
+        Designer, Programmer, Videogames Enjoyer
+      </div>
+    </div>
+
+    <img style="position: absolute; right: 0; transform: scaleX(-1); pointer-events: none;" src="Data/Images/pattern.svg" height="100%">
+    
+    <div style="display: flex; position: absolute; left: 10px; bottom: 0px; font-family: Display;">
+      <div style="font-size: 10rem; line-height: 10rem;">
+        101
+      </div>
+      <div style="font-size: 2rem; color: var(--text2); transform: translateX(-5rem) translateY(-1rem) rotate(90deg);">
+        code
+      </div>
+    </div>
+  </div>
+  <!-- PROJECTS -->
+  <div id="projects" class="page" style="min-height: 150%; align-items: center;">
+    <div class="shadow" style="margin: 70px 0 -5rem 0; font-family: Display; font-size: 5rem;">
+      My projects
+    </div>
+    <div style="width: 100%; padding: 0 10%; margin: auto; display: flex; flex-direction: column;">
+      <div style="width: 80%; display: flex; justify-content: space-around;">
+        <!-- Oriøn Framework -->
+        <div class="pcard">
+          <img src="Data/Images/framework.png">
+          <div>
+            Oriøn Framework
+          </div>
+          <div onclick="window.open('https://github.com/BOTPanzer/Orion-Framework', '_blank');">
+            See More
+          </div>
+        </div>
+        <!-- Oriøn Assistant -->
+        <div class="pcard">
+          <img src="Data/Images/assistant.png">
+          <div>
+            Oriøn Assistant
+          </div>
+          <div>
+            See More
+          </div>
+        </div>
+        <!-- Futuristic Hoodie -->
+        <div class="pcard">
+          <img src="Data/Images/hoodie.png">
+          <div>
+            Futuristic Hoodie
+          </div>
+          <div>
+            See More
+          </div>
+        </div>
+      </div>
+      <div style="width: 80%; margin-top: 100px; display: flex; justify-content: space-around;">
+        <!-- PC Modding -->
+        <div class="pcard">
+          <img src="Data/Images/modding.png">
+          <div>
+            PC Modding
+          </div>
+          <div>
+            See More
+          </div>
+        </div>
+        <!-- Discord Bots -->
+        <div class="pcard">
+          <img src="Data/Images/discordbots.png">
+          <div>
+            Discord Bots
+          </div>
+          <div>
+            See More
+          </div>
+        </div>
+        <!-- Other Projects -->
+        <div class="pcard">
+          <img src="Data/Images/cp2077.jpg">
+          <div>
+            Other Projects
+          </div>
+          <div>
+            See More
+          </div>
+        </div>
+      </div>
+      <!-- 3d models (blender, shishkebab) , city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs)  -->
+    </div>
+  </div>
+  <!-- ABOUT -->
+  <div id="about" class="page" style="background-color: green;">
+    
+  </div>
+  <!-- SOCIALS -->
+  <div id="socials" class="page" style="background-color: red;">
+
+  </div>
+</body>
+
+<script>
+  let themeDark = true
+  /*var themeCookieIndex = document.cookie.indexOf('panco_theme=')
+  if (themeCookieIndex != -1) {
+    console.log(themeCookieIndex)
+    let themeCookie = substr(themeCookieIndex+10, document.cookie.indexOf(';', themeCookieIndex))
+    if (themeCookie != 'dark') switchTheme()
+  }*/
+  let themeKey = localStorage.getItem('pancoTheme')
+  if (themeKey == 'light') switchTheme()
+  
+  function switchTheme() {
+    themeDark = !themeDark
+    if (themeDark) {
+      //document.cookie='panco_theme="dark";';
+      localStorage.setItem('pancoTheme', 'dark')
+      document.body.style.setProperty('--background', '#18191c')
+      document.body.style.setProperty('--scrollbar', '#f5f5f5')
+      document.body.style.setProperty('--accent', '#cc1d4e')
+      document.body.style.setProperty('--text1', '#f5f5f5')
+      document.body.style.setProperty('--text2', '#72767D')
+      document.body.style.setProperty('--button', '#202225')
+      document.body.style.setProperty('--filter', '')
+      document.getElementById('themeImg').src = 'Data/Images/theme_light.png'
+    } else {
+      //document.cookie='panco_theme="light";';
+      localStorage.setItem('pancoTheme', 'light')
+      document.body.style.setProperty('--background', '#FFFFFF')
+      document.body.style.setProperty('--scrollbar', '#F2F3F5')
+      document.body.style.setProperty('--accent', '#ff7d7d')
+      document.body.style.setProperty('--text1', '#060607')
+      document.body.style.setProperty('--text2', '#72767D')
+      document.body.style.setProperty('--button', '#f2f3f5')
+      document.body.style.setProperty('--filter', 'invert(100%)')
+      document.getElementById('themeImg').src = 'Data/Images/theme_dark.png'
+    }
+  }
+
+  function scrollElem(id) {
+    document.getElementById(id).scrollIntoView()
+  }
+</script>
+</html>
+
