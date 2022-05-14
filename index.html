@@ -2,24 +2,69 @@
 <html lang="en">
 <head>
   <title>Panco's Page</title>
-  <link rel="stylesheet" href="orion-framework.css">
-  <script src="orion-framework.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <style>
+@font-face { font-family: Main; src: url('Data/Fonts/Main.ttf'); }
+@font-face { font-family: Display; src: url('Data/Fonts/Display.ttf'); }
+
+html {
+  height: 100%;
+  width: 100%;
+  scroll-behavior: smooth;
+}
+
 body {
+  height: 100%; 
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  font-family: Main;
   font-size: 1rem;
-  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
   background: var(--background);
   color: var(--text1);
   fill: var(--text1);
-  -webkit-tap-highlight-color: transparent;
-
   --cardW: 25%;
+  /*THEME*/
+  --menu: #1e2023;
+  --background: #18191c;
+  --scrollbar: #f5f5f5;
+  --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --accent: #cc1d4e;  
+  --text1: #f5f5f5;
+  --text2: #C7C9CA;
+  --button: #202225;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+::selection {
+  background: var(--accent);
+}
+
+/*GENERAL*/
+.hc {
+  display: flex;
+  flex-direction: row;
+}
+
+.vc {
+  display: flex;
+  flex-direction: column;
 }
 
 /*MENU*/
@@ -204,7 +249,7 @@ body {
 }
 </style>
 
-<body class="scrollbar-invisible">
+<body>
   <!-- TOP MENU -->
   <div class="menu">
     <div class="mbutton" onclick="scrollElem('home')">
@@ -399,23 +444,7 @@ body {
   resized()
   window.onresize = resized
   function resized() {
-    let width = window.innerWidth
-    let height = window.innerHeight
-    if (width > height) {
-      //HOME
-      document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
-      document.getElementById('homeTitle').style.textOrientation = 'sideways'
-      document.getElementById('homeTitle').style.fontSize = '13vw'
-      document.getElementById('homeTitle2').style.fontSize = '4vw'
-      //ABOUT
-      document.getElementById('aboutProfile').style.width = '20%'
-      document.getElementById('aboutInfo').style.width = '80%'
-      //PROJECTS
-      document.getElementById('projectsTitle').style.fontSize = '5vw'
-      document.body.style.setProperty('--cardW', '25%')
-      //BOTTOM
-      document.getElementById('bottom').style.flexDirection = 'row'
-    } else {
+    if (window.innerHeight > window.innerWidth) {
       //HOME
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
@@ -429,6 +458,20 @@ body {
       document.body.style.setProperty('--cardW', '70%')
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'column'
+    } else {
+      //HOME
+      document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
+      document.getElementById('homeTitle').style.textOrientation = 'sideways'
+      document.getElementById('homeTitle').style.fontSize = '13vw'
+      document.getElementById('homeTitle2').style.fontSize = '4vw'
+      //ABOUT
+      document.getElementById('aboutProfile').style.width = '20%'
+      document.getElementById('aboutInfo').style.width = '80%'
+      //PROJECTS
+      document.getElementById('projectsTitle').style.fontSize = '5vw'
+      document.body.style.setProperty('--cardW', '25%')
+      //BOTTOM
+      document.getElementById('bottom').style.flexDirection = 'row'
     }
   }
 
