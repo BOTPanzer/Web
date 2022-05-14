@@ -103,7 +103,7 @@ body {
 
 /*PAGES*/
 .page {
-  width: 100%;
+  max-width: 100%;
   min-height: 100%;
   position: relative;
   display: flex;
@@ -218,122 +218,6 @@ body {
     </div>
     <div class="mbutton2" onclick="switchTheme()">
       <img id="themeImg" src="Data/Images/Icons/theme_light.png">
-    </div>
-  </div>
-  <!-- HOME-->
-  <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
-    <img style="height: 100%; position: absolute; right: 0; pointer-events: none; z-index: 0;" src="Data/Images/Patterns/home.svg">
-    
-    <div></div>
-
-    <div class="vc" style="width: 90%; z-index: 2;">
-      <div class="shadow hc" style="font-family: Display;">
-        <div id="homeTitle" class="shadow" style="font-size: 13vw;">
-          Panco
-        </div>
-        <div id="homeTitle2" class="shadow" style="font-size: 4vw;">
-          [ラザニア]
-        </div>
-      </div>
-
-      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
-        <div style="font-size: calc(1rem + 0.390625vw);">
-          Designer, Programmer & Videogames Enjoyer
-        </div>
-        <div class="bbutton" onclick="scrollElem('about')">
-          About Me
-        </div>
-      </div>
-    </div>
-
-    <div class="hc shadow" style="width: 100%; margin-left: 1vw; font-family: Display; z-index: 1;">
-      <div style="font-size: 12vw; line-height: 12vw;">
-        101
-      </div>
-      <div style="font-size: 2vw; line-height: 2vw; color: var(--text2); height: fit-content; transform-origin: bottom left; transform: translateY(-.5vw) rotate(90deg);">
-        code
-      </div>
-    </div>
-  </div>
-  <!-- ABOUT ME -->
-  <div id="about" class="page" style="flex-direction: row; height: fit-content;">
-    <div id="aboutProfile" style="width: 20%; height: 100%; position: relative; background: var(--menu); display: flex; flex-direction: column; align-items: center;">
-      <img style="width: 70%; aspect-ratio: 1/1; margin: 20% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
-      <div style="font-size: 1.5rem;">
-        Alejandro Paniagua
-      </div>
-    </div>
-    <div id="aboutInfo" style="width: 80%; height: 100%;">
-
-    </div>
-  </div>
-  <!-- PROJECTS -->
-  <div id="projects" class="page" style="min-height: fit-content; align-items: center;">
-    <div class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5rem;">
-      My projects
-    </div>
-    <div class="pcards">
-      <!-- Oriøn Framework -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/framework.png">
-        <div>
-          Oriøn Framework
-        </div>
-        <div onclick="window.open('https://github.com/BOTPanzer/Orion-Framework', '_blank');">
-          See More
-        </div>
-      </div>
-      <!-- Oriøn Assistant -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/assistant.png">
-        <div>
-          Oriøn Assistant
-        </div>
-        <div>
-          See More
-        </div>
-      </div>
-      <!-- Futuristic Hoodie -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/hoodie.png">
-        <div>
-          Futuristic Hoodie
-        </div>
-        <div>
-          See More
-        </div>
-      </div>
-      <!-- PC Modding -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/modding.png">
-        <div>
-          PC Modding
-        </div>
-        <div>
-          See More
-        </div>
-      </div>
-      <!-- Discord Bots -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/discordbots.png">
-        <div>
-          Discord Bots
-        </div>
-        <div>
-          See More
-        </div>
-      </div>
-      <!-- Other Projects -->
-      <div class="pcard">
-        <img src="Data/Images/cp2077.jpg">
-        <div>
-          Other Projects
-        </div>
-        <div>
-          See More
-        </div>
-      </div>
-      <!-- 3d models (blender, shishkebab), city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs) -->
     </div>
   </div>
   <!-- BOTTOM -->
