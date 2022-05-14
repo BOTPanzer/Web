@@ -1,6 +1,11 @@
-# Web
-My Web Page
+<p align="center">
+  <a href="https://botpanzer.github.io/Web/">
+    <img src="https://github.com/BOTPanzer/Web/blob/main/Data/Images/linus.png" width="130">
+  </a>
+</p>
 
-Literally my Web Page
+<h3 align="center">My Web Page</h3>
 
-Look, here is my Web Page https://botpanzer.github.io/Web/
+<p align="center">
+  Click the image to open it 😄
+</p>
