@@ -156,6 +156,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
+  white-space: nowrap; 
+  overflow: hidden;
 }
 
 .pcard div:nth-of-type(2) {
@@ -269,7 +271,7 @@ body {
   </div>
   <!-- PROJECTS -->
   <div id="projects" class="page" style="min-height: fit-content; align-items: center;">
-    <div class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5rem;">
+    <div id="projectsTitle" class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5vw; text-align: center;">
       My projects
     </div>
     <div class="pcards">
@@ -408,6 +410,7 @@ body {
       document.getElementById('aboutProfile').style.width = '20%'
       document.getElementById('aboutInfo').style.width = '80%'
       //PROJECTS
+      document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'row'
@@ -421,7 +424,8 @@ body {
       document.getElementById('aboutProfile').style.width = '40%'
       document.getElementById('aboutInfo').style.width = '60%'
       //PROJECTS
-      document.body.style.setProperty('--cardW', '40%')
+      document.getElementById('projectsTitle').style.fontSize = '10vw'
+      document.body.style.setProperty('--cardW', '70%')
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'column'
     }
