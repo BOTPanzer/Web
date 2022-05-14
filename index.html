@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <title>Panco's Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <style>
@@ -41,6 +40,7 @@ body {
   --text1: #f5f5f5;
   --text2: #C7C9CA;
   --button: #202225;
+  --textShadow: #00000049;
 }
 
 ::-webkit-scrollbar {
@@ -99,7 +99,7 @@ img {
   display: flex; 
   flex-direction: row; 
   align-items: center;
-  text-shadow: 1px 1px #00000020;
+  text-shadow: 0px 0px 10px var(--textShadow);
 }
 
 .mbutton div:nth-of-type(2) {
@@ -143,7 +143,6 @@ img {
 .mbutton2 img {
   width: 25px;
   object-fit: cover;
-  text-shadow: 1px 1px #00000020;
   filter: var(--filter);
 }
 
@@ -235,7 +234,7 @@ img {
   overflow: hidden;
   transition: all .2s;
   cursor: pointer;
-  outline: solid 1px var(--text1);
+  outline: solid 2px var(--text1);
   transition: background .2s;
 }
 
@@ -244,8 +243,16 @@ img {
 }
 
 /*OTHER*/
+@keyframes line {
+  0% { opacity: 0; }
+  1% { opacity: 1; }
+  50% { opacity: 1; }
+  51% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 .shadow {
-  text-shadow: 1px 1px #00000020;
+  text-shadow: 0px 0px 10px var(--textShadow);
 }
 </style>
 
@@ -270,11 +277,13 @@ img {
   </div>
   <!-- HOME-->
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
-    <img style="height: 100%; position: absolute; right: 0; pointer-events: none; z-index: 0;" src="Data/Images/Patterns/home.svg">
+    <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
+    
+    <img id="homeGuy" style="width: 50%; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
     
     <div></div>
 
-    <div class="vc" style="width: 90%; z-index: 2;">
+    <div class="vc" style="width: 90%; z-index: 3;">
       <div class="shadow hc" style="font-family: Display;">
         <div id="homeTitle" class="shadow" style="font-size: 13vw;">
           Panco
@@ -285,8 +294,14 @@ img {
       </div>
 
       <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
-        <div style="font-size: calc(1rem + 0.390625vw);">
-          Designer, Programmer & Videogames Enjoyer
+        <div class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
+          <div>
+            I'm a&nbsp;
+          </div>
+          <div id="homeJobs"></div>
+          <div style="animation: line 1s infinite;">
+            |
+          </div>
         </div>
         <div class="bbutton" onclick="scrollElem('about')">
           About Me
@@ -306,8 +321,8 @@ img {
   <!-- ABOUT ME -->
   <div id="about" class="page" style="flex-direction: row; height: fit-content;">
     <div id="aboutProfile" style="width: 20%; height: 100%; position: relative; background: var(--menu); display: flex; flex-direction: column; align-items: center;">
-      <img style="width: 70%; aspect-ratio: 1/1; margin: 20% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
-      <div style="font-size: 1.5rem;">
+      <img style="width: 70%; aspect-ratio: 1/1; margin: 25% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
+      <div id="aboutName" style="font-size: 1.5vw;">
         Alejandro Paniagua
       </div>
     </div>
@@ -409,6 +424,50 @@ img {
 </body>
 
 <script>
+  /*TYPE ANIMATION*/
+  typeAnim()
+  function typeAnim() {
+    const elem = document.getElementById('homeJobs')
+    let jobs = ['UI Designer', 
+                'Web Developer', 
+                'Android Developer', 
+                'Videogames Enjoyer']
+    let i = 0
+    let length
+    let letters
+    let time
+    setTimeout(prepare, 1000)
+
+    function prepare() {      
+      length = jobs[i].length
+      letters = length
+      time = 1500/length
+      writeLetter()
+    }
+
+    function writeLetter() {      
+      elem.innerHTML = jobs[i].substring(0, length - letters)
+      letters--
+      if (letters >= 0)
+        setTimeout(writeLetter, time)
+      else
+        setTimeout(removeLetter, 1500)
+    }
+
+    function removeLetter() {
+      elem.innerHTML = jobs[i].substring(0, length - letters)
+      letters++ 
+      if (letters > length) {
+        setTimeout(function() {
+          i++
+          if (jobs[i] == undefined) i = 0
+          prepare()
+        }, 1000)
+      } else
+        setTimeout(removeLetter, time)
+    }
+  }
+
   /*THEME*/
   let themeDark = true
   let themeKey = localStorage.getItem('pancoTheme')
@@ -425,18 +484,20 @@ img {
       document.body.style.setProperty('--text1', '#f5f5f5')
       document.body.style.setProperty('--text2', '#C7C9CA')
       document.body.style.setProperty('--button', '#202225')
-      document.body.style.setProperty('--filter', '')
+      document.body.style.setProperty('--filter', 'drop-shadow(0px 0px 10px var(--textShadow))')
+      document.body.style.setProperty('--textShadow', '#00000049')
     } else {
       localStorage.setItem('pancoTheme', 'light')
       document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
       document.body.style.setProperty('--menu', '#F2F3F5')
       document.body.style.setProperty('--background', '#FFFFFF')
       document.body.style.setProperty('--scrollbar', '#F2F3F5')
-      document.body.style.setProperty('--accent', '#ff7d7d')
+      document.body.style.setProperty('--accent', '#E78EA9')
       document.body.style.setProperty('--text1', '#060607')
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
-      document.body.style.setProperty('--filter', 'invert(100%)')
+      document.body.style.setProperty('--filter', 'drop-shadow(0px 0px 10px var(--textShadow)) invert(100%)')
+      document.body.style.setProperty('--textShadow', '#ffffff49')
     }
   }
 
@@ -446,6 +507,10 @@ img {
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
+      document.getElementById('homeGuy').style.width = ''
+      document.getElementById('homeGuy').style.height = '90%'
+      document.getElementById('homeGuy').style.right = '-30%'
+      document.getElementById('homeGuy').style.zIndex = '2'
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
@@ -453,6 +518,7 @@ img {
       //ABOUT
       document.getElementById('aboutProfile').style.width = '40%'
       document.getElementById('aboutInfo').style.width = '60%'
+      document.getElementById('aboutName').style.fontSize = '3vw'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -460,6 +526,10 @@ img {
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
       //HOME
+      document.getElementById('homeGuy').style.width = '50%'
+      document.getElementById('homeGuy').style.height = ''
+      document.getElementById('homeGuy').style.right = '0'
+      document.getElementById('homeGuy').style.zIndex = '4'
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
@@ -467,6 +537,7 @@ img {
       //ABOUT
       document.getElementById('aboutProfile').style.width = '20%'
       document.getElementById('aboutInfo').style.width = '80%'
+      document.getElementById('aboutName').style.fontSize = '1.5vw'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
@@ -480,7 +551,7 @@ img {
     document.getElementById(id).scrollIntoView()
   }
 
-  /*BOTTOM TEXT*/
+  /*BOTTOM TEXT QUOTES*/
   let quotes = ['War never changes', 
                 'Truth Is, The Game Was Rigged From The Start', 
                 'OPA! Artyom!', 
