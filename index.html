@@ -1,21 +1,25 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Turbo Page</title>
+  <title>Panco's Page</title>
   <link rel="stylesheet" href="orion-framework.css">
   <script src="orion-framework.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <style>
 body {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   overflow-y: scroll;
   font-size: 1rem;
   scroll-behavior: smooth;
   background: var(--background);
   color: var(--text1);
   fill: var(--text1);
+
+  --cardW: 25%;
 }
 
 /*MENU*/
@@ -107,9 +111,20 @@ body {
   flex-direction: column;
 }
 
+/*CARDS CONTAINER*/
+.pcards {
+  width: 80%; 
+  margin: 7rem 10% 8rem 10%; 
+  display: flex; 
+  gap: 10%; 
+  row-gap: 100px; 
+  justify-content: space-around; 
+  flex-wrap: wrap;
+}
+
 /*CARD*/
 .pcard {
-  width: 25%; 
+  width: var(--cardW); 
   aspect-ratio: 1/1; 
   display: flex; 
   flex-direction: column; 
@@ -149,16 +164,36 @@ body {
   max-height: 0;
   border-radius: 50px;
   overflow: hidden;
-  transition: all .2s;
   cursor: pointer;
   outline: solid 1px transparent;
+  transition: all .2s;
 }
 
 .pcard:hover div:nth-of-type(2) {
   max-height: 100px;
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin-bottom: 20px;
   outline: solid 1px var(--text1);
+}
+
+.pcard div:nth-of-type(2):hover {
+  background: #69696920;
+}
+
+/*BORDER BUTTON*/
+.bbutton {
+  width: fit-content;
+  padding: 5px 15px;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all .2s;
+  cursor: pointer;
+  outline: solid 1px var(--text1);
+  transition: background .2s;
+}
+
+.bbutton:hover {
+  background: #69696920;
 }
 
 /*OTHER*/
@@ -174,157 +209,179 @@ body {
       <div>Home</div>
       <div></div>
     </div>
+    <div class="mbutton" onclick="scrollElem('about')">
+      <div>About Me</div>
+      <div></div>
+    </div>
     <div class="mbutton" onclick="scrollElem('projects')">
       <div>Projects</div>
       <div></div>
     </div>
-    <div class="mbutton" onclick="scrollElem('about')">
-      <div>About</div>
-      <div></div>
-    </div>
-    <div class="mbutton" onclick="scrollElem('socials')">
-      <div>Socials</div>
-      <div></div>
-    </div>
     <div class="mbutton2" onclick="switchTheme()">
-      <img id="themeImg" src="Data/Images/theme_light.png">
+      <img id="themeImg" src="Data/Images/Icons/theme_light.png">
     </div>
   </div>
   <!-- HOME-->
-  <div id="home" class="page">
-    <div style="margin: 100px 80px; display: flex; flex-direction: column; z-index: 2;">
-      <div class="shadow" style="display: flex; font-family: Display; font-size: 10rem;">
-        Panco
-        <div style="font-size: 3rem;">
-          [アレックス]
+  <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
+    <img style="height: 100%; position: absolute; right: 0; pointer-events: none; z-index: 0;" src="Data/Images/Patterns/home.svg">
+    
+    <div></div>
+
+    <div class="vc" style="width: 90%; z-index: 2;">
+      <div class="shadow hc" style="font-family: Display;">
+        <div id="homeTitle" class="shadow" style="font-size: 13vw;">
+          Panco
+        </div>
+        <div id="homeTitle2" class="shadow" style="font-size: 4vw;">
+          [ラザニア]
         </div>
       </div>
-      <div style="margin: 20px 0 0 20px; font-size: 1.4rem;">
-        Designer, Programmer, Videogames Enjoyer
+
+      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
+        <div style="font-size: calc(1rem + 0.390625vw);">
+          Designer, Programmer & Videogames Enjoyer
+        </div>
+        <div class="bbutton" onclick="scrollElem('about')">
+          About Me
+        </div>
       </div>
     </div>
 
-    <img style="position: absolute; right: 0; transform: scaleX(-1); pointer-events: none;" src="Data/Images/pattern.svg" height="100%">
-    
-    <div style="display: flex; position: absolute; left: 10px; bottom: 0px; font-family: Display;">
-      <div style="font-size: 10rem; line-height: 10rem;">
+    <div class="hc shadow" style="width: 100%; margin-left: 1vw; font-family: Display; z-index: 1;">
+      <div style="font-size: 12vw; line-height: 12vw;">
         101
       </div>
-      <div style="font-size: 2rem; color: var(--text2); transform: translateX(-5rem) translateY(-1rem) rotate(90deg);">
+      <div style="font-size: 2vw; line-height: 2vw; color: var(--text2); height: fit-content; transform-origin: bottom left; transform: translateY(-.5vw) rotate(90deg);">
         code
       </div>
     </div>
   </div>
+  <!-- ABOUT ME -->
+  <div id="about" class="page" style="flex-direction: row; height: fit-content;">
+    <div id="aboutProfile" style="width: 20%; height: 100%; position: relative; background: var(--menu); display: flex; flex-direction: column; align-items: center;">
+      <img style="width: 70%; aspect-ratio: 1/1; margin: 20% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
+      <div style="font-size: 1.5rem;">
+        Alejandro Paniagua
+      </div>
+    </div>
+    <div id="aboutInfo" style="width: 80%; height: 100%;">
+
+    </div>
+  </div>
   <!-- PROJECTS -->
-  <div id="projects" class="page" style="min-height: 150%; align-items: center;">
-    <div class="shadow" style="margin: 70px 0 -5rem 0; font-family: Display; font-size: 5rem;">
+  <div id="projects" class="page" style="min-height: fit-content; align-items: center;">
+    <div class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5rem;">
       My projects
     </div>
-    <div style="width: 100%; padding: 0 10%; margin: auto; display: flex; flex-direction: column;">
-      <div style="width: 80%; display: flex; justify-content: space-around;">
-        <!-- Oriøn Framework -->
-        <div class="pcard">
-          <img src="Data/Images/framework.png">
-          <div>
-            Oriøn Framework
-          </div>
-          <div onclick="window.open('https://github.com/BOTPanzer/Orion-Framework', '_blank');">
-            See More
-          </div>
+    <div class="pcards">
+      <!-- Oriøn Framework -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/framework.png">
+        <div>
+          Oriøn Framework
         </div>
-        <!-- Oriøn Assistant -->
-        <div class="pcard">
-          <img src="Data/Images/assistant.png">
-          <div>
-            Oriøn Assistant
-          </div>
-          <div>
-            See More
-          </div>
-        </div>
-        <!-- Futuristic Hoodie -->
-        <div class="pcard">
-          <img src="Data/Images/hoodie.png">
-          <div>
-            Futuristic Hoodie
-          </div>
-          <div>
-            See More
-          </div>
+        <div onclick="window.open('https://github.com/BOTPanzer/Orion-Framework', '_blank');">
+          See More
         </div>
       </div>
-      <div style="width: 80%; margin-top: 100px; display: flex; justify-content: space-around;">
-        <!-- PC Modding -->
-        <div class="pcard">
-          <img src="Data/Images/modding.png">
-          <div>
-            PC Modding
-          </div>
-          <div>
-            See More
-          </div>
+      <!-- Oriøn Assistant -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/assistant.png">
+        <div>
+          Oriøn Assistant
         </div>
-        <!-- Discord Bots -->
-        <div class="pcard">
-          <img src="Data/Images/discordbots.png">
-          <div>
-            Discord Bots
-          </div>
-          <div>
-            See More
-          </div>
-        </div>
-        <!-- Other Projects -->
-        <div class="pcard">
-          <img src="Data/Images/cp2077.jpg">
-          <div>
-            Other Projects
-          </div>
-          <div>
-            See More
-          </div>
+        <div>
+          See More
         </div>
       </div>
-      <!-- 3d models (blender, shishkebab) , city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs)  -->
+      <!-- Futuristic Hoodie -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/hoodie.png">
+        <div>
+          Futuristic Hoodie
+        </div>
+        <div>
+          See More
+        </div>
+      </div>
+      <!-- PC Modding -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/modding.png">
+        <div>
+          PC Modding
+        </div>
+        <div>
+          See More
+        </div>
+      </div>
+      <!-- Discord Bots -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/discordbots.png">
+        <div>
+          Discord Bots
+        </div>
+        <div>
+          See More
+        </div>
+      </div>
+      <!-- Other Projects -->
+      <div class="pcard">
+        <img src="Data/Images/cp2077.jpg">
+        <div>
+          Other Projects
+        </div>
+        <div>
+          See More
+        </div>
+      </div>
+      <!-- 3d models (blender, shishkebab), city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs) -->
     </div>
   </div>
-  <!-- ABOUT -->
-  <div id="about" class="page" style="background-color: green;">
-    
-  </div>
-  <!-- SOCIALS -->
-  <div id="socials" class="page" style="background-color: red;">
-
+  <!-- BOTTOM -->
+  <div style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
+    <div id="bottomText" style="font-family: Display; display: flex; flex-direction: row;">
+      <div id="bottomQuote" style="font-size: 25px;">
+        War Never Changes
+      </div>
+      <div id="bottomAuthor" style="font-size: 15px; margin: auto 0 3px 15px;">
+        Fallout
+      </div>
+    </div>
+    <div style="flex-grow: 1;"></div>
+    <div style="user-select: text;">
+      alex.paniagua.moreno@gmail.com
+    </div>
+    <div class="mbutton2" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+      <img src="Data/Images/Icons/git.png">
+    </div>
+    <div class="mbutton2" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+      <img style="filter: none;" src="Data/Images/Icons/ig.png">
+    </div>
   </div>
 </body>
 
 <script>
+  /*THEME*/
   let themeDark = true
-  /*var themeCookieIndex = document.cookie.indexOf('panco_theme=')
-  if (themeCookieIndex != -1) {
-    console.log(themeCookieIndex)
-    let themeCookie = substr(themeCookieIndex+10, document.cookie.indexOf(';', themeCookieIndex))
-    if (themeCookie != 'dark') switchTheme()
-  }*/
   let themeKey = localStorage.getItem('pancoTheme')
   if (themeKey == 'light') switchTheme()
-  
   function switchTheme() {
     themeDark = !themeDark
     if (themeDark) {
-      //document.cookie='panco_theme="dark";';
       localStorage.setItem('pancoTheme', 'dark')
+      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_light.png'
+      document.body.style.setProperty('--menu', '#1e2023')
       document.body.style.setProperty('--background', '#18191c')
       document.body.style.setProperty('--scrollbar', '#f5f5f5')
       document.body.style.setProperty('--accent', '#cc1d4e')
       document.body.style.setProperty('--text1', '#f5f5f5')
-      document.body.style.setProperty('--text2', '#72767D')
+      document.body.style.setProperty('--text2', '#C7C9CA')
       document.body.style.setProperty('--button', '#202225')
       document.body.style.setProperty('--filter', '')
-      document.getElementById('themeImg').src = 'Data/Images/theme_light.png'
     } else {
-      //document.cookie='panco_theme="light";';
       localStorage.setItem('pancoTheme', 'light')
+      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
+      document.body.style.setProperty('--menu', '#F2F3F5')
       document.body.style.setProperty('--background', '#FFFFFF')
       document.body.style.setProperty('--scrollbar', '#F2F3F5')
       document.body.style.setProperty('--accent', '#ff7d7d')
@@ -332,13 +389,75 @@ body {
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
       document.body.style.setProperty('--filter', 'invert(100%)')
-      document.getElementById('themeImg').src = 'Data/Images/theme_dark.png'
     }
   }
 
+  /*WINDOW SIZE*/
+  resized()
+  window.onresize = resized
+  function resized() {
+    let width = window.innerWidth
+    let height = window.innerHeight
+    if (width > height) {
+      //HOME
+      document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
+      document.getElementById('homeTitle').style.textOrientation = 'sideways'
+      document.getElementById('homeTitle').style.fontSize = '13vw'
+      document.getElementById('homeTitle2').style.fontSize = '4vw'
+      //ABOUT
+      document.getElementById('aboutProfile').style.width = '20%'
+      document.getElementById('aboutInfo').style.width = '80%'
+      //PROJECTS
+      document.body.style.setProperty('--cardW', '25%')
+    } else {
+      //HOME
+      document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
+      document.getElementById('homeTitle').style.textOrientation = 'upright'
+      document.getElementById('homeTitle').style.fontSize = '9vh'
+      document.getElementById('homeTitle2').style.fontSize = '3.25vh'
+      //ABOUT
+      document.getElementById('aboutProfile').style.width = '40%'
+      document.getElementById('aboutInfo').style.width = '60%'
+      //PROJECTS
+      document.body.style.setProperty('--cardW', '40%')
+    }
+  }
+
+  /*SCROLL TO ELEMENT*/
   function scrollElem(id) {
     document.getElementById(id).scrollIntoView()
   }
+
+  /*BOTTOM TEXT*/
+  let quotes = ['War never changes', 
+                'Truth Is, The Game Was Rigged From The Start', 
+                'OPA! Artyom!', 
+                "Actually, I wasn't gonna pay you at all", 
+                'This is about to get messy', 
+                "There's a monster inside all of us", 
+                'Oh my stars she is just so handsome', 
+                'And we all have one man to thank for it', 
+                "Oh, it's you. It's been a looong time", 
+                'Your brother needs you', 
+                "I can't believe we did that!",
+                "It's only been a week, but it feels like a year"]
+  let autors = ['Fallout', 
+                'Fallout NV', 
+                'Metro Exodus', 
+                'Cyberpunk 2077', 
+                'League of Legends', 
+                'Arcane',
+                'The Outer Worlds',
+                'Ghostrunner',
+                'Portal 2',
+                'Ruiner',
+                'Celeste',
+                'Katana Zero']
+  function changeBottomText() {
+    let q = Math.floor(Math.random() * quotes.length)
+    document.getElementById('bottomQuote').innerHTML = quotes[q]
+    document.getElementById('bottomAuthor').innerHTML = autors[q]
+  }           
 </script>
 </html>
 
