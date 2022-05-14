@@ -337,8 +337,8 @@ body {
     </div>
   </div>
   <!-- BOTTOM -->
-  <div style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
-    <div id="bottomText" style="font-family: Display; display: flex; flex-direction: row;">
+  <div id="bottom" style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
+    <div id="bottomText" style="flex-grow: 1; font-family: Display; display: flex; flex-direction: row;">
       <div id="bottomQuote" style="font-size: 25px;">
         War Never Changes
       </div>
@@ -346,15 +346,16 @@ body {
         Fallout
       </div>
     </div>
-    <div style="flex-grow: 1;"></div>
     <div style="user-select: text;">
       alex.paniagua.moreno@gmail.com
     </div>
-    <div class="mbutton2" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
-      <img src="Data/Images/Icons/git.png">
-    </div>
-    <div class="mbutton2" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
-      <img style="filter: none;" src="Data/Images/Icons/ig.png">
+    <div class="hc" style="gap: 20px;">
+      <div class="mbutton2" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+        <img src="Data/Images/Icons/git.png">
+      </div>
+      <div class="mbutton2" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+        <img style="filter: none;" src="Data/Images/Icons/ig.png">
+      </div>
     </div>
   </div>
 </body>
@@ -408,6 +409,8 @@ body {
       document.getElementById('aboutInfo').style.width = '80%'
       //PROJECTS
       document.body.style.setProperty('--cardW', '25%')
+      //BOTTOM
+      document.getElementById('bottom').style.flexDirection = 'row'
     } else {
       //HOME
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
@@ -419,6 +422,8 @@ body {
       document.getElementById('aboutInfo').style.width = '60%'
       //PROJECTS
       document.body.style.setProperty('--cardW', '40%')
+      //BOTTOM
+      document.getElementById('bottom').style.flexDirection = 'column'
     }
   }
 
