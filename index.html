@@ -615,7 +615,7 @@ img {
     scene.background = new THREE.Color(0x000000)
 
     camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 5000)
-    camera.rotation.y = 0//45/180*Math.PI
+    camera.rotation.y = 0 //45/180*Math.PI
     camera.position.x = 800
     camera.position.y = 100
     camera.position.z = 1000
@@ -649,7 +649,7 @@ img {
     scene.add(light4)
     
     let loader = new THREE.GLTFLoader()
-    loader.load('https://botpanzer.github.io/Web/Data/3D/Duck/Duck.gltf', function(gltf) {
+    loader.load('https://botpanzer.github.io/Web/Data/3D/Duck/Duck.glb', function(gltf) {
       duck = gltf.scene.children[0]
       duck.scale.set(4,4,4)
       scene.add(gltf.scene)
