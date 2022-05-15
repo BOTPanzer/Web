@@ -439,6 +439,7 @@ img {
 <script>
   //3D MODEL
   let scene
+  let camera
   let renderer
   createDuck()
   function createDuck() {
@@ -446,7 +447,7 @@ img {
 
     scene = new THREE.Scene()
 
-    let camera = new THREE.PerspectiveCamera(40, (window.innerWidth/2)/window.innerHeight, 1, 5000)
+    camera = new THREE.PerspectiveCamera(40, (window.innerWidth/2)/window.innerHeight, 1, 5000)
     camera.position.set(50, 50, 60)
 
     renderer = new THREE.WebGLRenderer({ antialias:true, alpha: true })
@@ -481,6 +482,8 @@ img {
     if (window.innerHeight > window.innerWidth) {
       //HOME
       renderer.setSize(window.innerWidth/2, window.innerHeight)
+      camera.aspect = (window.innerWidth/2)/window.innerHeight
+      camera.updateProjectionMatrix()
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
@@ -497,6 +500,8 @@ img {
     } else {
       //HOME
       renderer.setSize(window.innerWidth/2, window.innerHeight)
+      camera.aspect = (window.innerWidth/2)/window.innerHeight
+      camera.updateProjectionMatrix()
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
