@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="Data/3D/three.min.js"></script>
   <script src="Data/3D/GLTFLoader.js"></script>
+  <script src="Data/3D/OrbitControls.js"></script>
 </head>
 
 <style>
@@ -296,8 +297,6 @@ img {
     
     <!--img id="homeGuy" style="width: 50%; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png"-->
     
-    <div id="homeRenderer" style="width: 50%; height: 100%; position: absolute; right: 0; background-color: #cc1d4e;"></div>
-
     <div></div>
 
     <div class="vc" style="width: 90%; z-index: 3;">
@@ -481,7 +480,7 @@ img {
         setTimeout(removeLetter, time)
     }
   }
-
+  
   //THEME
   let themeDark = true
   let themeKey = localStorage.getItem('pancoTheme')
@@ -516,8 +515,8 @@ img {
   }
 
   //WINDOW SIZE
-  resized()
   window.onresize = resized
+  resized()
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
@@ -559,14 +558,16 @@ img {
       document.getElementById('bottom').style.flexDirection = 'row'
     }
   }
-
+  
   //SCROLL TO ELEMENT
   function scrollElem(id) {
     document.getElementById(id).scrollIntoView()
   }
 
   //BOTTOM TEXT QUOTES
-  let quotes = ['War never changes', 
+  changeBottomText()
+  function changeBottomText() {  
+    let quotes = ['War never changes', 
                 'Truth Is, The Game Was Rigged From The Start', 
                 'OPA! Artyom!', 
                 "Actually, I wasn't gonna pay you at all", 
@@ -578,7 +579,7 @@ img {
                 'Your brother needs you', 
                 "I can't believe we did that!",
                 "It's only been a week, but it feels like a year"]
-  let autors = ['Fallout', 
+    let autors = ['Fallout', 
                 'Fallout NV', 
                 'Metro Exodus', 
                 'Cyberpunk 2077', 
@@ -590,29 +591,38 @@ img {
                 'Ruiner',
                 'Celeste',
                 'Katana Zero']
-  changeBottomText()
-  function changeBottomText() {
     let q = Math.floor(Math.random() * quotes.length)
     document.getElementById('bottomQuote').innerHTML = quotes[q]
     document.getElementById('bottomAuthor').innerHTML = autors[q]
   }           
-
+  
+  //JAPANESE TEXT WORDS
+  changeJapaneseText()
+  function changeJapaneseText() {
+    let words = ['アレックス',
+                'ラザニア', 
+                'サイバ']
+    let q = Math.floor(Math.random() * words.length)
+    document.getElementById('homeTitle2').innerHTML = `[${words[q]}]`
+  }           
+  
   //3D MODEL
   let scene
-  init()
-  function init() {
+  createDuck()
+  function createDuck() {
+    //let elem = document.getElementById('homeRenderer')
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0xdddddd)
+    scene.background = new THREE.Color(0x000000)
 
     camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 5000)
-    camera.rotation.y = 45/280*Math.PI
+    camera.rotation.y = 0//45/180*Math.PI
     camera.position.x = 800
     camera.position.y = 100
     camera.position.z = 1000
 
-    renderer = new THREE.WebGLRenderer({antialias:true})
+    renderer = new THREE.WebGLRenderer({ antialias:true, alpha: true })
     renderer.setSize(window.innerWidth, window.innerHeight)
-    document.getElementById('homeRenderer').appendChild(renderer.domElement)
+    document.body.appendChild(renderer.domElement)
 
     hlight = new THREE.AmbientLight (0x404040,100)
     scene.add(hlight)
@@ -637,14 +647,22 @@ img {
     light4 = new THREE.PointLight(0xc4c4c4,10)
     light4.position.set(-500,300,500)
     scene.add(light4)
-
+    
     let loader = new THREE.GLTFLoader()
-    loader.load('Data/3D/Duck/Duck.gltf', function(gltf){
-      car = gltf.scene.children[0]
-      car.scale.set(0.5,0.5,0.5)
+    loader.load('https://botpanzer.github.io/Web/Data/3D/Duck/Duck.gltf', function(gltf) {
+      duck = gltf.scene.children[0]
+      duck.scale.set(4,4,4)
       scene.add(gltf.scene)
       animate()
-    });
+    })
+
+    let controls = new THREE.OrbitControls(camera, renderer.domElement)
+    controls.addEventListener('change', renderer)
+    
+    function animate() {
+      renderer.render(scene, camera)
+      requestAnimationFrame(animate)
+    }
   }
 </script>
 </html>
