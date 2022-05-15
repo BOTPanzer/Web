@@ -295,13 +295,11 @@ img {
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
     
-    <!--img id="homeGuy" style="width: 50%; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png"-->
-    
     <div id="homeRenderer" style="width: 50%; height: 100%; position: absolute; right: 0; z-index: 4;"></div>
 
     <div></div>
 
-    <div class="vc" style="width: 90%; z-index: 3;">
+    <div class="vc" style="width: 90%; z-index: 2;">
       <div class="shadow hc" style="font-family: Display;">
         <div id="homeTitle" class="shadow" style="font-size: 13vw;">
           Panco
@@ -439,6 +437,82 @@ img {
 </body>
 
 <script>
+  //3D MODEL
+  let scene
+  let renderer
+  createDuck()
+  function createDuck() {
+    let elem = document.getElementById('homeRenderer')
+
+    scene = new THREE.Scene()
+
+    let camera = new THREE.PerspectiveCamera(40, (window.innerWidth/2)/window.innerHeight, 1, 5000)
+    camera.position.set(50, 50, 60)
+
+    renderer = new THREE.WebGLRenderer({ antialias:true, alpha: true })
+    renderer.setSize(window.innerWidth/2, window.innerHeight)
+    renderer.setClearColor(0x000000, 0)
+    elem.appendChild(renderer.domElement)
+
+    let hlight = new THREE.AmbientLight (0x404040, 10)
+    scene.add(hlight)
+    
+    let loader = new THREE.GLTFLoader()
+    loader.load('https://botpanzer.github.io/Web/Data/3D/Duck/Duck.glb', function(gltf) {
+      scene.add(gltf.scene)
+      animate()
+    })
+
+    let controls = new THREE.OrbitControls(camera, renderer.domElement)
+    controls.target.set(0, 5, 0)
+    controls.update()
+    controls.addEventListener('change', renderer)
+    
+    function animate() {
+      renderer.render(scene, camera)
+      requestAnimationFrame(animate)
+    }
+  }
+
+  //WINDOW SIZE
+  window.onresize = resized
+  resized()
+  function resized() {
+    if (window.innerHeight > window.innerWidth) {
+      //HOME
+      renderer.setSize(window.innerWidth/2, window.innerHeight)
+      document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
+      document.getElementById('homeTitle').style.textOrientation = 'upright'
+      document.getElementById('homeTitle').style.fontSize = '9vh'
+      document.getElementById('homeTitle2').style.fontSize = '3.25vh'
+      //ABOUT
+      document.getElementById('aboutProfile').style.width = '40%'
+      document.getElementById('aboutInfo').style.width = '60%'
+      document.getElementById('aboutName').style.fontSize = '3vw'
+      //PROJECTS
+      document.getElementById('projectsTitle').style.fontSize = '10vw'
+      document.body.style.setProperty('--cardW', '70%')
+      //BOTTOM
+      document.getElementById('bottom').style.flexDirection = 'column'
+    } else {
+      //HOME
+      renderer.setSize(window.innerWidth/2, window.innerHeight)
+      document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
+      document.getElementById('homeTitle').style.textOrientation = 'sideways'
+      document.getElementById('homeTitle').style.fontSize = '13vw'
+      document.getElementById('homeTitle2').style.fontSize = '4vw'
+      //ABOUT
+      document.getElementById('aboutProfile').style.width = '20%'
+      document.getElementById('aboutInfo').style.width = '80%'
+      document.getElementById('aboutName').style.fontSize = '1.5vw'
+      //PROJECTS
+      document.getElementById('projectsTitle').style.fontSize = '5vw'
+      document.body.style.setProperty('--cardW', '25%')
+      //BOTTOM
+      document.getElementById('bottom').style.flexDirection = 'row'
+    }
+  }
+  
   //TYPE ANIMATION
   typeAnim()
   function typeAnim() {
@@ -516,51 +590,6 @@ img {
     }
   }
 
-  //WINDOW SIZE
-  window.onresize = resized
-  resized()
-  function resized() {
-    if (window.innerHeight > window.innerWidth) {
-      //HOME
-      /*document.getElementById('homeGuy').style.width = ''
-      document.getElementById('homeGuy').style.height = '90%'
-      document.getElementById('homeGuy').style.right = '-40%'
-      document.getElementById('homeGuy').style.zIndex = '2'*/
-      document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
-      document.getElementById('homeTitle').style.textOrientation = 'upright'
-      document.getElementById('homeTitle').style.fontSize = '9vh'
-      document.getElementById('homeTitle2').style.fontSize = '3.25vh'
-      //ABOUT
-      document.getElementById('aboutProfile').style.width = '40%'
-      document.getElementById('aboutInfo').style.width = '60%'
-      document.getElementById('aboutName').style.fontSize = '3vw'
-      //PROJECTS
-      document.getElementById('projectsTitle').style.fontSize = '10vw'
-      document.body.style.setProperty('--cardW', '70%')
-      //BOTTOM
-      document.getElementById('bottom').style.flexDirection = 'column'
-    } else {
-      //HOME
-      /*document.getElementById('homeGuy').style.width = '50%'
-      document.getElementById('homeGuy').style.height = ''
-      document.getElementById('homeGuy').style.right = '0'
-      document.getElementById('homeGuy').style.zIndex = '4'*/
-      document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
-      document.getElementById('homeTitle').style.textOrientation = 'sideways'
-      document.getElementById('homeTitle').style.fontSize = '13vw'
-      document.getElementById('homeTitle2').style.fontSize = '4vw'
-      //ABOUT
-      document.getElementById('aboutProfile').style.width = '20%'
-      document.getElementById('aboutInfo').style.width = '80%'
-      document.getElementById('aboutName').style.fontSize = '1.5vw'
-      //PROJECTS
-      document.getElementById('projectsTitle').style.fontSize = '5vw'
-      document.body.style.setProperty('--cardW', '25%')
-      //BOTTOM
-      document.getElementById('bottom').style.flexDirection = 'row'
-    }
-  }
-  
   //SCROLL TO ELEMENT
   function scrollElem(id) {
     document.getElementById(id).scrollIntoView()
@@ -607,53 +636,6 @@ img {
     let q = Math.floor(Math.random() * words.length)
     document.getElementById('homeTitle2').innerHTML = `[${words[q]}]`
   }           
-  
-  //3D MODEL
-  let scene
-  createDuck()
-  function createDuck() {
-    let elem = document.getElementById('homeRenderer')
-
-    scene = new THREE.Scene()
-
-    const camera = new THREE.PerspectiveCamera(40, (window.innerWidth/2)/window.innerHeight, 1, 5000)
-    camera.rotation.y = 90/180*Math.PI
-    camera.position.x = 000
-    camera.position.y = 000
-    camera.position.z = 100
-
-    renderer = new THREE.WebGLRenderer({ antialias:true, alpha: true })
-    renderer.setSize(window.innerWidth/2, window.innerHeight)
-    renderer.setClearColor(0x000000, 0)
-    elem.appendChild(renderer.domElement)
-
-    hlight = new THREE.AmbientLight (0x404040,100)
-    scene.add(hlight)
-
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.005)
-    scene.add(directionalLight)
-
-    /*directionalLight = new THREE.DirectionalLight(0x000000, 1)
-    directionalLight.position.set(0,0,0)
-    directionalLight.castShadow = true
-    scene.add(directionalLight)*/
-    
-    let loader = new THREE.GLTFLoader()
-    loader.load('https://botpanzer.github.io/Web/Data/3D/Duck/Duck.glb', function(gltf) {
-      //duck = gltf.scene.children[0]
-      //duck.scale.set(1, 1, 1)
-      scene.add(gltf.scene)
-      animate()
-    })
-
-    let controls = new THREE.OrbitControls(camera, renderer.domElement)
-    controls.addEventListener('change', renderer)
-    
-    function animate() {
-      renderer.render(scene, camera)
-      requestAnimationFrame(animate)
-    }
-  }
 </script>
 </html>
 
