@@ -484,9 +484,9 @@ img {
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
-      renderer.setSize(window.innerWidth/2, window.innerHeight)
+      /*renderer.setSize(window.innerWidth/2, window.innerHeight)
       camera.aspect = (window.innerWidth/2)/window.innerHeight
-      camera.updateProjectionMatrix()
+      camera.updateProjectionMatrix()*/
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
@@ -502,9 +502,9 @@ img {
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
       //HOME
-      renderer.setSize(window.innerWidth/2, window.innerHeight)
+      /*renderer.setSize(window.innerWidth/2, window.innerHeight)
       camera.aspect = (window.innerWidth/2)/window.innerHeight
-      camera.updateProjectionMatrix()
+      camera.updateProjectionMatrix()*/
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
