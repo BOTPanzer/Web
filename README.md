@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://botpanzer.github.io/Web/">
-    <img src="https://github.com/BOTPanzer/Web/blob/main/Data/Images/linus.png" width="130">
+    <img src="https://github.com/BOTPanzer/Web/blob/main/Data/Images/artyom.png" width="130">
   </a>
 </p>
 
