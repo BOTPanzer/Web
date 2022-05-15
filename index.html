@@ -443,6 +443,9 @@ img {
   let renderer
   createModel()
   function createModel() {
+    let models = ['duck.glb', 
+                  'bulb.glb', 
+                  'gasmask.glb']
     let elem = document.getElementById('homeRenderer')
 
     scene = new THREE.Scene()
@@ -459,7 +462,7 @@ img {
     scene.add(hlight)
     
     let loader = new THREE.GLTFLoader()
-    loader.load('https://botpanzer.github.io/Web/Data/3D/Models/Duck.glb', function(gltf) {
+    loader.load('https://botpanzer.github.io/Web/Data/3D/Models/'+models[Math.floor(Math.random() * models.length)], function(gltf) {
       scene.add(gltf.scene)
       animate()
     })
