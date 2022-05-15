@@ -45,8 +45,19 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+  border-radius: 7px;
+  border: solid 4px transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border: solid 3px transparent;
 }
 
 img {
