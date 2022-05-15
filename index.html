@@ -3,10 +3,13 @@
 <head>
   <title>Panco's Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="Data/3D/three.min.js"></script>
+  <script src="Data/3D/GLTFLoader.js"></script>
 </head>
 
 <style>
-@font-face { font-family: Main; src: url('Data/Fonts/Main.ttf'); }
+@font-face { font-family: Poppins; src: url('Data/Fonts/Poppins.ttf'); }
+@font-face { font-family: Comfortaa; src: url('Data/Fonts/Comfortaa.ttf'); }
 @font-face { font-family: Display; src: url('Data/Fonts/Display.ttf'); }
 
 html {
@@ -24,7 +27,7 @@ body {
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  font-family: Main;
+  font-family: Poppins;
   font-size: 1rem;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -291,8 +294,10 @@ img {
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
     
-    <img id="homeGuy" style="width: 50%; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
+    <!--img id="homeGuy" style="width: 50%; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png"-->
     
+    <div id="homeRenderer" style="width: 50%; height: 100%; position: absolute; right: 0; background-color: #cc1d4e;"></div>
+
     <div></div>
 
     <div class="vc" style="width: 90%; z-index: 3;">
@@ -314,9 +319,6 @@ img {
           <div style="animation: line 1s infinite;">
             |
           </div>
-        </div>
-        <div class="bbutton" onclick="scrollElem('about')">
-          About Me
         </div>
       </div>
     </div>
@@ -436,7 +438,7 @@ img {
 </body>
 
 <script>
-  /*TYPE ANIMATION*/
+  //TYPE ANIMATION
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
@@ -453,7 +455,7 @@ img {
     function prepare() {      
       length = jobs[i].length
       letters = length
-      time = 1500/length
+      time = 1000/length
       writeLetter()
     }
 
@@ -463,7 +465,7 @@ img {
       if (letters >= 0)
         setTimeout(writeLetter, time)
       else
-        setTimeout(removeLetter, 1500)
+        setTimeout(removeLetter, 2000)
     }
 
     function removeLetter() {
@@ -480,7 +482,7 @@ img {
     }
   }
 
-  /*THEME*/
+  //THEME
   let themeDark = true
   let themeKey = localStorage.getItem('pancoTheme')
   if (themeKey == 'light') switchTheme()
@@ -513,16 +515,16 @@ img {
     }
   }
 
-  /*WINDOW SIZE*/
+  //WINDOW SIZE
   resized()
   window.onresize = resized
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
-      document.getElementById('homeGuy').style.width = ''
+      /*document.getElementById('homeGuy').style.width = ''
       document.getElementById('homeGuy').style.height = '90%'
       document.getElementById('homeGuy').style.right = '-40%'
-      document.getElementById('homeGuy').style.zIndex = '2'
+      document.getElementById('homeGuy').style.zIndex = '2'*/
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
@@ -538,10 +540,10 @@ img {
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
       //HOME
-      document.getElementById('homeGuy').style.width = '50%'
+      /*document.getElementById('homeGuy').style.width = '50%'
       document.getElementById('homeGuy').style.height = ''
       document.getElementById('homeGuy').style.right = '0'
-      document.getElementById('homeGuy').style.zIndex = '4'
+      document.getElementById('homeGuy').style.zIndex = '4'*/
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
@@ -558,12 +560,12 @@ img {
     }
   }
 
-  /*SCROLL TO ELEMENT*/
+  //SCROLL TO ELEMENT
   function scrollElem(id) {
     document.getElementById(id).scrollIntoView()
   }
 
-  /*BOTTOM TEXT QUOTES*/
+  //BOTTOM TEXT QUOTES
   let quotes = ['War never changes', 
                 'Truth Is, The Game Was Rigged From The Start', 
                 'OPA! Artyom!', 
@@ -594,6 +596,56 @@ img {
     document.getElementById('bottomQuote').innerHTML = quotes[q]
     document.getElementById('bottomAuthor').innerHTML = autors[q]
   }           
+
+  //3D MODEL
+  let scene
+  init()
+  function init() {
+    scene = new THREE.Scene()
+    scene.background = new THREE.Color(0xdddddd)
+
+    camera = new THREE.PerspectiveCamera(40, window.innerWidth/window.innerHeight, 1, 5000)
+    camera.rotation.y = 45/280*Math.PI
+    camera.position.x = 800
+    camera.position.y = 100
+    camera.position.z = 1000
+
+    renderer = new THREE.WebGLRenderer({antialias:true})
+    renderer.setSize(window.innerWidth, window.innerHeight)
+    document.getElementById('homeRenderer').appendChild(renderer.domElement)
+
+    hlight = new THREE.AmbientLight (0x404040,100)
+    scene.add(hlight)
+
+    directionalLight = new THREE.DirectionalLight(0xffffff,100)
+    directionalLight.position.set(0,1,0)
+    directionalLight.castShadow = true
+    scene.add(directionalLight)
+
+    light = new THREE.PointLight(0xc4c4c4,10)
+    light.position.set(0,300,500)
+    scene.add(light)
+
+    light2 = new THREE.PointLight(0xc4c4c4,10)
+    light2.position.set(500,100,0)
+    scene.add(light2)
+
+    light3 = new THREE.PointLight(0xc4c4c4,10)
+    light3.position.set(0,100,-500)
+    scene.add(light3)
+
+    light4 = new THREE.PointLight(0xc4c4c4,10)
+    light4.position.set(-500,300,500)
+    scene.add(light4)
+
+    let loader = new THREE.GLTFLoader()
+    loader.load('Data/3D/Duck/Duck.gltf', function(gltf){
+      car = gltf.scene.children[0]
+      car.scale.set(0.5,0.5,0.5)
+      scene.add(gltf.scene)
+      animate()
+    });
+  }
 </script>
 </html>
 
