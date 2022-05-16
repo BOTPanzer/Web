@@ -170,6 +170,56 @@ img {
 }
 
 
+ /*$   /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
+| $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
+| $$  | $$| $$  \ $$| $$$$  /$$$$| $$      
+| $$$$$$$$| $$  | $$| $$ $$/$$ $$| $$$$$   
+| $$__  $$| $$  | $$| $$  $$$| $$| $$__/   
+| $$  | $$| $$  | $$| $$\  $ | $$| $$      
+| $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
+|__/  |__/ \______/ |__/     |__/|_______*/
+
+.page {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/*SEE PROJECTS THINGI*/
+.seep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  animation: jump 2s ease infinite;
+}
+
+.seepText {
+  padding: 5px 10px;
+  background-color: var(--button);
+  border-radius: 10px;
+}
+
+.seepTriangle {  
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--button);
+}
+
+@keyframes jump {
+  70% { transform:translateY(0); }
+  80% { transform:translateY(-15px); }
+  90% { transform:translateY(0); }
+  95% { transform:translateY(-7px); }
+  100% { transform:translateY(0); }
+}
+
+
  /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
 | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
 | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
@@ -178,6 +228,15 @@ img {
 | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
 | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
 |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
+
+.page2 {
+  width: 100%;
+  min-height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /*PROJECT*/
 .project {
@@ -189,12 +248,38 @@ img {
   position: fixed; 
   background: var(--background); 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   z-index: 100;
   pointer-events: none;
   opacity: 0;
   transition: opacity .3s;
 }
+
+.projectHalf {
+  width: calc(50% - 4vw); 
+  height: calc(100% - 4vw); 
+  padding: 2vw; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+}
+
+.projectBalls {
+  display: flex;
+  flex-direction: row;
+  gap: 30px; 
+  font-size: 2vw;
+}
+
+.projectBall {
+  width: 20px; 
+  height: 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: var(--text1);
+}
+
 
 /*PROJECT CLOSE*/
 .pclose {
@@ -205,6 +290,8 @@ img {
   top: 10px;
   right: 10px;
   border-radius: 25px; 
+  cursor: pointer;
+  filter: var(--filter);
   transition: background .2s;
 }
 
@@ -294,33 +381,6 @@ img {
 |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
  \______/    |__/   |__/  |__/|________/|__/  |_*/
 
-/*PAGES*/
-.page {
-  width: 100%;
-  min-height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.page2 {
-  width: 100%;
-  min-height: 100%;
-  height: fit-content;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-}
-
-.page3 {
-  width: 100%;
-  min-height: fit-content;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 /*BORDER BUTTON*/
 .bbutton {
   width: fit-content;
@@ -350,7 +410,6 @@ img {
   text-shadow: 0px 0px 10px var(--textShadow);
 }
 
-
 /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
@@ -369,10 +428,10 @@ img {
       <div>Home</div>
       <div></div>
     </div>
-    <div class="mbutton" onclick="scrollElem('about')">
+    <!--div class="mbutton" onclick="scrollElem('about')">
       <div>About Me</div>
       <div></div>
-    </div>
+    </div-->
     <div class="mbutton" onclick="scrollElem('projects')">
       <div>Projects</div>
       <div></div>
@@ -395,7 +454,7 @@ img {
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
     
-    <img id="homeGuy" style="height: calc(100% - 55px); object-fit: contain; object-position: bottom; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
+    <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
 
     <div></div>
 
@@ -410,13 +469,18 @@ img {
       </div>
 
       <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
-        <div class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
+        <div id="homeHi" class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
           <div>
-            I'm&nbsp;
+            Hi, I'm Alex.&nbsp;
           </div>
-          <div id="homeJobs"></div>
-          <div style="animation: line 1s infinite;">
-            |
+          <div class="hc">
+            <div>
+              I have experience with&nbsp;
+            </div>
+            <div id="homeJobs"></div>
+            <div style="animation: line 1s infinite;">
+              |
+            </div>
           </div>
         </div>
       </div>
@@ -430,30 +494,13 @@ img {
         code
       </div>
     </div>
-  </div>
-  
 
-    <!--$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$       /$$      /$$ /$$$$$$$$
-   /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/      | $$$    /$$$| $$_____/
-  | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$         | $$$$  /$$$$| $$      
-  | $$$$$$$$| $$$$$$$ | $$  | $$| $$  | $$   | $$         | $$ $$/$$ $$| $$$$$   
-  | $$__  $$| $$__  $$| $$  | $$| $$  | $$   | $$         | $$  $$$| $$| $$__/   
-  | $$  | $$| $$  \ $$| $$  | $$| $$  | $$   | $$         | $$\  $ | $$| $$      
-  | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$         | $$ \/  | $$| $$$$$$$$
-  |__/  |__/|_______/  \______/  \______/    |__/         |__/     |__/|______-->
-
-  <div id="about" class="page2">
-    <div id="aboutProfile" style="width: 20%; height: 100%; position: relative; background: var(--menu); display: flex; flex-direction: column; align-items: center;">
-      <img style="width: 70%; aspect-ratio: 1/1; margin: 25% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
-      <div id="aboutName" style="font-size: 1.5vw;">
-        Alejandro Paniagua
-      </div>
-    </div>
-    <div id="aboutInfo" style="width: 80%; height: 100%;">
-
+    <div class="seep" style="width: 100%; position: absolute; bottom: 0; z-index: 2;" onclick="scrollElem('projects')">
+      <div class="seepText">See My Projects</div>
+      <div class="seepTriangle"></div>
     </div>
   </div>
-  
+
 
    <!--$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
   | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
@@ -464,68 +511,68 @@ img {
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \____--> 
 
-  <div id="projects" class="page3">
+  <div id="projects" class="page2">
     <div id="projectsTitle" class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5vw; text-align: center;">
       My projects
     </div>
     <div class="pcards">
       <!-- Oriøn Framework -->
       <div class="pcard">
-        <img src="Data/Images/Projects/framework.png">
+        <img src="Data/Images/Projects/Framework/docs.png">
         <div>
           Oriøn Framework
         </div>
-        <div onclick="window.open('https://github.com/BOTPanzer/Orion-Framework', '_blank');">
+        <div onclick="createProject('framework')">
           See More
         </div>
       </div>
       <!-- Oriøn Assistant -->
       <div class="pcard">
-        <img src="Data/Images/Projects/assistant.png">
+        <img src="Data/Images/Projects/Assistant/pcapp.png">
         <div>
           Oriøn Assistant
         </div>
-        <div onclick="showProjectsWindow(true)">
+        <div onclick="createProject('assistant')">
           See More
         </div>
       </div>
       <!-- Futuristic Hoodie -->
       <div class="pcard">
-        <img src="Data/Images/Projects/hoodie.png">
+        <img src="Data/Images/Projects/Hoodie/front.png">
         <div>
           Futuristic Hoodie
         </div>
-        <div onclick="showProjectsWindow(true)">
+        <div onclick="createProject('hoodie')">
           See More
         </div>
       </div>
       <!-- PC Modding -->
       <div class="pcard">
-        <img src="Data/Images/Projects/modding.png">
+        <img src="Data/Images/Projects/Modding/3d.png">
         <div>
           PC Modding
         </div>
-        <div onclick="showProjectsWindow(true)">
+        <div onclick="createProject('modding')">
           See More
         </div>
       </div>
       <!-- Discord Bots -->
       <div class="pcard">
-        <img src="Data/Images/Projects/discordbots.png">
+        <img src="Data/Images/Projects/Disbots/help.png">
         <div>
           Discord Bots
         </div>
-        <div onclick="showProjectsWindow(true)">
+        <div onclick="createProject('disbots')">
           See More
         </div>
       </div>
       <!-- Other Projects -->
       <div class="pcard">
-        <img src="Data/Images/cp2077.jpg">
+        <img src="Data/Images/Projects/Other/other.jpg">
         <div>
           Other Projects
         </div>
-        <div onclick="showProjectsWindow(true)">
+        <div onclick="createProject('other')">
           See More
         </div>
       </div>
@@ -536,6 +583,24 @@ img {
   <!-- PROJECTS WINDOW -->
   <div id="projectsWindow" class="project">
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
+
+    <div class="projectHalf">
+      <div class="vc" style="font-size: 4vw; line-height: 4vw;">
+        <div id="projectTitle1" style="font-family: Display;">Title</div>
+        <div id="projectTitle2" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
+        <div id="projectTitle3" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
+      </div>
+
+      <div style="width: calc(100% - 4vw); height: 0; flex-grow: 1; margin: 2vw; outline: solid var(--text1) 1px; border-radius: 2vw; background: #fff; overflow: hidden;">
+        <div id="projectImage" style="width: 100%; height: 100%; background-repeat: no-repeat; background-size: contain; background-position: center;"></div>
+      </div>
+
+      <div id="projectBalls" class="projectBalls"></div>
+    </div>
+
+    <div id="projectDescription" class="projectHalf">
+      The Royal Giant card is unlocked from the Royal Arena (Arena 7). He is a building targeting, medium-ranged troop with high hitpoints and moderately high damage. His appearance is similar to that of a Giant but he sports a darker colored cloth coat, has a mustache with sideburns which go down to his chin, wears an earring on his right ear, and wields a cannon in one hand and a cannonball in the other. A Royal Giant card costs 6 Elixir to deploy.
+    </div>
   </div>
 
    <!--$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
@@ -556,10 +621,11 @@ img {
         Fallout
       </div>
     </div>
-    <div style="user-select: text;">
-      alex.paniagua.moreno@gmail.com
-    </div>
     <div class="hc" style="gap: 20px;">
+      <div class="mbutton2" onclick="copyEmail()" title="Copy Mail">
+        <img src="Data/Images/Icons/email.png">
+        <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
+      </div>
       <div class="mbutton2" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
         <img src="Data/Images/Icons/git.png">
       </div>
@@ -571,8 +637,6 @@ img {
 </body>
 
 <script>
-
-
   //WINDOW SIZE
   resized()
   window.onresize = resized
@@ -586,10 +650,12 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
       document.getElementById('homeJap').style.fontSize = '3.25vh'
+      document.getElementById('homeHi').classList.remove('hc')
+      document.getElementById('homeHi').classList.add('vc')
       //ABOUT
-      document.getElementById('aboutProfile').style.width = '40%'
+      /*document.getElementById('aboutProfile').style.width = '40%'
       document.getElementById('aboutInfo').style.width = '60%'
-      document.getElementById('aboutName').style.fontSize = '3vw'
+      document.getElementById('aboutName').style.fontSize = '3vw'*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -605,10 +671,12 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
       document.getElementById('homeJap').style.fontSize = '4vw'
+      document.getElementById('homeHi').classList.add('hc')
+      document.getElementById('homeHi').classList.remove('vc')
       //ABOUT
-      document.getElementById('aboutProfile').style.width = '20%'
+      /*document.getElementById('aboutProfile').style.width = '20%'
       document.getElementById('aboutInfo').style.width = '80%'
-      document.getElementById('aboutName').style.fontSize = '1.5vw'
+      document.getElementById('aboutName').style.fontSize = '1.5vw'*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
@@ -622,11 +690,11 @@ img {
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
-    let jobs = ['a UI Designer', 
-                'a Web Developer', 
-                'an Android Developer', 
-                'a 3D Printing Fan', 
-                'a Videogames Enjoyer']
+    let jobs = ['UI Design', 
+                'Web Development', 
+                'Android Development', 
+                '3D Printing', 
+                'Videogame Development']
     let i = 0
     let length
     let letters
@@ -646,7 +714,7 @@ img {
       if (letters >= 0)
         setTimeout(writeLetter, time)
       else
-        setTimeout(removeLetter, 2000)
+        setTimeout(removeLetter, 1500)
     }
 
     function removeLetter() {
@@ -657,7 +725,7 @@ img {
           i++
           if (jobs[i] == undefined) i = 0
           prepare()
-        }, 1000)
+        }, 500)
       } else
         setTimeout(removeLetter, time)
     }
@@ -769,7 +837,81 @@ img {
     $(window).off('scroll.scrolldisabler')
   }
 
+  //COPY EMAIL
+  function copyEmail() {
+    navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
+    document.getElementById('bottomEmailCheck').style.opacity = '1'
+  }
 
+   /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
+  | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
+  | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
+  | $$$$$$$/| $$$$$$$/| $$  | $$      | $$| $$$$$   | $$         | $$  |  $$$$$$ 
+  | $$____/ | $$__  $$| $$  | $$ /$$  | $$| $$__/   | $$         | $$   \____  $$
+  | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
+  | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
+  |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
+  
+  function createProject(project) {
+    let title = 'Title'
+    let description = 'Description'
+    let images = ['Data/Images/Projects/Other/other.jpg']
+    switch(project) {
+      case 'framework':
+        title = 'Oriøn Framework'
+        description = 'Oriøn Framework Description'
+        images = ['Data/Images/Projects/Framework/docs.png']
+        break
+      case 'assistant':
+        title = 'Oriøn Assistant'
+        description = 'Oriøn Assistant Description'
+        images = ['Data/Images/Projects/Assistant/pcapp.png']
+        break
+      case 'hoodie':
+        title = 'Futuristic Hoodie'
+        description = 'Futuristic Hoodie Description'
+        images = ['Data/Images/Projects/Hoodie/front.png',
+                 'Data/Images/Projects/Hoodie/back.png']
+        break
+      case 'modding':
+        title = 'PC Modding'
+        description = 'PC Modding Description'
+        images = ['Data/Images/Projects/Modding/3d.png']
+        break
+      case 'disbots':
+        title = 'Discord Bots'
+        description = 'Discord Bots Description'
+        images = ['Data/Images/Projects/Disbots/help.png']
+        break
+      case 'other':
+        title = 'Other Projects'
+        description = 'Other Projects Description'
+        images = ['Data/Images/Projects/Other/other.jpg']
+        break
+    }
+    //SET DATA
+    document.getElementById('projectTitle1').innerHTML = title
+    document.getElementById('projectTitle2').innerHTML = title
+    document.getElementById('projectTitle3').innerHTML = title
+    document.getElementById('projectDescription').innerHTML = description
+    document.getElementById('projectImage').style.backgroundImage = `url('${images[0]}')`
+    document.getElementById('projectBalls').innerHTML = ''
+    for (i in images) {
+      let ball = document.createElement('DIV')
+      let ballImage = images[i]
+      ball.classList.add('projectBall')
+      ball.onclick = function() { 
+        document.getElementById('projectImage').style.backgroundImage = `url('${ballImage}')`
+        document.getElementById('projectBalls').childNodes.forEach(function(item) { 
+          item.style.background = ''
+        })
+        ball.style.background = 'var(--accent)'
+      }
+      if (i == 0) ball.style.background = 'var(--accent)'
+      document.getElementById('projectBalls').appendChild(ball)
+    }
+    showProjectsWindow(true)
+  }
 
   //3D MODEL
   /*renderer.setSize(window.innerWidth/2, window.innerHeight)
