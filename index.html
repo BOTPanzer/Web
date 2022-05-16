@@ -3,9 +3,7 @@
 <head>
   <title>Panco's Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="Data/3D/three.min.js"></script>
-  <script src="Data/3D/GLTFLoader.js"></script>
-  <script src="Data/3D/OrbitControls.js"></script>
+  <script src="Data/Scripts/jquery-3.6.0.min.js"></script>
 </head>
 
 <style>
@@ -16,7 +14,6 @@
 html {
   height: 100%;
   width: 100%;
-  scroll-behavior: smooth;
   font-family: Poppins;
 }
 
@@ -42,6 +39,7 @@ body {
   --background: #18191c;
   --scrollbar: #f5f5f5;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --shadow2: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(126, 126, 126, 0.2) 0px 0px 0px 1px;
   --accent: #cc1d4e;  
   --text1: #f5f5f5;
   --text2: #C7C9CA;
@@ -73,7 +71,6 @@ img {
   background: var(--accent);
 }
 
-/*GENERAL*/
 .hc {
   display: flex;
   flex-direction: row;
@@ -84,7 +81,16 @@ img {
   flex-direction: column;
 }
 
-/*MENU*/
+
+ /*$      /$$ /$$$$$$$$ /$$   /$$ /$$   /$$
+| $$$    /$$$| $$_____/| $$$ | $$| $$  | $$
+| $$$$  /$$$$| $$      | $$$$| $$| $$  | $$
+| $$ $$/$$ $$| $$$$$   | $$ $$ $$| $$  | $$
+| $$  $$$| $$| $$__/   | $$  $$$$| $$  | $$
+| $$\  $ | $$| $$      | $$\  $$$| $$  | $$
+| $$ \/  | $$| $$$$$$$$| $$ \  $$|  $$$$$$/
+|__/     |__/|________/|__/  \__/ \_____*/ 
+
 .menu {
   width: calc(100% - 10px);
   height: fit-content;
@@ -95,7 +101,7 @@ img {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  z-index: 999;
+  z-index: 50;
 }
 
 /*MENU BUTTON*/
@@ -163,13 +169,47 @@ img {
   filter: var(--filter);
 }
 
-/*PAGES*/
-.page {
-  width: 100%;
-  min-height: 100%;
-  position: relative;
+
+ /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
+| $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
+| $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
+| $$$$$$$/| $$$$$$$/| $$  | $$      | $$| $$$$$   | $$         | $$  |  $$$$$$ 
+| $$____/ | $$__  $$| $$  | $$ /$$  | $$| $$__/   | $$         | $$   \____  $$
+| $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
+| $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
+|__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
+
+/*PROJECT*/
+.project {
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: var(--shadow2);
+  position: fixed; 
+  background: var(--background); 
   display: flex;
   flex-direction: column;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+/*PROJECT CLOSE*/
+.pclose {
+  width: 24px; 
+  height: 24px; 
+  padding: 11px; 
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 25px; 
+  transition: background .2s;
+}
+
+.pclose:hover {
+  background: #69696920;
 }
 
 /*CARDS CONTAINER*/
@@ -244,6 +284,43 @@ img {
   background: #69696920;
 }
 
+
+  /*$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$ 
+ /$$__  $$|__  $$__/| $$  | $$| $$_____/| $$__  $$
+| $$  \ $$   | $$   | $$  | $$| $$      | $$  \ $$
+| $$  | $$   | $$   | $$$$$$$$| $$$$$   | $$$$$$$/
+| $$  | $$   | $$   | $$__  $$| $$__/   | $$__  $$
+| $$  | $$   | $$   | $$  | $$| $$      | $$  \ $$
+|  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
+ \______/    |__/   |__/  |__/|________/|__/  |_*/
+
+/*PAGES*/
+.page {
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.page2 {
+  width: 100%;
+  min-height: 100%;
+  height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.page3 {
+  width: 100%;
+  min-height: fit-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /*BORDER BUTTON*/
 .bbutton {
   width: fit-content;
@@ -272,10 +349,21 @@ img {
 .shadow {
   text-shadow: 0px 0px 10px var(--textShadow);
 }
+
+
+/* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
 <body>
-  <!-- TOP MENU -->
+  <!--$$$$$ /$$$$$$  /$$$$$$$ 
+  |__  $$__//$$__  $$| $$__  $$
+     | $$  | $$  \ $$| $$  \ $$
+     | $$  | $$  | $$| $$$$$$$/
+     | $$  | $$  | $$| $$____/ 
+     | $$  | $$  | $$| $$
+     | $$  |  $$$$$$/| $$
+     |__/   \______/ |-->
+
   <div class="menu">
     <div class="mbutton" onclick="scrollElem('home')">
       <div>Home</div>
@@ -293,20 +381,30 @@ img {
       <img id="themeImg" src="Data/Images/Icons/theme_light.png">
     </div>
   </div>
-  <!-- HOME-->
+
+
+   <!--  /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
+  | $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
+  | $$  | $$| $$  \ $$| $$$$  /$$$$| $$      
+  | $$$$$$$$| $$  | $$| $$ $$/$$ $$| $$$$$   
+  | $$__  $$| $$  | $$| $$  $$$| $$| $$__/   
+  | $$  | $$| $$  | $$| $$\  $ | $$| $$      
+  | $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
+  |__/  |__/ \______/ |__/     |__/|______-->
+
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
     
-    <div id="homeRenderer" style="width: 50%; height: 100%; position: absolute; right: 0; z-index: 4;"></div>
+    <img id="homeGuy" style="height: calc(100% - 55px); object-fit: contain; object-position: bottom; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
 
     <div></div>
 
-    <div class="vc" style="width: 90%; z-index: 2;">
+    <div class="vc" style="width: 90%; z-index: 3;">
       <div class="shadow hc" style="font-family: Display;">
         <div id="homeTitle" class="shadow" style="font-size: 13vw;">
           Panco
         </div>
-        <div id="homeTitle2" class="shadow" style="font-size: 4vw;">
+        <div id="homeJap" class="shadow" style="font-size: 4vw;">
           [ラザニア]
         </div>
       </div>
@@ -314,7 +412,7 @@ img {
       <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
         <div class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
           <div>
-            I'm a&nbsp;
+            I'm&nbsp;
           </div>
           <div id="homeJobs"></div>
           <div style="animation: line 1s infinite;">
@@ -333,8 +431,18 @@ img {
       </div>
     </div>
   </div>
-  <!-- ABOUT ME -->
-  <div id="about" class="page" style="flex-direction: row; height: fit-content;">
+  
+
+    <!--$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$       /$$      /$$ /$$$$$$$$
+   /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/      | $$$    /$$$| $$_____/
+  | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$         | $$$$  /$$$$| $$      
+  | $$$$$$$$| $$$$$$$ | $$  | $$| $$  | $$   | $$         | $$ $$/$$ $$| $$$$$   
+  | $$__  $$| $$__  $$| $$  | $$| $$  | $$   | $$         | $$  $$$| $$| $$__/   
+  | $$  | $$| $$  \ $$| $$  | $$| $$  | $$   | $$         | $$\  $ | $$| $$      
+  | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$         | $$ \/  | $$| $$$$$$$$
+  |__/  |__/|_______/  \______/  \______/    |__/         |__/     |__/|______-->
+
+  <div id="about" class="page2">
     <div id="aboutProfile" style="width: 20%; height: 100%; position: relative; background: var(--menu); display: flex; flex-direction: column; align-items: center;">
       <img style="width: 70%; aspect-ratio: 1/1; margin: 25% 15% 10% 15%; border-radius: 50%; object-fit: cover;" src="Data/Images/linus.png">
       <div id="aboutName" style="font-size: 1.5vw;">
@@ -345,8 +453,18 @@ img {
 
     </div>
   </div>
-  <!-- PROJECTS -->
-  <div id="projects" class="page" style="min-height: fit-content; align-items: center;">
+  
+
+   <!--$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
+  | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
+  | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
+  | $$$$$$$/| $$$$$$$/| $$  | $$      | $$| $$$$$   | $$         | $$  |  $$$$$$ 
+  | $$____/ | $$__  $$| $$  | $$ /$$  | $$| $$__/   | $$         | $$   \____  $$
+  | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
+  | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
+  |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \____--> 
+
+  <div id="projects" class="page3">
     <div id="projectsTitle" class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5vw; text-align: center;">
       My projects
     </div>
@@ -367,7 +485,7 @@ img {
         <div>
           Oriøn Assistant
         </div>
-        <div>
+        <div onclick="showProjectsWindow(true)">
           See More
         </div>
       </div>
@@ -377,7 +495,7 @@ img {
         <div>
           Futuristic Hoodie
         </div>
-        <div>
+        <div onclick="showProjectsWindow(true)">
           See More
         </div>
       </div>
@@ -387,7 +505,7 @@ img {
         <div>
           PC Modding
         </div>
-        <div>
+        <div onclick="showProjectsWindow(true)">
           See More
         </div>
       </div>
@@ -397,7 +515,7 @@ img {
         <div>
           Discord Bots
         </div>
-        <div>
+        <div onclick="showProjectsWindow(true)">
           See More
         </div>
       </div>
@@ -407,14 +525,28 @@ img {
         <div>
           Other Projects
         </div>
-        <div>
+        <div onclick="showProjectsWindow(true)">
           See More
         </div>
       </div>
       <!-- 3d models (blender, shishkebab), city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs) -->
     </div>
   </div>
-  <!-- BOTTOM -->
+
+  <!-- PROJECTS WINDOW -->
+  <div id="projectsWindow" class="project">
+    <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
+  </div>
+
+   <!--$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
+  | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
+  | $$  \ $$| $$  \ $$   | $$      | $$  | $$  \ $$| $$$$  /$$$$
+  | $$$$$$$ | $$  | $$   | $$      | $$  | $$  | $$| $$ $$/$$ $$
+  | $$__  $$| $$  | $$   | $$      | $$  | $$  | $$| $$  $$$| $$
+  | $$  \ $$| $$  | $$   | $$      | $$  | $$  | $$| $$\  $ | $$
+  | $$$$$$$/|  $$$$$$/   | $$      | $$  |  $$$$$$/| $$ \/  | $$
+  |_______/  \______/    |__/      |__/   \______/ |__/     |-->
+
   <div id="bottom" style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
     <div id="bottomText" style="flex-grow: 1; font-family: Display; display: flex; flex-direction: row;">
       <div id="bottomQuote" style="font-size: 25px;">
@@ -439,16 +571,21 @@ img {
 </body>
 
 <script>
+
+
   //WINDOW SIZE
-  window.onresize = resized
   resized()
+  window.onresize = resized
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
+      document.getElementById('homeGuy').style.right = ''
+      document.getElementById('homeGuy').style.left = '0'
+      document.getElementById('homeGuy').style.zIndex = '2'
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
-      document.getElementById('homeTitle2').style.fontSize = '3.25vh'
+      document.getElementById('homeJap').style.fontSize = '3.25vh'
       //ABOUT
       document.getElementById('aboutProfile').style.width = '40%'
       document.getElementById('aboutInfo').style.width = '60%'
@@ -461,10 +598,13 @@ img {
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
       //HOME
+      document.getElementById('homeGuy').style.right = '0'
+      document.getElementById('homeGuy').style.left = ''
+      document.getElementById('homeGuy').style.zIndex = '4'
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
-      document.getElementById('homeTitle2').style.fontSize = '4vw'
+      document.getElementById('homeJap').style.fontSize = '4vw'
       //ABOUT
       document.getElementById('aboutProfile').style.width = '20%'
       document.getElementById('aboutInfo').style.width = '80%'
@@ -482,10 +622,11 @@ img {
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
-    let jobs = ['UI Designer', 
-                'Web Developer', 
-                'Android Developer', 
-                'Videogames Enjoyer']
+    let jobs = ['a UI Designer', 
+                'a Web Developer', 
+                'an Android Developer', 
+                'a 3D Printing Fan', 
+                'a Videogames Enjoyer']
     let i = 0
     let length
     let letters
@@ -524,8 +665,7 @@ img {
   
   //THEME
   let themeDark = true
-  let themeKey = localStorage.getItem('pancoTheme')
-  if (themeKey == 'light') switchTheme()
+  if (localStorage.getItem('pancoTheme') == 'light') switchTheme()
   function switchTheme() {
     themeDark = !themeDark
     if (themeDark) {
@@ -557,7 +697,7 @@ img {
 
   //SCROLL TO ELEMENT
   function scrollElem(id) {
-    document.getElementById(id).scrollIntoView()
+    document.getElementById(id).scrollIntoView({behavior: "smooth"})
   }
 
   //BOTTOM TEXT QUOTES
@@ -599,8 +739,37 @@ img {
                 'ラザニア',    //Lasagne
                 'コード']      //Code
     let q = Math.floor(Math.random() * words.length)
-    document.getElementById('homeTitle2').innerHTML = `[${words[q]}]`
+    document.getElementById('homeJap').innerHTML = `[${words[q]}]`
   }           
+
+  //TOGGLE PROJECTS WINDOW
+  function showProjectsWindow(show) {
+    if (show) {
+      $('body').disableScroll()
+      document.getElementById('projectsWindow').style.pointerEvents = 'all'
+      document.getElementById('projectsWindow').style.opacity = '1'
+    } else {
+      $('body').enableScroll()
+      document.getElementById('projectsWindow').style.pointerEvents = 'none'
+      document.getElementById('projectsWindow').style.opacity = '0'
+    }
+  }
+
+  //ENABLE DISABLE SCROLL
+  $.fn.disableScroll = function() {
+    window.oldScrollPos = $(window).scrollTop()
+
+    $(window).on('scroll.scrolldisabler',function ( event ) {
+       $(window).scrollTop( window.oldScrollPos )
+       event.preventDefault()
+    })
+  }
+
+  $.fn.enableScroll = function() {
+    $(window).off('scroll.scrolldisabler')
+  }
+
+
 
   //3D MODEL
   /*renderer.setSize(window.innerWidth/2, window.innerHeight)
