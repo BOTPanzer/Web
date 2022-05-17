@@ -213,15 +213,27 @@ img {
 .skillsName {
   width: 1%; 
   white-space: nowrap; 
-  padding: 0 10px;
+  padding-left: 1vw;
+  padding-right: 3vw;
+}
+
+.skillsBar {
+  /*background: linear-gradient(90deg, transparent 24%, rgba(0,0,0,1) 25%, transparent 26%);*/
+  background: repeating-linear-gradient(90deg,  
+        white 0%,
+        white calc(0% + 1px), 
+        transparent calc(0% + 1px),
+        transparent calc(25% - 1px)
+    );
+  /*background: linear-gradient(90deg, transparent 0%, transparent calc(25%-1), rgba(0,0,0,1) 25%, rgba(0,0,0,0) calc(25%+1), rgba(0,0,0,0) calc(50%-1),  rgba(0,0,0,1) 50%, rgba(0,0,0,0) calc(50%+1), rgba(0,0,0,0) calc(75%-1),  rgba(0,0,0,1) 75%, rgba(0,0,0,0) calc(75%+1), rgba(0,0,0,0) calc(100%-1), rgba(0,0,0,1) 100%);*/
 }
 
 /*BAR*/
 .bar{
-  width: calc(100% - 20px); 
+  width: calc(100% - 23px); 
   height: 40px; 
   padding-right: 20px;
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   line-height: 40px; 
   display: flex; 
   flex-direction: column; 
@@ -230,15 +242,15 @@ img {
 }
 
 .bar75 {
-  width: calc(75% - 20px); 
+  width: calc(75% - 23px); 
 }
 
 .bar50 {
-  width: calc(50% - 20px); 
+  width: calc(50% - 23px); 
 }
 
 .bar25 {
-  width: calc(25% - 20px); 
+  width: calc(25% - 23px); 
 }
 
 
@@ -552,7 +564,7 @@ img {
   |__/  |__/ \______/ |__/     |__/|______-->
 
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
-    <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
+    <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/home.svg">
     
     <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom center; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/me.png">
 
@@ -606,41 +618,42 @@ img {
    \______/ |__/  \__/|______/|________/|________/ \____-->
 
   <div id="skills" class="page2">
-    <div id="skillsTitle" class="shadow" style="margin-top: 3rem; font-family: Display; font-size: 5vw; text-align: center;">
+    <div id="skillsTitle" class="shadow" style="margin: 3rem 0; font-family: Display; font-size: 5vw; text-align: center;">
       My Skills
     </div>
-    <table style="width: 100%; flex-grow: 1;">
+    <table style="width: 100%; flex-grow: 1;" cellspacing=0>
       <tr>
         <td class="skillsName">UI Design</td>
-        <td>
+        <td class="skillsBar">
           <div class="bar bar75">Advanced</div>
         </td>
       </tr>
       <tr>
         <td class="skillsName">Web Development</td>
-        <td>
+        <td class="skillsBar">
           <div class="bar">Expert</div>
         </td>
       </tr>
       <tr>
         <td class="skillsName">Android Development</td>
-        <td>
+        <td class="skillsBar">
           <div class="bar">Expert</div>
         </td>
       </tr>
       <tr>
         <td class="skillsName">Videogames Development</td>
-        <td>
+        <td class="skillsBar">
           <div class="bar bar25">Basics</div>
         </td>
       </tr>
       <tr>
         <td class="skillsName">3D Printing</td>
-        <td>
+        <td class="skillsBar">
           <div class="bar bar75">Advanced</div>
         </td>
       </tr>
     </table> 
+    <div style="height: 40px;"></div>
     <div class="seeMy" style="width: fit-content; right: 20px;" onclick="scrollElem('projects')">
       <div class="seeMyText">See My Projects</div>
       <div class="seeMyTriangle"></div>
@@ -732,8 +745,8 @@ img {
     <div id="projectPreview" class="projectHalf">
       <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw;">
         <div id="projectTitle1" style="font-family: Display;">Title</div>
-        <div id="projectTitle2" style="margin-top: -1.6vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
-        <div id="projectTitle3" style="margin-top: -1.6vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
+        <div id="projectTitle2" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
+        <div id="projectTitle3" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
       </div>
 
       <div class="projectImages">
