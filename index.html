@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+
+
+
+
 <style>
 @font-face { font-family: Poppins; src: url('Data/Fonts/Poppins.ttf'); }
 @font-face { font-family: Comfortaa; src: url('Data/Fonts/Comfortaa.ttf'); }
-@font-face { font-family: Display; src: url('Data/Fonts/Display.ttf'); }
+@font-face { font-family: Display; src: url('Data/Fonts/Lemon Milk.ttf'); }
 
 html {
   height: 100%;
@@ -304,6 +308,7 @@ img {
   cursor: pointer;
   border-radius: 10px;
   background: var(--text1);
+  transition: background .3s;
 }
 
 .projectDesc {
@@ -447,6 +452,10 @@ img {
 /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
+
+
+
+
 <body>
   <!--$$$$$ /$$$$$$  /$$$$$$$ 
   |__  $$__//$$__  $$| $$__  $$
@@ -488,7 +497,7 @@ img {
   <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/Patterns/home.svg">
     
-    <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/guy.png">
+    <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom center; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/me.png">
 
     <div></div>
 
@@ -654,19 +663,23 @@ img {
       </div>
     </div>
     <div class="hc" style="gap: 20px;">
-      <div class="mbutton2" onclick="copyEmail()" title="Copy Email">
+      <div class="mbutton2" title="Copy Email" onclick="copyEmail()">
         <img src="Data/Images/Icons/email.png">
         <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
       </div>
-      <div class="mbutton2" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+      <div class="mbutton2" title="My GitHub" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
         <img src="Data/Images/Icons/git.png">
       </div>
-      <div class="mbutton2" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+      <div class="mbutton2" title="My Instagram" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
         <img style="filter: none;" src="Data/Images/Icons/ig.png">
       </div>
     </div>
   </div>
 </body>
+
+
+
+
 
 <script>
    /*$      /$$  /$$$$$$  /$$$$$$ /$$   /$$
@@ -684,8 +697,8 @@ img {
   function resized() {
     if (window.innerHeight > window.innerWidth) {
       //HOME
+      document.getElementById('homeGuy').style.left = '15%'
       document.getElementById('homeGuy').style.right = ''
-      document.getElementById('homeGuy').style.left = '0'
       document.getElementById('homeGuy').style.zIndex = '2'
       document.getElementById('homeTitle').style.writingMode = 'vertical-lr'
       document.getElementById('homeTitle').style.textOrientation = 'upright'
@@ -712,8 +725,8 @@ img {
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
       //HOME
-      document.getElementById('homeGuy').style.right = '0'
       document.getElementById('homeGuy').style.left = ''
+      document.getElementById('homeGuy').style.right = '-5%'
       document.getElementById('homeGuy').style.zIndex = '4'
       document.getElementById('homeTitle').style.writingMode = 'horizontal-tb'
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
