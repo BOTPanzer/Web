@@ -491,7 +491,7 @@ img {
       </div>
     </div>
 
-    <div class="seep" style="width: 100%; position: absolute; bottom: 0; z-index: 2;" onclick="scrollElem('projects')">
+    <div class="seep" style="width: 100%; position: absolute; bottom: 0; z-index: 5;" onclick="scrollElem('projects')">
       <div class="seepText">See My Projects</div>
       <div class="seepTriangle"></div>
     </div>
@@ -580,19 +580,19 @@ img {
   <div id="projectsWindow" class="project">
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
-    <div class="projectHalf">
+    <div id="projectPreview" class="projectHalf">
       <div class="vc" style="font-size: 4vw; line-height: 4vw;">
         <div id="projectTitle1" style="font-family: Display;">Title</div>
         <div id="projectTitle2" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
         <div id="projectTitle3" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
       </div>
 
-      <img id="projectImage" style="width: calc(100% - 4vw); height: 0; flex-grow: 1; margin: 2vw; outline: solid var(--text1) 1px; border-radius: 2vw; background: #fff; object-fit: contain;">
+      <img id="projectImage" onchange="console.log('changed')" style="width: calc(100% - 4vw); height: 0; flex-grow: 1; margin: 2vw; outline: solid var(--text1) 1px; border-radius: 2vw; background: #fff; object-fit: contain;">
 
       <div id="projectBalls" class="projectBalls"></div>
     </div>
 
-    <div id="projectDescription" class="projectHalf">
+    <div id="projectDescription" class="projectHalf" style="overflow-y: auto;">
       The Royal Giant card is unlocked from the Royal Arena (Arena 7). He is a building targeting, medium-ranged troop with high hitpoints and moderately high damage. His appearance is similar to that of a Giant but he sports a darker colored cloth coat, has a mustache with sideburns which go down to his chin, wears an earring on his right ear, and wields a cannon in one hand and a cannonball in the other. A Royal Giant card costs 6 Elixir to deploy.
     </div>
   </div>
@@ -655,14 +655,19 @@ img {
       document.getElementById('homeJap').style.fontSize = '3.25vh'
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
-      //ABOUT
-      /*document.getElementById('aboutProfile').style.width = '40%'
-      document.getElementById('aboutInfo').style.width = '60%'
-      document.getElementById('aboutName').style.fontSize = '3vw'*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
       document.body.style.setProperty('--cardT', '4vw')
+      document.getElementById('projectsWindow').style.flexDirection = 'column'
+      document.getElementById('projectPreview').style.width = 'calc(100% - 4vw)'
+      document.getElementById('projectPreview').style.height = 'fit-content'
+      document.getElementById('projectImage').style.height = ''
+      document.getElementById('projectImage').style.flexGrow = ''
+      document.getElementById('projectImage').style.aspectRatio = '1/1'
+      document.getElementById('projectDescription').style.width = 'calc(100% - 4vw)'
+      document.getElementById('projectDescription').style.height = 'fit-content'
+      document.getElementById('projectDescription').style.flexGrow = '1'
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
@@ -676,14 +681,19 @@ img {
       document.getElementById('homeJap').style.fontSize = '4vw'
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
-      //ABOUT
-      /*document.getElementById('aboutProfile').style.width = '20%'
-      document.getElementById('aboutInfo').style.width = '80%'
-      document.getElementById('aboutName').style.fontSize = '1.5vw'*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
       document.body.style.setProperty('--cardT', '1.5vw')
+      document.getElementById('projectsWindow').style.flexDirection = 'row'
+      document.getElementById('projectPreview').style.width = 'calc(50% - 4vw)'
+      document.getElementById('projectPreview').style.height = 'calc(100% - 4vw)'
+      document.getElementById('projectImage').style.height = '0'
+      document.getElementById('projectImage').style.flexGrow = '1'
+      document.getElementById('projectImage').style.aspectRatio = ''
+      document.getElementById('projectDescription').style.width = 'calc(50% - 4vw)'
+      document.getElementById('projectDescription').style.height = 'calc(100% - 4vw)'
+      document.getElementById('projectDescription').style.flexGrow = ''
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'row'
     }
@@ -809,7 +819,7 @@ img {
     switch(project) {
       case 'framework':
         title = 'Oriøn Framework'
-        description = 'Oriøn Framework Description'
+        description = 'The Hog Rider card is unlocked from the Spell Valley (Arena 5). He is a quick building-targeting, melee troop with moderately high hitpoints and damage. He appears just like his Clash of Clans counterpart; a man with brown eyebrows, a beard, a mohawk, and a golden body piercing in his left ear who is riding a hog. A Hog Rider card costs 4 Elixir to deploy. The Hog Rider card is unlocked from the Spell Valley (Arena 5). He is a quick building-targeting, melee troop with moderately high hitpoints and damage. He appears just like his Clash of Clans counterpart; a man with brown eyebrows, a beard, a mohawk, and a golden body piercing in his left ear who is riding a hog. A Hog Rider card costs 4 Elixir to deploy. The Hog Rider card is unlocked from the Spell Valley (Arena 5). He is a quick building-targeting, melee troop with moderately high hitpoints and damage. He appears just like his Clash of Clans counterpart; a man with brown eyebrows, a beard, a mohawk, and a golden body piercing in his left ear who is riding a hog. A Hog Rider card costs 4 Elixir to deploy.'//'Oriøn Framework Description'
         images = ['Data/Images/Projects/Framework/docs.png']
         break
       case 'assistant':
@@ -1004,4 +1014,3 @@ img {
   }*/
 </script>
 </html>
-
