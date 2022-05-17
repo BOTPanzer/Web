@@ -265,6 +265,32 @@ img {
   justify-content: center;
 }
 
+.projectImages {
+  width: calc(100% - 4vw); 
+  height: 0; 
+  flex-grow: 1; 
+  margin: 2vw; 
+  position: relative;
+  outline: solid var(--text1) 1px; 
+  border-radius: 2vw; 
+  background: #fff; 
+  overflow: hidden;
+}
+
+.projectArrow {
+  height: 100%; 
+  font-size: 6vw; 
+  font-family: Display;
+  color: var(--text); 
+  display: flex; 
+  align-items: center; 
+  padding: 0 10px; 
+  position: absolute; 
+  top: 0; 
+  cursor: pointer;
+  text-shadow: 2px 2px 10px var(--textShadow), 2px -2px 10px var(--textShadow), -2px -2px 10px var(--textShadow), -2px 2px 10px var(--textShadow);
+}
+
 .projectBalls {
   display: flex;
   flex-direction: row;
@@ -583,18 +609,21 @@ img {
     </div>
   </div>
 
-  <!-- PROJECTS WINDOW -->
   <div id="projectsWindow" class="project">
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
     <div id="projectPreview" class="projectHalf">
       <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw;">
         <div id="projectTitle1" style="font-family: Display;">Title</div>
-        <div id="projectTitle2" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
-        <div id="projectTitle3" style="margin-top: -1.2vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
+        <div id="projectTitle2" style="margin-top: -1.6vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
+        <div id="projectTitle3" style="margin-top: -1.6vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
       </div>
 
-      <img id="projectImage" onchange="console.log('changed')" style="width: calc(100% - 4vw); height: 0; flex-grow: 1; margin: 2vw; outline: solid var(--text1) 1px; border-radius: 2vw; background: #fff; object-fit: contain;">
+      <div class="projectImages">
+        <img id="projectImage" style="width: 100%; height: 100%; object-fit: contain;">
+        <div id="projectArrow1" class="projectArrow" style="left: 0;">&#8249;</div>
+        <div id="projectArrow2" class="projectArrow" style="right: 0;">&#8250;</div>
+      </div>
 
       <div id="projectBalls" class="projectBalls"></div>
     </div>
@@ -879,21 +908,38 @@ img {
     document.getElementById('projectTitle2').innerHTML = title
     document.getElementById('projectTitle3').innerHTML = title
     document.getElementById('projectDescription2').innerHTML = description
-    document.getElementById('projectImage').src = images[0]
-    document.getElementById('projectBalls').innerHTML = ''
+    let balls = document.getElementById('projectBalls')
+    balls.innerHTML = ''
     for (i in images) {
-      let ball = document.createElement('DIV')
+      //CREATE BALL & GET DATA
       let ballImage = images[i]
+      let ballIndex = new Number(i)
+      let ball = document.createElement('DIV')
       ball.classList.add('projectBall')
-      ball.onclick = function() { 
+      //ON CLICK
+      ball.onclick = function() {
+        document.getElementById('projectArrow1').style.display = 'flex'
+        document.getElementById('projectArrow1').onclick = function() { 
+          balls.childNodes.item(ballIndex-1).click() 
+        }
+        document.getElementById('projectArrow2').style.display = 'flex'
+        document.getElementById('projectArrow2').onclick = function() {
+          balls.childNodes.item(ballIndex+1).click() 
+        }
+        if (ballIndex == 0) document.getElementById('projectArrow1').style.display = 'none'
+        if (ballIndex == images.length-1) document.getElementById('projectArrow2').style.display = 'none'
+        //CHANGE IMAGE
         document.getElementById('projectImage').src = ballImage
-        document.getElementById('projectBalls').childNodes.forEach(function(item) { 
+        //CHANGE BALL COLOR
+        balls.childNodes.forEach(function(item) { 
           item.style.background = ''
         })
         ball.style.background = 'var(--accent)'
       }
-      if (i == 0) ball.style.background = 'var(--accent)'
-      document.getElementById('projectBalls').appendChild(ball)
+      //SELECT BALL 1
+      if (i == 0) ball.click()
+      //ADD BALL
+      balls.appendChild(ball)
     }
     showProjectsWindow(true)
   }
