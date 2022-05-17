@@ -654,7 +654,7 @@ img {
       </div>
     </div>
     <div class="hc" style="gap: 20px;">
-      <div class="mbutton2" onclick="copyEmail()" title="Copy Mail">
+      <div class="mbutton2" onclick="copyEmail()" title="Copy Email">
         <img src="Data/Images/Icons/email.png">
         <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
       </div>
@@ -1004,9 +1004,17 @@ img {
   }           
   
   //COPY EMAIL
+  let emailChecked = false
   function copyEmail() {
     navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
-    document.getElementById('bottomEmailCheck').style.opacity = '1'
+    if (!emailChecked) {
+      emailChecked = true
+      document.getElementById('bottomEmailCheck').style.opacity = '1'
+      setTimeout(function() {
+        emailChecked = false
+      document.getElementById('bottomEmailCheck').style.opacity = '0'
+      }, 2000)
+    }
   }
 
 
