@@ -652,7 +652,7 @@ img {
       </tr>
     </table> 
     <div style="height: 40px;"></div>
-    <div class="seeMy" style="width: fit-content; right: 20px;" onclick="scrollElem('projects')">
+    <div id="skillsSeeProjects" class="seeMy" style="width: fit-content; right: 20px;" onclick="scrollElem('projects')">
       <div class="seeMyText">See My Projects</div>
       <div class="seeMyTriangle"></div>
     </div>
@@ -830,6 +830,7 @@ img {
       document.getElementById('skillsTitle').style.fontSize = '10vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
       document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(50% - 1px))' })
+      document.getElementById('skillsSeeProjects').style.display = 'none'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -863,6 +864,7 @@ img {
       document.getElementById('skillsTitle').style.fontSize = '5vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
       document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(25% - 1px))' })
+      document.getElementById('skillsSeeProjects').style.display = 'flex'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
