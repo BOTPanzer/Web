@@ -511,7 +511,7 @@ img {
         </div>
       </div>
 
-      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; font-size: 1.2rem;">
+      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px;">
         <div id="homeHi" class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
           <span>
             Hi, I'm Alex.&nbsp;
@@ -704,6 +704,7 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
       document.getElementById('homeJap').style.fontSize = '3.25vh'
+      document.getElementById('homeHi').style.fontSize = '3.4vw'
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
       //PROJECTS
@@ -732,6 +733,7 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
       document.getElementById('homeJap').style.fontSize = '4vw'
+      document.getElementById('homeHi').style.fontSize = 'calc(1rem + 0.390625vw)'
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
       //PROJECTS
@@ -805,11 +807,12 @@ img {
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
-    let jobs = ['UI Design', 
+    let jobs = ['Videogames Development',
+                'UI Design', 
                 'Web Development', 
                 'Android Development', 
                 '3D Printing', 
-                'Games Development']
+                'Videogames Development']
     let i = 0
     let length
     let letters
