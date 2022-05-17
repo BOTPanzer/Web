@@ -218,14 +218,12 @@ img {
 }
 
 .skillsBar {
-  /*background: linear-gradient(90deg, transparent 24%, rgba(0,0,0,1) 25%, transparent 26%);*/
   background: repeating-linear-gradient(90deg,  
-        white 0%,
-        white calc(0% + 1px), 
-        transparent calc(0% + 1px),
-        transparent calc(25% - 1px)
-    );
-  /*background: linear-gradient(90deg, transparent 0%, transparent calc(25%-1), rgba(0,0,0,1) 25%, rgba(0,0,0,0) calc(25%+1), rgba(0,0,0,0) calc(50%-1),  rgba(0,0,0,1) 50%, rgba(0,0,0,0) calc(50%+1), rgba(0,0,0,0) calc(75%-1),  rgba(0,0,0,1) 75%, rgba(0,0,0,0) calc(75%+1), rgba(0,0,0,0) calc(100%-1), rgba(0,0,0,1) 100%);*/
+    white 0%,
+    white calc(0% + 1px), 
+    transparent calc(0% + 1px),
+    transparent calc(25% - 1px)
+  );
 }
 
 /*BAR*/
@@ -831,6 +829,7 @@ img {
       //SKILLS
       document.getElementById('skillsTitle').style.fontSize = '10vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
+      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(50% - 1px))' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -863,6 +862,7 @@ img {
       //SKILLS
       document.getElementById('skillsTitle').style.fontSize = '5vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
+      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(25% - 1px))' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
