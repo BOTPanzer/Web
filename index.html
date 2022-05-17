@@ -190,37 +190,55 @@ img {
   flex-direction: column;
 }
 
-/*SEE PROJECTS THINGI*/
-.seep {
+
+  /*$$$$$  /$$   /$$ /$$$$$$ /$$       /$$        /$$$$$$ 
+ /$$__  $$| $$  /$$/|_  $$_/| $$      | $$       /$$__  $$
+| $$  \__/| $$ /$$/   | $$  | $$      | $$      | $$  \__/
+|  $$$$$$ | $$$$$/    | $$  | $$      | $$      |  $$$$$$ 
+ \____  $$| $$  $$    | $$  | $$      | $$       \____  $$
+ /$$  \ $$| $$\  $$   | $$  | $$      | $$       /$$  \ $$
+|  $$$$$$/| $$ \  $$ /$$$$$$| $$$$$$$$| $$$$$$$$|  $$$$$$/
+ \______/ |__/  \__/|______/|________/|________/ \_____*/ 
+
+.page2 {
+  width: calc(100% - 4vw);
+  min-height: calc(100% - 4vw);
+  padding: 2vw;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
-  cursor: pointer;
-  animation: jump 2s ease infinite;
-  animation-delay: 3s;
 }
 
-.seepText {
-  padding: 5px 10px;
-  background-color: var(--button);
+.skillsName {
+  width: 1%; 
+  white-space: nowrap; 
+  padding: 0 10px;
+}
+
+/*BAR*/
+.bar{
+  width: calc(100% - 20px); 
+  height: 40px; 
+  padding-right: 20px;
   border-radius: 10px;
+  line-height: 40px; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-end; 
+  background: var(--accent);
 }
 
-.seepTriangle {  
-  width: 0; 
-  height: 0; 
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--button);
+.bar75 {
+  width: calc(75% - 20px); 
 }
 
-@keyframes jump {
-  70% { transform:translateY(0); }
-  80% { transform:translateY(-15px); }
-  90% { transform:translateY(0); }
-  95% { transform:translateY(-7px); }
-  100% { transform:translateY(0); }
+.bar50 {
+  width: calc(50% - 20px); 
+}
+
+.bar25 {
+  width: calc(25% - 20px); 
 }
 
 
@@ -233,7 +251,7 @@ img {
 | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
 |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
 
-.page2 {
+.page3 {
   width: 100%;
   min-height: fit-content;
   position: relative;
@@ -244,11 +262,13 @@ img {
 
 /*PROJECT*/
 .project {
-  width: calc(100% - 20px);
+  width: 100%;
+  height: 100%;
+  /*width: calc(100% - 20px);
   height: calc(100% - 20px);
   margin: 10px;
   border-radius: 10px;
-  box-shadow: var(--shadow2);
+  box-shadow: var(--shadow2);*/
   position: fixed;
   background: var(--background); 
   display: flex;
@@ -420,6 +440,43 @@ img {
 |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
  \______/    |__/   |__/  |__/|________/|__/  |_*/
 
+/*SEE MY THINGIES*/
+.seeMy {
+  width: 100%; 
+  position: absolute; 
+  bottom: 0; 
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  animation: jump 2s ease infinite;
+  animation-delay: 3s;
+}
+
+.seeMyText {
+  padding: 5px 10px;
+  background-color: var(--button);
+  border-radius: 10px;
+}
+
+.seeMyTriangle {  
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid var(--button);
+}
+
+@keyframes jump {
+  70% { transform:translateY(0); }
+  80% { transform:translateY(-15px); }
+  90% { transform:translateY(0); }
+  95% { transform:translateY(-7px); }
+  100% { transform:translateY(0); }
+}
+
 /*BORDER BUTTON*/
 .bbutton {
   width: fit-content;
@@ -471,10 +528,10 @@ img {
       <div>Home</div>
       <div></div>
     </div>
-    <!--div class="mbutton" onclick="scrollElem('about')">
-      <div>About Me</div>
+    <div class="mbutton" onclick="scrollElem('skills')">
+      <div>Skills</div>
       <div></div>
-    </div-->
+    </div>
     <div class="mbutton" onclick="scrollElem('projects')">
       <div>Projects</div>
       <div></div>
@@ -533,13 +590,64 @@ img {
       </div>
     </div>
 
-    <div class="seep" style="width: 100%; position: absolute; bottom: 0; z-index: 5;" onclick="scrollElem('projects')">
-      <div class="seepText">See My Projects</div>
-      <div class="seepTriangle"></div>
+    <div class="seeMy" onclick="scrollElem('skills')">
+      <div class="seeMyText">See My Skills</div>
+      <div class="seeMyTriangle"></div>
     </div>
   </div>
 
+    <!--$$$  /$$   /$$ /$$$$$$ /$$       /$$        /$$$$$$ 
+   /$$__  $$| $$  /$$/|_  $$_/| $$      | $$       /$$__  $$
+  | $$  \__/| $$ /$$/   | $$  | $$      | $$      | $$  \__/
+  |  $$$$$$ | $$$$$/    | $$  | $$      | $$      |  $$$$$$ 
+   \____  $$| $$  $$    | $$  | $$      | $$       \____  $$
+   /$$  \ $$| $$\  $$   | $$  | $$      | $$       /$$  \ $$
+  |  $$$$$$/| $$ \  $$ /$$$$$$| $$$$$$$$| $$$$$$$$|  $$$$$$/
+   \______/ |__/  \__/|______/|________/|________/ \____-->
 
+  <div id="skills" class="page2">
+    <div id="skillsTitle" class="shadow" style="margin-top: 3rem; font-family: Display; font-size: 5vw; text-align: center;">
+      My Skills
+    </div>
+    <table style="width: 100%; flex-grow: 1;">
+      <tr>
+        <td class="skillsName">UI Design</td>
+        <td>
+          <div class="bar bar75">Advanced</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="skillsName">Web Development</td>
+        <td>
+          <div class="bar">Expert</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="skillsName">Android Development</td>
+        <td>
+          <div class="bar">Expert</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="skillsName">Videogames Development</td>
+        <td>
+          <div class="bar bar25">Basics</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="skillsName">3D Printing</td>
+        <td>
+          <div class="bar bar75">Advanced</div>
+        </td>
+      </tr>
+    </table> 
+    <div class="seeMy" style="width: fit-content; right: 20px;" onclick="scrollElem('projects')">
+      <div class="seeMyText">See My Projects</div>
+      <div class="seeMyTriangle"></div>
+    </div>
+  </div>
+  
+  
    <!--$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
   | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
   | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
@@ -549,7 +657,7 @@ img {
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \____--> 
 
-  <div id="projects" class="page2">
+  <div id="projects" class="page3">
     <div id="projectsTitle" class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5vw; text-align: center;">
       My projects
     </div>
@@ -707,6 +815,9 @@ img {
       document.getElementById('homeHi').style.fontSize = '3.2vw'
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
+      //SKILLS
+      document.getElementById('skillsTitle').style.fontSize = '10vw'
+      document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -736,6 +847,9 @@ img {
       document.getElementById('homeHi').style.fontSize = 'calc(1rem + 0.390625vw)'
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
+      //SKILLS
+      document.getElementById('skillsTitle').style.fontSize = '5vw'
+      document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
