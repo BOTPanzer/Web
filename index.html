@@ -631,8 +631,8 @@
       About Me
     </div>
     <div id="aboutContainer" class="hc" style="width: calc(100% - 20%); flex-grow: 1; padding: 4rem; gap: 4rem;">
-      <img id="aboutContainer2" class="vc" style="width: calc(50% - 2rem); height: 100%; border-radius: 20px; object-fit: cover;" src="Data/Images/Projects/Artyom/1.jpg">
-      <div id="aboutContainer1" class="vc" style="width: calc(50% - 2rem); height: 100%; justify-content: center; gap: 1rem;">
+      <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); height: 100%; display: none; border-radius: 20px; object-fit: cover;" src="Data/Images/Projects/Artyom/1.jpg">
+      <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); height: 100%; justify-content: center; gap: 1rem;">
         <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
         <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
         <span style="font-family: Poppins;">I am a UI Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
@@ -852,10 +852,10 @@
       document.getElementById('aboutTitle').style.fontSize = '10vw'
       document.getElementById('aboutContainer').classList.add('vc')
       document.getElementById('aboutContainer').classList.remove('hc')
-      document.getElementById('aboutContainer1').style.width = '100%'
-      document.getElementById('aboutContainer1').style.height = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainer2').style.width = '100%'
-      document.getElementById('aboutContainer2').style.height = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerText').style.width = '100%'
+      document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
+      /*document.getElementById('aboutContainerImage').style.width = '100%'
+      document.getElementById('aboutContainerImage').style.height = 'calc(50% - 2rem)'*/
       //SKILLS
       /*document.getElementById('skillsTitle').style.fontSize = '10vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
@@ -892,10 +892,10 @@
       document.getElementById('aboutTitle').style.fontSize = '5vw'
       document.getElementById('aboutContainer').classList.add('hc')
       document.getElementById('aboutContainer').classList.remove('vc')
-      document.getElementById('aboutContainer1').style.width = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainer1').style.height = '100%'
-      document.getElementById('aboutContainer2').style.width = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainer2').style.height = '100%'
+      document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerText').style.height = '100%'
+      /*document.getElementById('aboutContainerImage').style.width = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerImage').style.height = '100%'*/
       //SKILLS
       /*document.getElementById('skillsTitle').style.fontSize = '5vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
