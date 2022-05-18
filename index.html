@@ -206,7 +206,7 @@
 
   .aboutPage {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -223,11 +223,14 @@
     align-items: center;
   }
 
-  .skillsName {
+  .skillsPro {
     width: 1%; 
     white-space: nowrap; 
-    padding-left: 1vw;
-    padding-right: 3vw;
+  }
+  
+  .skillsName {
+    width: 20%;
+    text-align: center;
   }
 
   .skillsBar {
@@ -392,7 +395,7 @@
   /*CARDS CONTAINER*/
   .pcards {
     width: 80%; 
-    margin: 8rem 10%; 
+    margin: 6rem 10%; 
     display: flex; 
     gap: 10%; 
     row-gap: 100px; 
@@ -472,7 +475,7 @@
    \______/    |__/   |__/  |__/|________/|__/  |_*/
 
   .title {
-    margin: 6rem 0 0 0;
+    margin: 4rem 0 0 0;
     font-family: Lemon Milk;
     font-size: 5vw; 
     text-align: center;
@@ -631,7 +634,7 @@
       About Me
     </div>
     <div id="aboutContainer" class="hc" style="width: 80%; flex-grow: 1; margin: 4rem 10%; gap: 4rem;">
-      <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); height: 100%; border-radius: 20px; object-fit: cover;" src="Data/Images/Projects/Artyom/1.jpg">
+      <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); aspect-ratio: 1/1; border-radius: 20px; object-fit: cover;">
       <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); height: 100%; justify-content: center; gap: 1rem;">
         <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
         <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
@@ -645,7 +648,51 @@
     <div id="skillsTitle" class="title shadow">
       My Skills
     </div>
+
     <table style="width: 100%; flex-grow: 1; margin-top: 4vw;" cellspacing=0>
+      <tr>
+        <td class="skillsPro">Expert</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="skillsPro">Advanced</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="skillsPro">Medium</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="skillsPro">Basics</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="skillsName">UI Design</td>
+        <td class="skillsName">Web Development</td>
+        <td class="skillsName">Android Development</td>
+        <td class="skillsName">Videogame Development</td>
+        <td class="skillsName">3D Printing</td>
+      </tr>
+    </table> 
+
+    <!--table style="width: 100%; flex-grow: 1; margin-top: 4vw;" cellspacing=0>
       <tr>
         <td class="skillsName">UI Design</td>
         <td class="skillsBar">
@@ -676,7 +723,7 @@
           <div class="bar bar75">Advanced</div>
         </td>
       </tr>
-    </table> 
+    </table--> 
     <div style="height: 40px;"></div>
   </div>
 
@@ -849,13 +896,14 @@
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
       //ABOUT
+      document.getElementById('about').style.height = 'fit-content'
       document.getElementById('aboutTitle').style.fontSize = '10vw'
       document.getElementById('aboutContainer').classList.add('vc')
       document.getElementById('aboutContainer').classList.remove('hc')
-      document.getElementById('aboutContainerText').style.width = '100%'
-      document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerImage').style.width = '100%'
       document.getElementById('aboutContainerImage').style.height = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerText').style.width = '100%'
+      document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
       //SKILLS
       /*document.getElementById('skillsTitle').style.fontSize = '10vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
@@ -889,13 +937,14 @@
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
       //ABOUT
+      document.getElementById('about').style.height = '100%'
       document.getElementById('aboutTitle').style.fontSize = '5vw'
       document.getElementById('aboutContainer').classList.add('hc')
       document.getElementById('aboutContainer').classList.remove('vc')
-      document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainerText').style.height = '100%'
       document.getElementById('aboutContainerImage').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerImage').style.height = '100%'
+      document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerText').style.height = '100%'
       //SKILLS
       /*document.getElementById('skillsTitle').style.fontSize = '5vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
@@ -974,7 +1023,7 @@
     let jobs = ['a UI Designer', 
                 'a Web Developer', 
                 'an Android Developer', 
-                'a Videogames Enjoyer', 
+                'a Videogame Enjoyer', 
                 'a 3D Printing Fan']
     let i = 0
     let length
@@ -1016,11 +1065,33 @@
   changeJapaneseText()
   function changeJapaneseText() {
     let words = ['アレックス', //Alex
-                'ラザニア',    //Lasagne
-                'コード']      //Code
+                 'ラザニア',    //Lasagne
+                 'コード']      //Code
     let q = Math.floor(Math.random() * words.length)
     document.getElementById('homeJap').innerHTML = `[${words[q]}]`
   }           
+
+
+    /*$$$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
+   /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/
+  | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$   
+  | $$$$$$$$| $$$$$$$ | $$  | $$| $$  | $$   | $$   
+  | $$__  $$| $$__  $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$  \ $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
+  |__/  |__/|_______/  \______/  \______/    |_*/
+
+  //ABOUT IMAGE
+  changeAboutImage()
+  function changeAboutImage() {
+    let words = ['Data/Images/About/artyom.jpg',
+                 'Data/Images/About/canary.jpg',
+                 'Data/Images/About/ducks.jpg',
+                 'Data/Images/About/finisterre.jpg',
+                 'Data/Images/About/mushroom.jpg',
+                 'Data/Images/About/santiago.jpg']
+    document.getElementById('aboutContainerImage').src = words[Math.floor(Math.random() * words.length)]
+  }
 
 
    /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
