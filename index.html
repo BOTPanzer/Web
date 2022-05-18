@@ -206,65 +206,11 @@
 
   .aboutPage {
     width: 100%;
-    height: 100%;
+    min-height: max(fit-content, 100%);
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .skillsPage {
-    width: calc(100% - 4vw);
-    min-height: calc(100% - 4vw);
-    padding: 2vw;
-    position: relative;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .skillsPro {
-    width: 1%; 
-    white-space: nowrap; 
-  }
-  
-  .skillsName {
-    width: 20%;
-    text-align: center;
-  }
-
-  .skillsBar {
-    background: repeating-linear-gradient(90deg,  
-      white 0%,
-      white calc(0% + 1px), 
-      transparent calc(0% + 1px),
-      transparent calc(25% - 1px)
-    );
-  }
-
-  /*BAR*/
-  .bar{
-    width: calc(100% - 23px); 
-    height: 40px; 
-    padding-right: 20px;
-    border-radius: 0 10px 10px 0;
-    line-height: 40px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-end; 
-    background: var(--accent);
-  }
-
-  .bar75 {
-    width: calc(75% - 23px); 
-  }
-
-  .bar50 {
-    width: calc(50% - 23px); 
-  }
-
-  .bar25 {
-    width: calc(25% - 23px); 
   }
 
 
@@ -279,7 +225,7 @@
 
   .projectPage {
     width: 100%;
-    min-height: fit-content;
+    min-height: max(fit-content, 100%);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -474,6 +420,7 @@
   |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
    \______/    |__/   |__/  |__/|________/|__/  |_*/
 
+  /*TITLE*/
   .title {
     margin: 4rem 0 0 0;
     font-family: Lemon Milk;
@@ -518,7 +465,23 @@
     100% { transform:translateY(0); }
   }
 
-  /*OTHER*/
+  /*BORDER BUTTON*/
+  .borderButton {
+    width: fit-content;
+    padding: 5px 25px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all .2s;
+    cursor: pointer;
+    outline: solid 1px var(--text1);
+    transition: background .2s;
+  }
+
+  .borderButton:hover {
+    background: #69696920;
+  }
+
+  /*WRITE LINE*/
   @keyframes line {
     0% { opacity: 0; }
     1% { opacity: 1; }
@@ -527,6 +490,7 @@
     100% { opacity: 0; }
   }
 
+  /*TEXT SHADOW*/
   .shadow {
     /*text-shadow: 0px 0px 10px var(--textShadow);*/
     text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
@@ -590,7 +554,7 @@
           Panco
         </div>
         <div id="homeJap" class="shadow" style="font-size: 4vw; z-index: 3;">
-          [ラザニア]
+          []
         </div>
       </div>
 
@@ -633,98 +597,16 @@
     <div id="aboutTitle" class="title shadow">
       About Me
     </div>
-    <div id="aboutContainer" class="hc" style="width: 80%; flex-grow: 1; margin: 4rem 10%; gap: 4rem;">
+    <div id="aboutContainer" class="hc" style="width: 80%; height: fit-content; margin: 4rem 10%; gap: 4rem;">
       <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); aspect-ratio: 1/1; border-radius: 20px; object-fit: cover;">
-      <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); height: 100%; justify-content: center; gap: 1rem;">
+      <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); min-height: fit-content; height: 100%; justify-content: center; gap: 1rem;">
         <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
         <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
         <span style="font-family: Poppins;">I am a UI Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
         <span style="font-family: Poppins;">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
+        <div class="borderButton" onclick="scrollElem('projects')">See My Projects</div>
       </div>
     </div>
-  </div>
-
-  <div id="skills" class="skillsPage">
-    <div id="skillsTitle" class="title shadow">
-      My Skills
-    </div>
-
-    <table style="width: 100%; flex-grow: 1; margin-top: 4vw;" cellspacing=0>
-      <tr>
-        <td class="skillsPro">Expert</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="skillsPro">Advanced</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="skillsPro">Medium</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td class="skillsPro">Basics</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td class="skillsName">UI Design</td>
-        <td class="skillsName">Web Development</td>
-        <td class="skillsName">Android Development</td>
-        <td class="skillsName">Videogame Development</td>
-        <td class="skillsName">3D Printing</td>
-      </tr>
-    </table> 
-
-    <!--table style="width: 100%; flex-grow: 1; margin-top: 4vw;" cellspacing=0>
-      <tr>
-        <td class="skillsName">UI Design</td>
-        <td class="skillsBar">
-          <div class="bar bar75">Advanced</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="skillsName">Web Development</td>
-        <td class="skillsBar">
-          <div class="bar">Expert</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="skillsName">Android Development</td>
-        <td class="skillsBar">
-          <div class="bar">Expert</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="skillsName">Videogames Development</td>
-        <td class="skillsBar">
-          <div class="bar bar25">Basics</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="skillsName">3D Printing</td>
-        <td class="skillsBar">
-          <div class="bar bar75">Advanced</div>
-        </td>
-      </tr>
-    </table--> 
-    <div style="height: 40px;"></div>
   </div>
 
 
@@ -896,7 +778,6 @@
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
       //ABOUT
-      document.getElementById('about').style.height = 'fit-content'
       document.getElementById('aboutTitle').style.fontSize = '10vw'
       document.getElementById('aboutContainer').classList.add('vc')
       document.getElementById('aboutContainer').classList.remove('hc')
@@ -904,10 +785,6 @@
       document.getElementById('aboutContainerImage').style.height = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.width = '100%'
       document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
-      //SKILLS
-      /*document.getElementById('skillsTitle').style.fontSize = '10vw'
-      document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
-      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, var(--text1) 0%, var(--text1) calc(0% + 1px), transparent calc(0% + 1px), transparent calc(50% - 1px))' })*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -937,7 +814,6 @@
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
       //ABOUT
-      document.getElementById('about').style.height = '100%'
       document.getElementById('aboutTitle').style.fontSize = '5vw'
       document.getElementById('aboutContainer').classList.add('hc')
       document.getElementById('aboutContainer').classList.remove('vc')
@@ -945,10 +821,6 @@
       document.getElementById('aboutContainerImage').style.height = '100%'
       document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.height = '100%'
-      //SKILLS
-      /*document.getElementById('skillsTitle').style.fontSize = '5vw'
-      document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
-      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, var(--text1) 0%, var(--text1) calc(0% + 1px), transparent calc(0% + 1px), transparent calc(25% - 1px))' })*/
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
