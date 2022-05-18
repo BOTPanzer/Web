@@ -10,521 +10,526 @@
 
 
 <style>
-@font-face { font-family: Poppins; src: url('Data/Fonts/Poppins.ttf'); }
-@font-face { font-family: Comfortaa; src: url('Data/Fonts/Comfortaa.ttf'); }
-@font-face { font-family: Display; src: url('Data/Fonts/Lemon Milk.ttf'); }
-
-html {
-  height: 100%;
-  width: 100%;
-  font-family: Poppins;
-}
-
-body {
-  height: 100%; 
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  font-size: 1rem;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  background: var(--background);
-  color: var(--text1);
-  fill: var(--text1);
-  --cardW: 25%;
-  --cardT: 1.5vw;
-  /*THEME*/
-  --menu: #1e2023;
-  --background: #18191c;
-  --scrollbar: #f5f5f5;
-  --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  --shadow2: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(126, 126, 126, 0.2) 0px 0px 0px 1px;
-  --accent: #cc1d4e;  
-  --text1: #f5f5f5;
-  --text2: #C7C9CA;
-  --button: #202225;
-  --textShadow: #00000049;
-}
-
-::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--scrollbar);
-  border-radius: 7px;
-  border: solid 4px transparent;
-  background-clip: content-box;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  border: solid 3px transparent;
-}
-
-img {
-  -webkit-user-drag: none;
-}
-
-::selection {
-  background: var(--accent);
-}
-
-.hc {
-  display: flex;
-  flex-direction: row;
-}
-
-.vc {
-  display: flex;
-  flex-direction: column;
-}
-
-
- /*$      /$$ /$$$$$$$$ /$$   /$$ /$$   /$$
-| $$$    /$$$| $$_____/| $$$ | $$| $$  | $$
-| $$$$  /$$$$| $$      | $$$$| $$| $$  | $$
-| $$ $$/$$ $$| $$$$$   | $$ $$ $$| $$  | $$
-| $$  $$$| $$| $$__/   | $$  $$$$| $$  | $$
-| $$\  $ | $$| $$      | $$\  $$$| $$  | $$
-| $$ \/  | $$| $$$$$$$$| $$ \  $$|  $$$$$$/
-|__/     |__/|________/|__/  \__/ \_____*/ 
-
-.menu {
-  width: calc(100% - 10px);
-  height: fit-content;
-  padding: 5px;
-  position: fixed;
-  top: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  z-index: 50;
-}
-
-/*MENU BUTTON*/
-.mbutton {
-  width: fit-content;
-  position: relative;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 10px;
-  transition: background .2s;
-}
-
-.mbutton div:nth-of-type(1) {
-  padding: 0 5px; 
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-  text-shadow: 0px 0px 10px var(--textShadow);
-}
-
-.mbutton div:nth-of-type(2) {
-  width: calc(100% - 20px); 
-  height: 5px; 
-  margin: 3px 0;
-  position: absolute;
-  bottom: 0;
-  border-radius: 2.5px; 
-  background-color: var(--accent);
-  opacity: 0;
-  transition: opacity .2s;
-}
-
-.mbutton:hover {
-  background-color: #69696920;
-  opacity: 1;
-}
-
-.mbutton:hover div:nth-of-type(2) {
-  opacity: 1;
-}
-
-/*MENU BUTTON 2*/
-.mbutton2 {
-  width: 25px; 
-  height: 25px;
-  padding: 10px;
-  position: relative;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 10px;
-  transition: background .2s;
-}
-
-.mbutton2:hover {
-  background-color: #69696920;
-  opacity: 1;
-}
-
-.mbutton2 img {
-  width: 25px;
-  object-fit: cover;
-  filter: var(--filter);
-}
-
-
- /*$   /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
-| $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
-| $$  | $$| $$  \ $$| $$$$  /$$$$| $$      
-| $$$$$$$$| $$  | $$| $$ $$/$$ $$| $$$$$   
-| $$__  $$| $$  | $$| $$  $$$| $$| $$__/   
-| $$  | $$| $$  | $$| $$\  $ | $$| $$      
-| $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
-|__/  |__/ \______/ |__/     |__/|_______*/
-
-.page {
-  width: 100%;
-  min-height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-
-  /*$$$$$  /$$   /$$ /$$$$$$ /$$       /$$        /$$$$$$ 
- /$$__  $$| $$  /$$/|_  $$_/| $$      | $$       /$$__  $$
-| $$  \__/| $$ /$$/   | $$  | $$      | $$      | $$  \__/
-|  $$$$$$ | $$$$$/    | $$  | $$      | $$      |  $$$$$$ 
- \____  $$| $$  $$    | $$  | $$      | $$       \____  $$
- /$$  \ $$| $$\  $$   | $$  | $$      | $$       /$$  \ $$
-|  $$$$$$/| $$ \  $$ /$$$$$$| $$$$$$$$| $$$$$$$$|  $$$$$$/
- \______/ |__/  \__/|______/|________/|________/ \_____*/ 
-
-.page2 {
-  width: calc(100% - 4vw);
-  min-height: calc(100% - 4vw);
-  padding: 2vw;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.skillsName {
-  width: 1%; 
-  white-space: nowrap; 
-  padding-left: 1vw;
-  padding-right: 3vw;
-}
-
-.skillsBar {
-  background: repeating-linear-gradient(90deg,  
-    white 0%,
-    white calc(0% + 1px), 
-    transparent calc(0% + 1px),
-    transparent calc(25% - 1px)
-  );
-}
-
-/*BAR*/
-.bar{
-  width: calc(100% - 23px); 
-  height: 40px; 
-  padding-right: 20px;
-  border-radius: 0 10px 10px 0;
-  line-height: 40px; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: flex-end; 
-  background: var(--accent);
-}
-
-.bar75 {
-  width: calc(75% - 23px); 
-}
-
-.bar50 {
-  width: calc(50% - 23px); 
-}
-
-.bar25 {
-  width: calc(25% - 23px); 
-}
-
-
- /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
-| $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
-| $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
-| $$$$$$$/| $$$$$$$/| $$  | $$      | $$| $$$$$   | $$         | $$  |  $$$$$$ 
-| $$____/ | $$__  $$| $$  | $$ /$$  | $$| $$__/   | $$         | $$   \____  $$
-| $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
-| $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
-|__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
-
-.page3 {
-  width: 100%;
-  min-height: fit-content;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/*PROJECT*/
-.project {
-  width: 100%;
-  height: 100%;
-  /*width: calc(100% - 20px);
-  height: calc(100% - 20px);
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: var(--shadow2);*/
-  position: fixed;
-  background: var(--background); 
-  display: flex;
-  flex-direction: row;
-  z-index: 100;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity .3s;
-}
-
-.projectHalf {
-  width: calc(50% - 4vw); 
-  min-height: calc(100% - 4vw); 
-  margin: 2vw; 
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center;
-}
-
-.projectImages {
-  width: calc(100% - 4vw); 
-  height: 0; 
-  flex-grow: 1; 
-  margin: 2vw; 
-  position: relative;
-  outline: solid var(--text1) 1px; 
-  border-radius: 2vw; 
-  background: #fff; 
-  overflow: hidden;
-}
-
-.projectArrow {
-  height: 100%; 
-  font-size: 6vw; 
-  font-family: Display;
-  color: var(--text); 
-  display: flex; 
-  align-items: center; 
-  padding: 0 10px; 
-  position: absolute; 
-  top: 0; 
-  cursor: pointer;
-  text-shadow: 2px 2px 10px var(--textShadow), 2px -2px 10px var(--textShadow), -2px -2px 10px var(--textShadow), -2px 2px 10px var(--textShadow);
-}
-
-.projectBalls {
-  display: flex;
-  flex-direction: row;
-  gap: 30px; 
-  font-size: 2vw;
-}
-
-.projectBall {
-  width: 14px; 
-  height: 14px;
-  margin: 3px;
-  cursor: pointer;
-  border-radius: 10px;
-  background: var(--text1);
-  transition: all .3s;
-}
-
-.projectBall2 {
-  width: 20px; 
-  height: 20px;
-  margin: 0;
-  background: var(--accent);
-}
-
-.projectDesc {
-  width: 100%; 
-  max-height: 100%; 
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-}
-
-
-/*PROJECT CLOSE*/
-.pclose {
-  width: 24px; 
-  height: 24px; 
-  padding: 11px; 
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border-radius: 25px; 
-  cursor: pointer;
-  filter: var(--filter);
-  transition: background .2s;
-}
-
-.pclose:hover {
-  background: #69696920;
-}
-
-/*CARDS CONTAINER*/
-.pcards {
-  width: 80%; 
-  margin: 7rem 10% 8rem 10%; 
-  display: flex; 
-  gap: 10%; 
-  row-gap: 100px; 
-  justify-content: space-around; 
-  flex-wrap: wrap;
-}
-
-/*CARD*/
-.pcard {
-  width: var(--cardW); 
-  aspect-ratio: 1/1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center;
-  background-color: var(--button); 
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  font-size: var(--cardT);
-}
-
-.pcard img {
-  width: 80%; 
-  aspect-ratio: 1/1;
-  margin-bottom: -20px; 
-  object-fit: cover; 
-  border-radius: 10px; 
-  transform: translateY(-20px);
-  box-shadow: var(--shadow);
-  transition: all .2s;
-}
-
-.pcard:hover img {
-  margin-bottom: -80px; 
-  transform: translateY(-80px);
-}
-
-.pcard div:nth-of-type(1) {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap; 
-  overflow: hidden;
-}
-
-.pcard div:nth-of-type(2) {
-  width: fit-content;
-  max-height: 0;
-  border-radius: 50px;
-  overflow: hidden;
-  cursor: pointer;
-  font-size: 1rem;
-  outline: solid 1px transparent;
-  transition: all .2s;
-}
-
-.pcard:hover div:nth-of-type(2) {
-  max-height: 100px;
-  padding: 5px 15px;
-  margin-bottom: 20px;
-  outline: solid 1px var(--text1);
-}
-
-.pcard div:nth-of-type(2):hover {
-  background: #69696920;
-}
-
-
-  /*$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$ 
- /$$__  $$|__  $$__/| $$  | $$| $$_____/| $$__  $$
-| $$  \ $$   | $$   | $$  | $$| $$      | $$  \ $$
-| $$  | $$   | $$   | $$$$$$$$| $$$$$   | $$$$$$$/
-| $$  | $$   | $$   | $$__  $$| $$__/   | $$__  $$
-| $$  | $$   | $$   | $$  | $$| $$      | $$  \ $$
-|  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
- \______/    |__/   |__/  |__/|________/|__/  |_*/
-
-/*SEE MY THINGIES*/
-.seeMy {
-  width: 100%; 
-  position: absolute; 
-  bottom: 0; 
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 10px;
-  cursor: pointer;
-  animation: jump 2s ease infinite;
-  animation-delay: 3s;
-}
-
-.seeMyText {
-  padding: 5px 10px;
-  background-color: var(--button);
-  border-radius: 10px;
-}
-
-.seeMyTriangle {  
-  width: 0; 
-  height: 0; 
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--button);
-}
-
-@keyframes jump {
-  70% { transform:translateY(0); }
-  80% { transform:translateY(-15px); }
-  90% { transform:translateY(0); }
-  95% { transform:translateY(-7px); }
-  100% { transform:translateY(0); }
-}
-
-/*BORDER BUTTON*/
-.bbutton {
-  width: fit-content;
-  padding: 5px 15px;
-  border-radius: 50px;
-  overflow: hidden;
-  transition: all .2s;
-  cursor: pointer;
-  outline: solid 2px var(--text1);
-  transition: background .2s;
-}
-
-.bbutton:hover {
-  background: #69696920;
-}
-
-/*OTHER*/
-@keyframes line {
-  0% { opacity: 0; }
-  1% { opacity: 1; }
-  50% { opacity: 1; }
-  51% { opacity: 0; }
-  100% { opacity: 0; }
-}
-
-.shadow {
-  text-shadow: 0px 0px 10px var(--textShadow);
-}
-
-/* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
+  @font-face { font-family: Poppins; src: url('Data/Fonts/Poppins.ttf'); }
+  @font-face { font-family: Comfortaa; src: url('Data/Fonts/Comfortaa.ttf'); }
+  @font-face { font-family: Lemon Milk; src: url('Data/Fonts/Lemon Milk.ttf'); }
+
+  html {
+    height: 100%;
+    width: 100%;
+    font-family: Poppins;
+  }
+
+  body {
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    background: var(--background);
+    color: var(--text1);
+    fill: var(--text1);
+    --cardW: 25%;
+    --cardT: 1.5vw;
+    /*THEME*/
+    --menu: #1e2023;
+    --background: #18191c;
+    --scrollbar: #f5f5f5;
+    --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    --shadow2: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(126, 126, 126, 0.2) 0px 0px 0px 1px;
+    --textShadow: #00000049;
+    --accent: #cc1d4e; 
+    --text1: #f5f5f5;
+    --text2: #C7C9CA;
+    --button: #202225;
+    --basic: #ce9700; 
+    --medium: #cecb00; 
+    --advanced: #93e634;  
+    --expert: #64ce47;  
+  }
+
+  ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 7px;
+    border: solid 4px transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    border: solid 3px transparent;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+
+  ::selection {
+    background: var(--accent);
+  }
+
+  .hc {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .vc {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+   /*$      /$$ /$$$$$$$$ /$$   /$$ /$$   /$$
+  | $$$    /$$$| $$_____/| $$$ | $$| $$  | $$
+  | $$$$  /$$$$| $$      | $$$$| $$| $$  | $$
+  | $$ $$/$$ $$| $$$$$   | $$ $$ $$| $$  | $$
+  | $$  $$$| $$| $$__/   | $$  $$$$| $$  | $$
+  | $$\  $ | $$| $$      | $$\  $$$| $$  | $$
+  | $$ \/  | $$| $$$$$$$$| $$ \  $$|  $$$$$$/
+  |__/     |__/|________/|__/  \__/ \_____*/ 
+
+  .menu {
+    width: calc(100% - 10px);
+    height: fit-content;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 50;
+  }
+
+  /*MENU BUTTON*/
+  .mbutton {
+    width: fit-content;
+    position: relative;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background .2s;
+  }
+
+  .mbutton div:nth-of-type(1) {
+    padding: 0 5px; 
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
+  }
+
+  .mbutton div:nth-of-type(2) {
+    width: calc(100% - 20px); 
+    height: 5px; 
+    margin: 3px 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: 2.5px; 
+    background-color: var(--accent);
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  .mbutton:hover {
+    background-color: #69696920;
+    opacity: 1;
+  }
+
+  .mbutton:hover div:nth-of-type(2) {
+    opacity: 1;
+  }
+
+  /*MENU BUTTON 2*/
+  .mbutton2 {
+    width: 25px; 
+    height: 25px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background .2s;
+  }
+
+  .mbutton2:hover {
+    background-color: #69696920;
+    opacity: 1;
+  }
+
+  .mbutton2 img {
+    width: 25px;
+    object-fit: cover;
+    filter: var(--filter);
+  }
+
+
+   /*$   /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
+  | $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
+  | $$  | $$| $$  \ $$| $$$$  /$$$$| $$      
+  | $$$$$$$$| $$  | $$| $$ $$/$$ $$| $$$$$   
+  | $$__  $$| $$  | $$| $$  $$$| $$| $$__/   
+  | $$  | $$| $$  | $$| $$\  $ | $$| $$      
+  | $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
+  |__/  |__/ \______/ |__/     |__/|_______*/
+
+  .homePage {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+    /*$$$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
+   /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/
+  | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$   
+  | $$$$$$$$| $$$$$$$ | $$  | $$| $$  | $$   | $$   
+  | $$__  $$| $$__  $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$  \ $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
+  |__/  |__/|_______/  \______/  \______/    |_*/
+
+  .aboutPage {
+    width: 100%;
+    min-height: max(100%, fit-content);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skillsPage {
+    width: calc(100% - 4vw);
+    min-height: calc(100% - 4vw);
+    padding: 2vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skillsName {
+    width: 1%; 
+    white-space: nowrap; 
+    padding-left: 1vw;
+    padding-right: 3vw;
+  }
+
+  .skillsBar {
+    background: repeating-linear-gradient(90deg,  
+      white 0%,
+      white calc(0% + 1px), 
+      transparent calc(0% + 1px),
+      transparent calc(25% - 1px)
+    );
+  }
+
+  /*BAR*/
+  .bar{
+    width: calc(100% - 23px); 
+    height: 40px; 
+    padding-right: 20px;
+    border-radius: 0 10px 10px 0;
+    line-height: 40px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-end; 
+    background: var(--accent);
+  }
+
+  .bar75 {
+    width: calc(75% - 23px); 
+  }
+
+  .bar50 {
+    width: calc(50% - 23px); 
+  }
+
+  .bar25 {
+    width: calc(25% - 23px); 
+  }
+
+
+   /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
+  | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
+  | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
+  | $$$$$$$/| $$$$$$$/| $$  | $$      | $$| $$$$$   | $$         | $$  |  $$$$$$ 
+  | $$____/ | $$__  $$| $$  | $$ /$$  | $$| $$__/   | $$         | $$   \____  $$
+  | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
+  | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
+  |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
+
+  .projectPage {
+    width: 100%;
+    min-height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /*PROJECT*/
+  .project {
+    width: 100%;
+    height: 100%;
+    /*width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: var(--shadow2);*/
+    position: fixed;
+    background: var(--background); 
+    display: flex;
+    flex-direction: row;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  .projectHalf {
+    width: calc(50% - 4vw); 
+    min-height: calc(100% - 4vw); 
+    margin: 2vw; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .projectImages {
+    width: calc(100% - 4vw); 
+    height: 0; 
+    flex-grow: 1; 
+    margin: 2vw; 
+    position: relative;
+    outline: solid var(--text1) 1px; 
+    border-radius: 2vw; 
+    background: #fff; 
+    overflow: hidden;
+  }
+
+  .projectArrow {
+    height: 100%; 
+    font-size: 6vw; 
+    font-family: Lemon Milk;
+    color: var(--text); 
+    display: flex; 
+    align-items: center; 
+    padding: 0 10px; 
+    position: absolute; 
+    top: 0; 
+    cursor: pointer;
+    text-shadow: 2px 2px 10px var(--textShadow), 2px -2px 10px var(--textShadow), -2px -2px 10px var(--textShadow), -2px 2px 10px var(--textShadow);
+  }
+
+  .projectBalls {
+    display: flex;
+    flex-direction: row;
+    gap: 30px; 
+    font-size: 2vw;
+  }
+
+  .projectBall {
+    width: 14px; 
+    height: 14px;
+    margin: 3px;
+    cursor: pointer;
+    border-radius: 10px;
+    background: var(--text1);
+    transition: all .3s;
+  }
+
+  .projectBall2 {
+    width: 20px; 
+    height: 20px;
+    margin: 0;
+    background: var(--accent);
+  }
+
+  .projectDesc {
+    width: 100%; 
+    max-height: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+
+  /*PROJECT CLOSE*/
+  .pclose {
+    width: 24px; 
+    height: 24px; 
+    padding: 11px; 
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 25px; 
+    cursor: pointer;
+    filter: var(--filter);
+    transition: background .2s;
+  }
+
+  .pclose:hover {
+    background: #69696920;
+  }
+
+  /*CARDS CONTAINER*/
+  .pcards {
+    width: 80%; 
+    margin: 8rem 10%; 
+    display: flex; 
+    gap: 10%; 
+    row-gap: 100px; 
+    justify-content: space-around; 
+    flex-wrap: wrap;
+  }
+
+  /*CARD*/
+  .pcard {
+    width: var(--cardW); 
+    aspect-ratio: 1/1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    background-color: var(--button); 
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    font-size: var(--cardT);
+  }
+
+  .pcard img {
+    width: 80%; 
+    aspect-ratio: 1/1;
+    margin-bottom: -20px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    transform: translateY(-20px);
+    box-shadow: var(--shadow);
+    transition: all .2s;
+  }
+
+  .pcard:hover img {
+    margin-bottom: -80px; 
+    transform: translateY(-80px);
+  }
+
+  .pcard div:nth-of-type(1) {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; 
+    overflow: hidden;
+  }
+
+  .pcard div:nth-of-type(2) {
+    width: fit-content;
+    max-height: 0;
+    border-radius: 50px;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 1rem;
+    outline: solid 1px transparent;
+    transition: all .2s;
+  }
+
+  .pcard:hover div:nth-of-type(2) {
+    max-height: 100px;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    outline: solid 1px var(--text1);
+  }
+
+  .pcard div:nth-of-type(2):hover {
+    background: #69696920;
+  }
+
+
+    /*$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$ 
+   /$$__  $$|__  $$__/| $$  | $$| $$_____/| $$__  $$
+  | $$  \ $$   | $$   | $$  | $$| $$      | $$  \ $$
+  | $$  | $$   | $$   | $$$$$$$$| $$$$$   | $$$$$$$/
+  | $$  | $$   | $$   | $$__  $$| $$__/   | $$__  $$
+  | $$  | $$   | $$   | $$  | $$| $$      | $$  \ $$
+  |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
+   \______/    |__/   |__/  |__/|________/|__/  |_*/
+
+  .title {
+    margin: 6rem 0 0 0;
+    font-family: Lemon Milk;
+    font-size: 5vw; 
+    text-align: center;
+  }
+
+  /*SEE MY THINGIES*/
+  .seeMy {
+    width: 100%; 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    animation: jump 2s ease infinite;
+    animation-delay: 3s;
+  }
+
+  .seeMyText {
+    padding: 5px 10px;
+    background-color: var(--button);
+    border-radius: 10px;
+  }
+
+  .seeMyTriangle {  
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--button);
+  }
+
+  @keyframes jump {
+    70% { transform:translateY(0); }
+    80% { transform:translateY(-15px); }
+    90% { transform:translateY(0); }
+    95% { transform:translateY(-7px); }
+    100% { transform:translateY(0); }
+  }
+
+  /*OTHER*/
+  @keyframes line {
+    0% { opacity: 0; }
+    1% { opacity: 1; }
+    50% { opacity: 1; }
+    51% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  .shadow {
+    /*text-shadow: 0px 0px 10px var(--textShadow);*/
+    text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
+  }
+
+  /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
 
@@ -546,8 +551,8 @@ img {
       <div>Home</div>
       <div></div>
     </div>
-    <div class="mbutton" onclick="scrollElem('skills')">
-      <div>Skills</div>
+    <div class="mbutton" onclick="scrollElem('about')">
+      <div>About</div>
       <div></div>
     </div>
     <div class="mbutton" onclick="scrollElem('projects')">
@@ -569,37 +574,34 @@ img {
   | $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
   |__/  |__/ \______/ |__/     |__/|______-->
 
-  <div id="home" class="page" style="overflow: hidden; align-items: center; justify-content: space-between;">
+  <div id="home" class="homePage" style="overflow: hidden; align-items: center; justify-content: space-between;">
     <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/home.svg">
     
     <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom center; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/me.png">
 
     <div></div>
 
-    <div class="vc" style="width: 90%; z-index: 3;">
-      <div class="shadow hc" style="font-family: Display;">
-        <div id="homeTitle" class="shadow" style="font-size: 13vw;">
+    <div class="vc" style="width: 90%;">
+      <div class="shadow hc" style="font-family: Lemon Milk;">
+        <div id="homeTitle" class="shadow" style="font-size: 13vw; z-index: 6;">
           Panco
         </div>
-        <div id="homeJap" class="shadow" style="font-size: 4vw;">
+        <div id="homeJap" class="shadow" style="font-size: 4vw; z-index: 3;">
           [ラザニア]
         </div>
       </div>
 
-      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px;">
+      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; z-index: 6;">
         <div id="homeHi" class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
           <span>
-            Hi, I'm Alex.&nbsp;
-          </span>
-          <span>
-            I have experience with
+            I'm
             <span id="homeJobs"></span><span style="animation: line 1s infinite;">|</span>
           </span>
         </div>
       </div>
     </div>
 
-    <div class="hc shadow" style="width: 100%; margin-left: 1vw; font-family: Display; z-index: 1;">
+    <div class="hc shadow" style="width: 100%; margin-left: 1vw; font-family: Lemon Milk; z-index: 1;">
       <div style="font-size: 12vw; line-height: 12vw;">
         101
       </div>
@@ -608,26 +610,42 @@ img {
       </div>
     </div>
 
-    <div class="seeMy" onclick="scrollElem('skills')">
-      <div class="seeMyText">See My Skills</div>
+    <div class="seeMy" onclick="scrollElem('about')">
+      <div class="seeMyText">See About Me</div>
       <div class="seeMyTriangle"></div>
     </div>
   </div>
 
-    <!--$$$  /$$   /$$ /$$$$$$ /$$       /$$        /$$$$$$ 
-   /$$__  $$| $$  /$$/|_  $$_/| $$      | $$       /$$__  $$
-  | $$  \__/| $$ /$$/   | $$  | $$      | $$      | $$  \__/
-  |  $$$$$$ | $$$$$/    | $$  | $$      | $$      |  $$$$$$ 
-   \____  $$| $$  $$    | $$  | $$      | $$       \____  $$
-   /$$  \ $$| $$\  $$   | $$  | $$      | $$       /$$  \ $$
-  |  $$$$$$/| $$ \  $$ /$$$$$$| $$$$$$$$| $$$$$$$$|  $$$$$$/
-   \______/ |__/  \__/|______/|________/|________/ \____-->
 
-  <div id="skills" class="page2">
-    <div id="skillsTitle" class="shadow" style="margin: 3rem 0; font-family: Display; font-size: 5vw; text-align: center;">
+    <!--$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
+   /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/
+  | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$   
+  | $$$$$$$$| $$$$$$$ | $$  | $$| $$  | $$   | $$   
+  | $$__  $$| $$__  $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$  \ $$| $$  | $$| $$  | $$   | $$   
+  | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
+  |__/  |__/|_______/  \______/  \______/    |-->
+  
+  <div id="about" class="aboutPage">
+    <div id="aboutTitle" class="title shadow">
+      About Me
+    </div>
+    <div id="aboutContainer" class="hc" style="width: calc(100% - 20%); flex-grow: 1; padding: 4rem; gap: 4rem;">
+      <img id="aboutContainer2" class="vc" style="width: calc(50% - 2rem); height: 100%; border-radius: 20px; object-fit: cover;" src="Data/Images/Projects/Artyom/1.jpg">
+      <div id="aboutContainer1" class="vc" style="width: calc(50% - 2rem); height: 100%; justify-content: center; gap: 1rem;">
+        <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
+        <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
+        <span style="font-family: Poppins;">I am a UI Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
+        <span style="font-family: Poppins;">I am also interested in other fields where I have developed my skills like videogame development, 3D printing and multimedia editing.</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="skills" class="skillsPage">
+    <div id="skillsTitle" class="title shadow">
       My Skills
     </div>
-    <table style="width: 100%; flex-grow: 1;" cellspacing=0>
+    <table style="width: 100%; flex-grow: 1; margin-top: 4vw;" cellspacing=0>
       <tr>
         <td class="skillsName">UI Design</td>
         <td class="skillsBar">
@@ -660,13 +678,9 @@ img {
       </tr>
     </table> 
     <div style="height: 40px;"></div>
-    <div id="skillsSeeProjects" class="seeMy" style="width: fit-content; right: 20px;" onclick="scrollElem('projects')">
-      <div class="seeMyText">See My Projects</div>
-      <div class="seeMyTriangle"></div>
-    </div>
   </div>
-  
-  
+
+
    <!--$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
   | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
   | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
@@ -676,8 +690,8 @@ img {
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \____--> 
 
-  <div id="projects" class="page3">
-    <div id="projectsTitle" class="shadow" style="margin-top: 7rem; font-family: Display; font-size: 5vw; text-align: center;">
+  <div id="projects" class="projectPage">
+    <div id="projectsTitle" class="title shadow">
       My projects
     </div>
     <div class="pcards">
@@ -749,10 +763,10 @@ img {
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
     <div id="projectPreview" class="projectHalf">
-      <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw;">
-        <div id="projectTitle1" style="font-family: Display;">Title</div>
-        <div id="projectTitle2" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .5;">Title</div>
-        <div id="projectTitle3" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; font-family: Display; opacity: .2;">Title</div>
+      <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw; font-family: Lemon Milk;">
+        <div id="projectTitle1">Title</div>
+        <div id="projectTitle2" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; opacity: .5;">Title</div>
+        <div id="projectTitle3" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; opacity: .2;">Title</div>
       </div>
 
       <div class="projectImages">
@@ -771,6 +785,7 @@ img {
     </div>
   </div>
 
+
    <!--$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
   | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
   | $$  \ $$| $$  \ $$   | $$      | $$  | $$  \ $$| $$$$  /$$$$
@@ -781,7 +796,7 @@ img {
   |_______/  \______/    |__/      |__/   \______/ |__/     |-->
 
   <div id="bottom" style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
-    <div id="bottomText" style="flex-grow: 1; font-family: Display; display: flex; flex-direction: row;">
+    <div id="bottomText" style="flex-grow: 1; font-family: Lemon Milk; display: flex; flex-direction: row;">
       <div id="bottomQuote" style="font-size: 25px;">
         War Never Changes
       </div>
@@ -831,14 +846,20 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
       document.getElementById('homeJap').style.fontSize = '3.25vh'
-      document.getElementById('homeHi').style.fontSize = '3.2vw'
       document.getElementById('homeHi').classList.remove('hc')
       document.getElementById('homeHi').classList.add('vc')
+      //ABOUT
+      document.getElementById('aboutTitle').style.fontSize = '10vw'
+      document.getElementById('aboutContainer').classList.add('vc')
+      document.getElementById('aboutContainer').classList.remove('hc')
+      document.getElementById('aboutContainer1').style.width = '100%'
+      document.getElementById('aboutContainer1').style.height = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainer2').style.width = '100%'
+      document.getElementById('aboutContainer2').style.height = 'calc(50% - 2rem)'
       //SKILLS
       document.getElementById('skillsTitle').style.fontSize = '10vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = 'transparent' })
-      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(50% - 1px))' })
-      document.getElementById('skillsSeeProjects').style.display = 'none'
+      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, var(--text1) 0%, var(--text1) calc(0% + 1px), transparent calc(0% + 1px), transparent calc(50% - 1px))' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -865,14 +886,20 @@ img {
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
       document.getElementById('homeJap').style.fontSize = '4vw'
-      document.getElementById('homeHi').style.fontSize = 'calc(1rem + 0.390625vw)'
       document.getElementById('homeHi').classList.add('hc')
       document.getElementById('homeHi').classList.remove('vc')
+      //ABOUT
+      document.getElementById('aboutTitle').style.fontSize = '5vw'
+      document.getElementById('aboutContainer').classList.add('hc')
+      document.getElementById('aboutContainer').classList.remove('vc')
+      document.getElementById('aboutContainer1').style.width = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainer1').style.height = '100%'
+      document.getElementById('aboutContainer2').style.width = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainer2').style.height = '100%'
       //SKILLS
       document.getElementById('skillsTitle').style.fontSize = '5vw'
       document.querySelectorAll('.bar').forEach(box => { box.style.color = '' })
-      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, white 0%, white calc(0% + 1px), transparent calc(0% + 1px), transparent calc(25% - 1px))' })
-      document.getElementById('skillsSeeProjects').style.display = 'flex'
+      document.querySelectorAll('.skillsBar').forEach(box => { box.style.background = 'repeating-linear-gradient(90deg, var(--text1) 0%, var(--text1) calc(0% + 1px), transparent calc(0% + 1px), transparent calc(25% - 1px))' })
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
@@ -908,7 +935,7 @@ img {
       document.body.style.setProperty('--text1', '#f5f5f5')
       document.body.style.setProperty('--text2', '#C7C9CA')
       document.body.style.setProperty('--button', '#202225')
-      document.body.style.setProperty('--filter', 'drop-shadow(0px 0px 10px var(--textShadow))')
+      document.body.style.setProperty('--filter', '')
       document.body.style.setProperty('--textShadow', '#00000049')
     } else {
       localStorage.setItem('pancoTheme', 'light')
@@ -920,7 +947,7 @@ img {
       document.body.style.setProperty('--text1', '#060607')
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
-      document.body.style.setProperty('--filter', 'drop-shadow(0px 0px 10px var(--textShadow)) invert(100%)')
+      document.body.style.setProperty('--filter', 'invert(100%)')
       document.body.style.setProperty('--textShadow', '#ffffff49')
     }
   }
@@ -944,11 +971,11 @@ img {
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
-    let jobs = ['UI Design', 
-                'Web Development', 
-                'Android Development', 
-                'Videogames Development', 
-                '3D Printing']
+    let jobs = ['a UI Designer', 
+                'a Web Developer', 
+                'an Android Developer', 
+                'a Videogames Enjoyer', 
+                'a 3D Printing Fan']
     let i = 0
     let length
     let letters
