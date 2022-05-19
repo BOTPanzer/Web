@@ -1101,7 +1101,9 @@
             <span class="tag tagAndroid">Android</span>
           </div>
           <br>
-          Oriøn Assistant Description`
+          Phone App: Android Studio
+          <br><br>
+          PC App: Electron.js, Node.js`
         images = ['Data/Images/Projects/Assistant/pcapp.png']
         break
       case 'hoodie':
@@ -1160,8 +1162,14 @@
             <span class="tag tagAU">Audition</span>
           </div>
           <br>
-          Discord Bots Description`
-        images = ['Data/Images/Projects/Disbots/help.png']
+          After checking out the cool things you can do with discord bots I got the idea of creating my own.
+          <br><br>
+          At first I created a simple bot called Syrup and, after becoming better at making them, I created a more advanced version called Coscu.
+          This new version could junp into a call with people and play sounds so I used Adobe Audition to edit them and make them sound better.
+          <br><br>
+          <span class="borderButton" onclick="window.open('https://github.com/BOTPanzer/Syrup')">Syrup Repository</span>`
+        images = ['Data/Images/Projects/Disbots/help.png',
+                  'Data/Images/Projects/Disbots/games.png']
         break
       case 'other':
         title = 'Other Projects'
@@ -1247,15 +1255,8 @@
       document.getElementById('projectsWindow').style.opacity = '0'
     }
   }
-
-  //BACK BUTTON LISTENER
-  document.addEventListener('backbutton', function(){
-    if(document.getElementById('projectsWindow').style.opacity != '0') {
-      showProjectsWindow(false)
-      return false
-    }
-  });
   
+
    /*$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
   | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
   | $$  \ $$| $$  \ $$   | $$      | $$  | $$  \ $$| $$$$  /$$$$
@@ -1310,54 +1311,5 @@
       }, 2000)
     }
   }
-
-
-
-  //3D MODEL
-  /*renderer.setSize(window.innerWidth/2, window.innerHeight)
-  camera.aspect = (window.innerWidth/2)/window.innerHeight
-  camera.updateProjectionMatrix()*/
-  /*renderer.setSize(window.innerWidth/2, window.innerHeight)
-  camera.aspect = (window.innerWidth/2)/window.innerHeight
-  camera.updateProjectionMatrix()*/
-  /*let scene
-  let camera
-  let renderer
-  createModel()
-  function createModel() {
-    let models = ['duck.glb', 
-                  'bulb.glb', 
-                  'gasmask.glb']
-    let elem = document.getElementById('homeRenderer')
-
-    scene = new THREE.Scene()
-
-    camera = new THREE.PerspectiveCamera(40, (window.innerWidth/2)/window.innerHeight, 1, 5000)
-    camera.position.set(50, 50, 60)
-
-    renderer = new THREE.WebGLRenderer({ antialias:true, alpha: true })
-    renderer.setSize(window.innerWidth/2, window.innerHeight)
-    renderer.setClearColor(0x000000, 0)
-    elem.appendChild(renderer.domElement)
-
-    let hlight = new THREE.AmbientLight (0x404040, 10)
-    scene.add(hlight)
-    
-    let loader = new THREE.GLTFLoader()
-    loader.load('https://botpanzer.github.io/Web/Data/3D/Models/'+models[Math.floor(Math.random() * models.length)], function(gltf) {
-      scene.add(gltf.scene)
-      animate()
-    })
-
-    let controls = new THREE.OrbitControls(camera, renderer.domElement)
-    controls.target.set(0, 5, 0)
-    controls.update()
-    controls.addEventListener('change', renderer)
-    
-    function animate() {
-      renderer.render(scene, camera)
-      requestAnimationFrame(animate)
-    }
-  }*/
 </script>
 </html>
