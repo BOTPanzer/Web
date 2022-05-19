@@ -253,9 +253,9 @@
   }
 
   .projectHalf {
-    width: calc(50% - 4vw); 
-    min-height: calc(100% - 4vw); 
-    margin: 2vw; 
+    width: calc(50% - 4vw - 4vh); 
+    min-height: calc(100% - 4vw - 4vh); 
+    margin: calc(2vw + 2vh); 
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -880,13 +880,13 @@
       document.body.style.setProperty('--cardT', '4vw')
       document.getElementById('projectsWindow').style.flexDirection = 'column'
       document.getElementById('projectsWindow').style.overflowY = 'auto'
-      document.getElementById('projectPreview').style.width = 'calc(100% - 4vw)'
-      document.getElementById('projectPreview').style.minHeight = 'calc(50% - 4vw)'
-      document.getElementById('projectArrow1').style.fontSize = '14vw'
-      document.getElementById('projectArrow2').style.fontSize = '14vw'
+      document.getElementById('projectPreview').style.width = 'calc(100% - 4vw - 4vh)'
+      document.getElementById('projectPreview').style.minHeight = 'calc(50% - 4vw - 4vh)'
       document.getElementById('projectTitle').style.fontSize = '6vw'
       document.getElementById('projectTitle').style.lineHeight = '6vw'
-      document.getElementById('projectDescription').style.width = 'calc(100% - 4vw)'
+      document.getElementById('projectArrow1').style.fontSize = '14vw'
+      document.getElementById('projectArrow2').style.fontSize = '14vw'
+      document.getElementById('projectDescription').style.width = 'calc(100% - 4vw - 4vh)'
       document.getElementById('projectDescription').style.minHeight = 'auto'
       document.getElementById('projectDescription').style.overflowY = ''
       //BOTTOM
@@ -916,14 +916,14 @@
       document.body.style.setProperty('--cardT', '1.5vw')
       document.getElementById('projectsWindow').style.flexDirection = 'row'
       document.getElementById('projectsWindow').style.overflowY = ''
-      document.getElementById('projectPreview').style.width = 'calc(50% - 4vw)'
-      document.getElementById('projectPreview').style.minHeight = 'calc(100% - 4vw)'
-      document.getElementById('projectArrow1').style.fontSize = '6vw'
-      document.getElementById('projectArrow2').style.fontSize = '6vw'
-      document.getElementById('projectDescription').style.width = 'calc(50% - 4vw)'
+      document.getElementById('projectPreview').style.width = 'calc(50% - 4vw - 4vh)'
+      document.getElementById('projectPreview').style.minHeight = 'calc(100% - 4vw - 4vh)'
       document.getElementById('projectTitle').style.fontSize = '4vw'
       document.getElementById('projectTitle').style.lineHeight = '4vw'
-      document.getElementById('projectDescription').style.minHeight = 'calc(100% - 4vw)'
+      document.getElementById('projectArrow1').style.fontSize = '6vw'
+      document.getElementById('projectArrow2').style.fontSize = '6vw'
+      document.getElementById('projectDescription').style.width = 'calc(50% - 4vw - 4vh)'
+      document.getElementById('projectDescription').style.minHeight = 'calc(100% - 4vw - 4vh)'
       document.getElementById('projectDescription').style.overflowY = 'auto'
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'row'
