@@ -1248,6 +1248,13 @@
     }
   }
 
+  //BACK BUTTON LISTENER
+  document.addEventListener('backbutton', function(){
+    if(document.getElementById('projectsWindow').style.opacity != '0') {
+      showProjectsWindow(false)
+      return false
+    }
+  });
   
    /*$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
   | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
