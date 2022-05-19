@@ -438,7 +438,6 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 10px;
-    cursor: pointer;
     animation: jump 2s ease infinite;
     animation-delay: 3s;
   }
@@ -447,6 +446,7 @@
     padding: 5px 10px;
     background-color: var(--button);
     border-radius: 10px;
+    cursor: pointer;
   }
 
   .seeMyTriangle {  
@@ -455,6 +455,7 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid var(--button);
+    cursor: pointer;
   }
 
   @keyframes jump {
@@ -468,6 +469,7 @@
   /*BORDER BUTTON*/
   .borderButton {
     width: fit-content;
+    height: fit-content;
     padding: 5px 25px;
     border-radius: 50px;
     overflow: hidden;
@@ -577,9 +579,9 @@
       </div>
     </div>
 
-    <div class="seeMy" onclick="scrollElem('about')">
-      <div class="seeMyText">See About Me</div>
-      <div class="seeMyTriangle"></div>
+    <div class="seeMy">
+      <div class="seeMyText" onclick="scrollElem('about')">See About Me</div>
+      <div class="seeMyTriangle" onclick="scrollElem('about')"></div>
     </div>
   </div>
 
