@@ -268,7 +268,7 @@
     flex-grow: 1; 
     margin: 2vw; 
     position: relative;
-    outline: solid var(--text1) 1px; 
+    outline: solid #7e7e7e48 1px; 
     border-radius: 2vw; 
     background: #fff; 
     overflow: hidden;
@@ -429,6 +429,93 @@
     text-align: center;
   }
 
+  /*TAGS*/
+  .tags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center
+  }
+
+  .tag {
+    width: fit-content;
+    min-height: fit-content;
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: .8rem;
+  }
+
+  .tagHTML {
+    background-color: #f66b0e28;
+    outline: solid 1px #F66B0E;
+  }
+
+  .tagCSS {
+    background-color: #0AA1DD28;
+    outline: solid 1px #0AA1DD;
+  }
+
+  .tagJS {
+    background-color: #FD5D5D28;
+    outline: solid 1px #FD5D5D;
+  }
+
+  .tagJava {
+    background-color: #f5434328;
+    outline: solid 1px #f54343;
+  }
+
+  .tagUI {
+    background-color: #20537528;
+    outline: solid 1px #205375;
+  }
+
+  .tagAndroid {
+    background-color: #24e42128;
+    outline: solid 1px #24e421;
+  }
+
+  .tagDraw {
+    background-color: #F0BB6228;
+    outline: solid 1px #F0BB62;
+  }
+  
+  .tagAI {
+    background-color: #ff9a0028;
+    outline: solid 1px #ff9a00;
+  }
+  
+  .tagPS {
+    background-color: #31a9ff28;
+    outline: solid 1px #31a9ff;
+  }
+  
+  .tagAU {
+    background-color: #4fbfaf28;
+    outline: solid 1px #4fbfaf;
+  }
+
+  .tag3D {
+    background-color: #9a44d828;
+    outline: solid 1px #9a44d8;
+  }
+
+  .tag3DP {
+    background-color: #fd622f28;
+    outline: solid 1px #fd622f;
+  }
+
+  .tagElectronics {
+    background-color: #33ab0328;
+    outline: solid 1px #33ab03;
+  }
+
+  .tagDIY {
+    background-color: #90c3c628;
+    outline: solid 1px #90c3c6;
+  }
+
   /*SEE MY THINGIES*/
   .seeMy {
     width: 100%; 
@@ -471,7 +558,7 @@
   .borderButton {
     width: fit-content;
     min-height: fit-content;
-    padding: 5px 25px;
+    padding: 5px 15px;
     border-radius: 50px;
     transition: all .2s;
     cursor: pointer;
@@ -604,7 +691,7 @@
       <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); min-height: fit-content; height: 100%; justify-content: center; gap: 1rem;">
         <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
         <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
-        <span style="font-family: Poppins;">I am a UI Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
+        <span style="font-family: Poppins;">I am a UI/UX Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
         <span style="font-family: Poppins;">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
         <span class="borderButton" onclick="scrollElem('projects')">See My Projects</span>
       </div>
@@ -985,23 +1072,48 @@
     let images = ['Data/Images/Projects/Other/other.jpg']
     switch(project) {
       case 'framework':
-        title = 'Oriøn Framework'
-        description = `Oriøn Framework is a HTML, CSS & JS based framework made with personalization in mind. 
-                       This project got separated from Oriøn Assistant in an attempt to make it available for everyone.
-                       <br><br>
-                       Here you can find new simple and easy to use HTML elements like buttons, inputs, switches, checkboxes, radio buttons and various loading animations and effects.
-                       <br><br>
-                       <span class="borderButton" onclick="window.open('https://botpanzer.github.io/Orion-Framework/')">See Documentation</span>`
+        title = 'Oriøn Framework' // · 
+        description = `
+          <div class="tags">
+            <span class="tag tagHTML">HTML</span>
+            <span class="tag tagCSS">CSS</span>
+            <span class="tag tagJS">JS</span>
+            <span class="tag tagUI">UI/UX Design</span>
+          </div>
+          <br>
+          Oriøn Framework is an HTML, CSS & JS based framework made with personalization in mind. 
+          This project got separated from Oriøn Assistant in an attempt to make it available for everyone.
+          <br><br>
+          Here you can find new simple and easy to use HTML elements like buttons, inputs, switches, checkboxes, radio buttons and various loading animations and effects.
+          <br><br>
+          <span class="borderButton" onclick="window.open('https://botpanzer.github.io/Orion-Framework/')">See Documentation</span>`
         images = ['Data/Images/Projects/Framework/docs.png']
         break
       case 'assistant':
         title = 'Oriøn Assistant'
-        description = 'Oriøn Assistant Description'
+        description = `
+          <div class="tags">
+            <span class="tag tagHTML">HTML</span>
+            <span class="tag tagCSS">CSS</span>
+            <span class="tag tagJS">JS</span>
+            <span class="tag tagJava">Java</span>
+            <span class="tag tagUI">UI/UX Design</span>
+            <span class="tag tagAndroid">Android</span>
+          </div>
+          <br>
+          Oriøn Assistant Description`
         images = ['Data/Images/Projects/Assistant/pcapp.png']
         break
       case 'hoodie':
-        title = 'Futuristic Hoodie'
-        description = 'Futuristic Hoodie Description'
+        title = 'Futuristic Hoodie'        
+        description = `
+          <div class="tags">
+            <span class="tag tagAI">Illustrator</span>
+            <span class="tag tagPS">Photoshop</span>
+            <span class="tag tagDraw">Drawing</span>
+          </div>
+          <br>
+          Futuristic Hoodie Description`
         images = ['Data/Images/Projects/Hoodie/front.png',
                  'Data/Images/Projects/Hoodie/back.png',
                   'Data/Images/Projects/Hoodie/design1.jpg',
@@ -1010,20 +1122,44 @@
         break
       case 'modding':
         title = 'PC Modding'
-        description = 'PC Modding Description'
+        description = `
+          <div class="tags">
+            <span class="tag tag3D">3D Modeling</span>
+            <span class="tag tag3DP">3D Printing</span>
+            <span class="tag tagAI">Illustrator</span>
+            <span class="tag tagDraw">Drawing</span>
+          </div>
+          <br>
+          PC Modding Description`
         images = ['Data/Images/Projects/Modding/3d.png',
                   'Data/Images/Projects/Modding/paint.jpg',
                   'Data/Images/Projects/Modding/nopaint.jpg',
-                  'Data/Images/Projects/Modding/design.jpg']
+                  'Data/Images/Projects/Modding/design.jpg',
+                  'Data/Images/Projects/Modding/inside1.jpg',
+                  'Data/Images/Projects/Modding/inside2.jpg']
         break
       case 'disbots':
         title = 'Discord Bots'
-        description = 'Discord Bots Description'
+        description = `
+          <div class="tags">
+            <span class="tag tagJS">JS</span>
+            <span class="tag tagAU">Audition</span>
+          </div>
+          <br>
+          Discord Bots Description`
         images = ['Data/Images/Projects/Disbots/help.png']
         break
       case 'other':
         title = 'Other Projects'
-        description = 'Other Projects Description'
+        description = `
+          <div class="tags">
+            <span class="tag tag3D">3D Modeling</span>
+            <span class="tag tag3DP">3D Printing</span>
+            <span class="tag tagElectronics">Electronics</span>
+            <span class="tag tagDIY">DIY</span>
+          </div>
+          <br>
+          Other Projects Description`
         images = ['Data/Images/Projects/Other/t45.jpg',
                   'Data/Images/Projects/Other/usb1.jpg',
                   'Data/Images/Projects/Other/usb2.jpg',
@@ -1033,7 +1169,12 @@
         break
       case 'artyom':
         title = 'Artyom 💘'
-        description = 'ILY BY BOY'
+        description = `
+          <div class="tags">
+            <span class="tag tagAndroid">Lizard</span>
+          </div>
+          <br>
+          ILY BY BOY`
         images = ['Data/Images/Projects/Artyom/1.jpg']
         break
     }
