@@ -252,7 +252,7 @@
     transition: opacity .3s;
   }
 
-  .projectHalf {
+  .projectHalf1 {
     width: calc(50% - 4vw - 4vh); 
     min-height: calc(100% - 4vw - 4vh); 
     margin: calc(2vw + 2vh); 
@@ -312,9 +312,18 @@
     background: var(--accent);
   }
 
+  .projectHalf2 {
+    width: calc(50% - 4vw - 4vh); 
+    min-height: calc(100% - 4vw - 4vh); 
+    margin: calc(2vw + 2vh); 
+    display: flex;
+    flex-direction: column;
+  }
+
   .projectDesc {
     width: 100%; 
     max-height: 100%; 
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center; 
@@ -444,76 +453,82 @@
     padding: 2px 10px;
     border-radius: 50px;
     font-size: .8rem;
+    box-sizing: border-box;
   }
 
   .tagHTML {
     background-color: #f66b0e28;
-    outline: solid 1px #F66B0E;
+    border: solid 1px #F66B0E;
   }
 
   .tagCSS {
     background-color: #0AA1DD28;
-    outline: solid 1px #0AA1DD;
+    border: solid 1px #0AA1DD;
   }
 
   .tagJS {
     background-color: #FD5D5D28;
-    outline: solid 1px #FD5D5D;
+    border: solid 1px #FD5D5D;
   }
 
   .tagJava {
     background-color: #f5434328;
-    outline: solid 1px #f54343;
+    border: solid 1px #f54343;
+  }
+
+  .tagBatch {
+    background-color: #84868828;
+    border: solid 1px #848688;
   }
 
   .tagUI {
     background-color: #20537528;
-    outline: solid 1px #205375;
+    border: solid 1px #205375;
   }
 
   .tagAndroid {
     background-color: #24e42128;
-    outline: solid 1px #24e421;
+    border: solid 1px #24e421;
   }
 
   .tagDraw {
     background-color: #F0BB6228;
-    outline: solid 1px #F0BB62;
+    border: solid 1px #F0BB62;
   }
   
   .tagAI {
     background-color: #ff9a0028;
-    outline: solid 1px #ff9a00;
+    border: solid 1px #ff9a00;
   }
   
   .tagPS {
     background-color: #31a9ff28;
-    outline: solid 1px #31a9ff;
+    border: solid 1px #31a9ff;
   }
   
   .tagAU {
     background-color: #4fbfaf28;
-    outline: solid 1px #4fbfaf;
+    border: solid 1px #4fbfaf;
   }
 
   .tag3D {
     background-color: #9a44d828;
-    outline: solid 1px #9a44d8;
+    border: solid 1px #9a44d8;
   }
 
   .tag3DP {
     background-color: #fd622f28;
-    outline: solid 1px #fd622f;
+    border: solid 1px #fd622f;
   }
 
   .tagElectronics {
     background-color: #33ab0328;
-    outline: solid 1px #33ab03;
+    border: solid 1px #33ab03;
   }
 
   .tagDIY {
     background-color: #90c3c628;
-    outline: solid 1px #90c3c6;
+    border: solid 1px #90c3c6;
   }
 
   /*SEE MY THINGIES*/
@@ -562,7 +577,8 @@
     border-radius: 50px;
     transition: all .2s;
     cursor: pointer;
-    outline: solid 1px var(--text1);
+    box-sizing: border-box;
+    border: solid 1px var(--text1);
     transition: background .2s;
   }
 
@@ -780,7 +796,7 @@
   <div id="projectsWindow" class="project">
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
-    <div id="projectPreview" class="projectHalf">
+    <div id="projectPreview" class="projectHalf1">
       <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw; font-family: Lemon Milk;">
         <div id="projectTitle1">Title</div>
         <div id="projectTitle2" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; opacity: .5;">Title</div>
@@ -796,7 +812,7 @@
       <div id="projectBalls" class="projectBalls"></div>
     </div>
 
-    <div id="projectDescription" class="projectHalf">
+    <div id="projectDescription" class="projectHalf2">
       <div id="projectDescription2" class="projectDesc">
 
       </div>
@@ -1077,9 +1093,6 @@
           <div class="tags">
             <span class="tag tagJava">Java</span>
             <span class="tag tagAndroid">Android</span>
-            <span class="tag tagHTML">HTML</span>
-            <span class="tag tagCSS">CSS</span>
-            <span class="tag tagJS">JS</span>
             <span class="tag tagUI">UI/UX Design</span>
           </div>
           <br>
@@ -1090,9 +1103,27 @@
           <br><br>
           After leaving the app for some time I decided to rename it and give it a modern design in Android Studio.
           At the moment it has Music and Video Players, a Photo Vault, Notes, a Browser, a QR Scanner and a way to send data to the PC version of the app.
-          <br><br>
+          <br><br><br><br>
+          <div class="tags">
+            <span class="tag tagBatch">Batch</span>
+            <span class="tag tagHTML">HTML</span>
+            <span class="tag tagCSS">CSS</span>
+            <span class="tag tagJS">JS</span>
+            <span class="tag tagUI">UI/UX Design</span>
+          </div>
+          <br>
           <span style="font-size: 1.3rem;">Windows App</span>
-          Electron.js, Node.js`
+          <br>
+          Some years ago I used to carry my apps and games on a USB to be able to use them everywhere.
+          Since pluging in a drive changes it's letter shortcuts break, so I had to come up with a solution which ended up being a batch launcher.
+          <br><br>
+          <span class="borderButton" onclick="window.open('https://github.com/BOTPanzer/USB-Launcher')">Batch Launchers</span>
+          <br>
+          After creating them I wanted to go a bit further and add a UI so I started the Oriøn Launcher project using Electron.js. 
+          After some updates I decided to rename it to Oriøn Assistant to match the mobile app and add compatibility between them.
+          Despite the apps that come installed like the games library, there is support for modules so everyone can make their own.
+          <br><br>
+          <span class="borderButton" onclick="window.open('https://github.com/BOTPanzer/USB-Launcher')">Oriøn Launcher</span>`
         images = ['Data/Images/Projects/Assistant/mobile.png',
                   'Data/Images/Projects/Assistant/pc.png']
         break
