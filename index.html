@@ -713,6 +713,16 @@
       My projects
     </div>
     <div class="pcards">
+      <!-- Oriøn Assistant -->
+      <div class="pcard">
+        <img src="Data/Images/Projects/Assistant/mobile.png">
+        <div>
+          Oriøn Assistant
+        </div>
+        <div onclick="createProject('assistant')">
+          See More
+        </div>
+      </div>
       <!-- Oriøn Framework -->
       <div class="pcard">
         <img src="Data/Images/Projects/Framework/docs.png">
@@ -720,16 +730,6 @@
           Oriøn Framework
         </div>
         <div onclick="createProject('framework')">
-          See More
-        </div>
-      </div>
-      <!-- Oriøn Assistant -->
-      <div class="pcard">
-        <img src="Data/Images/Projects/Assistant/pcapp.png">
-        <div>
-          Oriøn Assistant
-        </div>
-        <div onclick="createProject('assistant')">
           See More
         </div>
       </div>
@@ -1071,6 +1071,33 @@
     let description = 'Description'
     let images = ['Data/Images/Projects/Other/other.jpg']
     switch(project) {
+      case 'assistant':
+        title = 'Oriøn Assistant'
+        description = `
+          <div class="tags">
+            <span class="tag tagJava">Java</span>
+            <span class="tag tagAndroid">Android</span>
+            <span class="tag tagHTML">HTML</span>
+            <span class="tag tagCSS">CSS</span>
+            <span class="tag tagJS">JS</span>
+            <span class="tag tagUI">UI/UX Design</span>
+          </div>
+          <br>
+          <span style="font-size: 1.3rem;">Android App</span>
+          <br>
+          The idea started after google released their assistant because I wasn't able to use it.
+          At first I made a web browser app that detected some commands (insted of searching "youtube", it would go to "youtube.com") and then I continued adding more utilities.
+          <br><br>
+          After leaving the app for some time I decided to rework it in Android Studio and give it a modern design.
+          Right now it has a Music Player, a Video Player, a Photo Vault, Notes, a Browser, a QR Scanner and an app to send data to the PC.
+          
+
+          <br><br>
+          <span style="font-size: 1.3rem;">Windows App</span>
+          Electron.js, Node.js`
+        images = ['Data/Images/Projects/Assistant/mobile.png',
+                  'Data/Images/Projects/Assistant/pc.png']
+        break
       case 'framework':
         title = 'Oriøn Framework' // · 
         description = `
@@ -1088,23 +1115,6 @@
           <br><br>
           <span class="borderButton" onclick="window.open('https://botpanzer.github.io/Orion-Framework/')">See Documentation</span>`
         images = ['Data/Images/Projects/Framework/docs.png']
-        break
-      case 'assistant':
-        title = 'Oriøn Assistant'
-        description = `
-          <div class="tags">
-            <span class="tag tagHTML">HTML</span>
-            <span class="tag tagCSS">CSS</span>
-            <span class="tag tagJS">JS</span>
-            <span class="tag tagJava">Java</span>
-            <span class="tag tagUI">UI/UX Design</span>
-            <span class="tag tagAndroid">Android</span>
-          </div>
-          <br>
-          Phone App: Android Studio
-          <br><br>
-          PC App: Electron.js, Node.js`
-        images = ['Data/Images/Projects/Assistant/pcapp.png']
         break
       case 'hoodie':
         title = 'Futuristic Hoodie'        
