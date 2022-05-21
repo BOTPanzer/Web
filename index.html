@@ -917,7 +917,7 @@
     </div>
   </div>
 
-  <div style="width: 100%; height: 100%; position: fixed; display: flex; flex-direction: column-reverse; align-items: center; pointer-events: none; z-index: 9;">
+  <div style="width: 100%; position: fixed; bottom: 0; display: flex; flex-direction: column-reverse; align-items: center; pointer-events: none; z-index: 9;">
     <div id="snackbar"></div>
   </div>
 </body>
@@ -1136,7 +1136,8 @@
                  'Data/Images/About/ducks.jpg',
                  'Data/Images/About/finisterre.jpg',
                  'Data/Images/About/mushroom.jpg',
-                 'Data/Images/About/santiago.jpg']
+                 'Data/Images/About/santiago.jpg',
+                 'Data/Images/About/fo.jpg']
     document.getElementById('aboutContainerImage').src = words[Math.floor(Math.random() * words.length)]
   }
 
@@ -1357,6 +1358,7 @@
                   'Data/Images/Projects/Other/octopus.jpg',
                   'Data/Images/Projects/Other/butterfly.jpg']
         break
+      //EASTEREGGS JIJIJI
       case 'artyom':
         title = 'Artyom 💘'
         description = `
@@ -1366,6 +1368,24 @@
           <br>
           ILY BY BOY`
         images = ['Data/Images/Projects/Artyom/1.jpg']
+        break
+      case 'drill':
+        title = 'Gafas to Drill'
+        description = `
+          <div class="tags">
+            <span class="tag tag3DP">Drill</span>
+            <span class="tag tagAI">Facha</span>
+            <span class="tag tagBatch">Calle</span>
+          </div>
+          <br>
+          ¡¡¡CUANTO DRILL COÑO!!!
+          <br><br>
+          <span class="borderButton" onclick="window.open('https://gafastodrill.wixsite.com/gafasdrill')">MÁS DRILL??!!</span>`
+        images = ['Data/Images/Projects/Drill/drill1.jpg',
+                  'Data/Images/Projects/Drill/drill2.jpg',
+                  'Data/Images/Projects/Drill/drill3.jpg',
+                  'Data/Images/Projects/Drill/drill4.jpg',
+                  'Data/Images/Projects/Drill/drill5.jpg']
         break
     }
     //SET DATA
