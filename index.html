@@ -335,6 +335,20 @@
     align-items: center; 
   }
 
+  .projectDescTit {
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    gap: 10px; 
+    font-size: 1.3rem;
+  }
+
+  .projectDescTiti {
+    width: 1.3rem; 
+    height: 1.3rem;
+    cursor: pointer;
+  }
+
 
   /*PROJECT CLOSE*/
   .pclose {
@@ -1120,7 +1134,10 @@
             <span class="tag tagUI">UI/UX Design</span>
           </div>
           <br>
-          <span style="font-size: 1.3rem;">Android App</span>
+          <div class="projectDescTit">
+            Android App
+            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(0).click()" src="Data/Images/Icons/image.png">
+          </div>
           <br>
           The idea started after google released their assistant as I wasn't able to use it.
           At first I made a web browser app that detected commands to then continue adding more utilities.
@@ -1136,7 +1153,10 @@
             <span class="tag tagUI">UI/UX Design</span>
           </div>
           <br>
-          <span style="font-size: 1.3rem;">Windows App</span>
+          <div class="projectDescTit">
+            Windows App
+            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(1).click()" src="Data/Images/Icons/image.png">
+          </div>
           <br>
           Some years ago I used to carry my apps and games on a USB to be able to use them everywhere.
           Since pluging in a drive changes it's letter shortcuts break, so I had to come up with a solution which ended up being a batch launcher.
@@ -1239,13 +1259,44 @@
         title = 'Other Projects'
         description = `
           <div class="tags">
+            <span class="tag tag3DP">3D Printing</span>
+            <span class="tag tagDIY">DIY</span>
+          </div>
+          <br>
+          <div class="projectDescTit">
+            T45 Helmet
+            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(0).click()" src="Data/Images/Icons/image.png">
+          </div>
+          <br>
+          T45 Description
+          <br><br><br><br>
+          <div class="tags">
             <span class="tag tag3D">3D Modeling</span>
             <span class="tag tag3DP">3D Printing</span>
             <span class="tag tagElectronics">Electronics</span>
             <span class="tag tagDIY">DIY</span>
           </div>
           <br>
-          Other Projects Description`
+          <div class="projectDescTit">
+            GTX Usb
+            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(1).click()" src="Data/Images/Icons/image.png">
+          </div>
+          <br>
+          GTX Usb Description
+          <br><br><br><br>
+          <div class="tags">
+            <span class="tag tag3D">3D Modeling</span>
+            <span class="tag tag3DP">3D Printing</span>
+            <span class="tag tagDIY">DIY</span>
+          </div>
+          <br>
+          <div class="projectDescTit">
+            Other 3D Things
+            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(3).click()" src="Data/Images/Icons/image.png">
+          </div>
+          <br>
+          Pen Caps, Figures & Other
+          <br><br><br><br>`
         images = ['Data/Images/Projects/Other/t45.jpg',
                   'Data/Images/Projects/Other/usb1.jpg',
                   'Data/Images/Projects/Other/usb2.jpg',
