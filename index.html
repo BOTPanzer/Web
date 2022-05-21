@@ -52,10 +52,6 @@
     --text1: #f5f5f5;
     --text2: #C7C9CA;
     --button: #202225;
-    --basic: #ce9700; 
-    --medium: #cecb00; 
-    --advanced: #93e634;  
-    --expert: #64ce47;  
   }
 
   ::-webkit-scrollbar {
@@ -1030,8 +1026,8 @@
       document.body.style.setProperty('--text1', '#f5f5f5')
       document.body.style.setProperty('--text2', '#C7C9CA')
       document.body.style.setProperty('--button', '#202225')
-      document.body.style.setProperty('--filter', '')
       document.body.style.setProperty('--textShadow', '#00000049')
+      document.body.style.setProperty('--filter', '')
     } else {
       localStorage.setItem('pancoTheme', 'light')
       document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
@@ -1042,8 +1038,8 @@
       document.body.style.setProperty('--text1', '#060607')
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
-      document.body.style.setProperty('--filter', 'invert(100%)')
       document.body.style.setProperty('--textShadow', '#ffffff49')
+      document.body.style.setProperty('--filter', 'invert(100%)')
     }
   }
   
@@ -1367,7 +1363,9 @@
           </div>
           <br>
           ILY BY BOY`
-        images = ['Data/Images/Projects/Artyom/1.jpg']
+        images = ['Data/Images/Projects/Artyom/1.jpg',
+                  'Data/Images/Projects/Artyom/2.jpg',
+                  'Data/Images/Projects/Artyom/3.jpg']
         break
       case 'drill':
         title = 'Gafas to Drill'
