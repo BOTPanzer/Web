@@ -636,6 +636,35 @@
     100% { transform: rotate(360deg); }
   }
 
+  /*SNACKBAR*/
+  .snackbar {
+    padding: 15px; 
+    border-radius: 15px; 
+    background: var(--button); 
+    box-shadow: var(--shadow2);
+    opacity: 0;
+    animation: snackbar 3s forwards;
+  }
+
+  @keyframes snackbar {
+    0% { 
+      transform: translateY(0); 
+      opacity: 0;
+    }
+    25% { 
+      transform: translateY(-20px);
+      opacity: 1; 
+    }
+    75% { 
+      transform: translateY(-20px);
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(0); 
+      opacity: 0;
+    }
+  }
+
   /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
@@ -886,6 +915,10 @@
         <img style="filter: none;" src="Data/Images/Icons/ig.png">
       </div>
     </div>
+  </div>
+
+  <div style="width: 100%; height: 100%; position: fixed; display: flex; flex-direction: column-reverse; align-items: center; pointer-events: none; z-index: 9;">
+    <div id="snackbar"></div>
   </div>
 </body>
 
@@ -1313,13 +1346,15 @@
             <img onclick="changeProjectImage(3)" src="Data/Images/Icons/image.svg">
           </div>
           <br>
-          Pen Caps, Figures & Other
-          <br><br><br><br>`
+          Apart from all the things I've shown in my projects, I have printed and designed a whole lot more of things.
+          <br><br>
+          Some examples are pen caps and figures from games, keychains, terrarium decoration and even repair parts to fix broken stuff like my bb gun.`
         images = ['Data/Images/Projects/Other/t45.jpg',
                   'Data/Images/Projects/Other/usb1.jpg',
                   'Data/Images/Projects/Other/usb2.jpg',
                   'Data/Images/Projects/Other/pens.jpg',
                   'Data/Images/Projects/Other/neeko.jpg',
+                  'Data/Images/Projects/Other/octopus.jpg',
                   'Data/Images/Projects/Other/butterfly.jpg']
         break
       case 'artyom':
@@ -1432,11 +1467,25 @@
     navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
     if (!emailChecked) {
       emailChecked = true
+      createSnackbar('Email Copied')
       document.getElementById('bottomEmailCheck').style.opacity = '1'
       setTimeout(function() {
         emailChecked = false
-      document.getElementById('bottomEmailCheck').style.opacity = '0'
-      }, 2000)
+        document.getElementById('bottomEmailCheck').style.opacity = '0'
+      }, 3000)
+    }
+  }
+
+  //CREATE SNACKBAR
+  function createSnackbar(text) {
+    const snack = document.getElementById('snackbar')
+    if (!snack.classList.contains('snackbar')) {
+      snack.innerHTML = text
+      snack.classList.add('snackbar')
+      setTimeout(() => {
+        snack.innerHTML = ''
+        snack.classList.remove('snackbar')
+      }, 3000)
     }
   }
 </script>
