@@ -4,6 +4,12 @@
   <title>Panco's Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="Data/Images/artyom.png">
+  <!-- PRELOAD -->
+  <link rel="preload" as="font" href="Data/Fonts/Comfortaa.ttf">
+  <link rel="preload" as="font" href="Data/Fonts/Lemon Milk.ttf">
+  <link rel="preload" as="font" href="Data/Fonts/Poppins.ttf">
+  <link rel="preload" as="image" href="Data/Images/home.svg">
+  <link rel="preload" as="image" href="Data/Images/me.png">
 </head>
 
 
@@ -1244,6 +1250,7 @@
     document.getElementById('projectTitle1').innerHTML = title
     document.getElementById('projectTitle2').innerHTML = title
     document.getElementById('projectTitle3').innerHTML = title
+    document.getElementById('projectImage').src = ''
     document.getElementById('projectDescription2').innerHTML = description
     let balls = document.getElementById('projectBalls')
     balls.innerHTML = ''
@@ -1255,17 +1262,18 @@
       ball.classList.add('projectBall')
       //ON CLICK
       ball.onclick = function() {
-        document.getElementById('projectArrow1').style.display = 'flex'
+        if (ballIndex == 0) document.getElementById('projectArrow1').style.display = 'none'
+        else document.getElementById('projectArrow1').style.display = 'flex'
+        if (ballIndex == images.length-1) document.getElementById('projectArrow2').style.display = 'none'
+        else document.getElementById('projectArrow2').style.display = 'flex'
         document.getElementById('projectArrow1').onclick = function() { 
           balls.childNodes.item(ballIndex-1).click() 
         }
-        document.getElementById('projectArrow2').style.display = 'flex'
         document.getElementById('projectArrow2').onclick = function() {
           balls.childNodes.item(ballIndex+1).click() 
         }
-        if (ballIndex == 0) document.getElementById('projectArrow1').style.display = 'none'
-        if (ballIndex == images.length-1) document.getElementById('projectArrow2').style.display = 'none'
         //CHANGE IMAGE
+        document.getElementById('projectImage').src = ''
         document.getElementById('projectImage').src = ballImage
         //CHANGE BALL COLOR
         balls.childNodes.forEach(function(item) { 
