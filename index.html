@@ -1133,7 +1133,7 @@
           <br>
           <div class="projectDescTit">
             Android App
-            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(0).click()" src="Data/Images/Icons/image.png">
+            <img class="projectDescTiti" onclick="changeProjectImage(0)" src="Data/Images/Icons/image.png">
           </div>
           <br>
           The idea started after google released their assistant as I wasn't able to use it.
@@ -1152,7 +1152,7 @@
           <br>
           <div class="projectDescTit">
             Windows App
-            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(1).click()" src="Data/Images/Icons/image.png">
+            <img class="projectDescTiti" onclick="changeProjectImage(1)" src="Data/Images/Icons/image.png">
           </div>
           <br>
           Some years ago I used to carry my apps and games on a USB to be able to use them everywhere.
@@ -1262,7 +1262,7 @@
           <br>
           <div class="projectDescTit">
             T45 Helmet
-            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(0).click()" src="Data/Images/Icons/image.png">
+            <img class="projectDescTiti" onclick="changeProjectImage(0)" src="Data/Images/Icons/image.png">
           </div>
           <br>
           T45 Description
@@ -1276,7 +1276,7 @@
           <br>
           <div class="projectDescTit">
             GTX Usb
-            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(1).click()" src="Data/Images/Icons/image.png">
+            <img class="projectDescTiti" onclick="changeProjectImage(1)" src="Data/Images/Icons/image.png">
           </div>
           <br>
           GTX Usb Description
@@ -1289,7 +1289,7 @@
           <br>
           <div class="projectDescTit">
             Other 3D Things
-            <img class="projectDescTiti" onclick="document.getElementById('projectBalls').childNodes.item(3).click()" src="Data/Images/Icons/image.png">
+            <img class="projectDescTiti" onclick="changeProjectImage(3)" src="Data/Images/Icons/image.png">
           </div>
           <br>
           Pen Caps, Figures & Other
@@ -1370,6 +1370,12 @@
     }
   }
 
+  //CHANGE IMAGE
+  function changeProjectImage(index) {
+    document.getElementById('projectBalls').childNodes.item(index).click()
+    scrollElem('projectPreview')
+  }
+  
   
    /*$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
   | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
