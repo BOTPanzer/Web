@@ -52,6 +52,8 @@
     --text1: #f5f5f5;
     --text2: #C7C9CA;
     --button: #202225;
+    --filter: drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow));
+    --filter2: drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow));
   }
 
   ::-webkit-scrollbar {
@@ -174,6 +176,18 @@
     width: 25px;
     object-fit: cover;
     filter: var(--filter);
+  }
+
+  .m2f2 img {
+    filter: var(--filter2);
+  }
+
+  .m2f3 img {
+    filter: var(--filter3);
+  }
+
+  .m2f4 img {
+    filter: none;
   }
 
 
@@ -559,14 +573,14 @@
     animation-delay: 3s;
   }
 
-  .seeMyText {
+  .seeMy div:nth-child(1) {
     padding: 5px 10px;
     background-color: var(--button);
     border-radius: 10px;
     cursor: pointer;
   }
 
-  .seeMyTriangle {  
+  .seeMy div:nth-child(2) {
     width: 0; 
     height: 0; 
     border-left: 10px solid transparent;
@@ -680,19 +694,30 @@
 
   <div class="menu">
     <div class="mbutton" onclick="scrollElem('home')">
-      <div>Home</div>
+      <div id="topHome">Home</div>
       <div></div>
     </div>
     <div class="mbutton" onclick="scrollElem('about')">
-      <div>About</div>
+      <div id="topAbout">About</div>
       <div></div>
     </div>
     <div class="mbutton" onclick="scrollElem('projects')">
-      <div>Projects</div>
+      <div id="topProjects">Projects</div>
       <div></div>
     </div>
-    <div class="mbutton2" onclick="switchTheme()">
-      <img id="themeImg" src="Data/Images/Icons/theme_light.png">
+    <div class="vc" style="width: fit-content; position: relative;">
+      <div class="mbutton2" onclick="switchMenu()">
+        <img src="Data/Images/Icons/menu.png">
+      </div>
+
+      <div id="topMenu" class="vc" style="position: absolute; right: 0; top: 55px; gap: 10px; pointer-events: none; opacity: 0; transition: opacity .2s;">
+        <div class="mbutton2 m2f2" onclick="switchLan()">
+          <img id="lanImg" src="Data/Images/Icons/es.png">
+        </div>
+        <div class="mbutton2" onclick="switchTheme()">
+          <img id="themeImg" src="Data/Images/Icons/theme_light.png">
+        </div>
+      </div>
     </div>
   </div>
 
@@ -724,12 +749,10 @@
       </div>
 
       <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; z-index: 6;">
-        <div id="homeHi" class="hc shadow" style="font-size: calc(1rem + 0.390625vw);">
-          <span>
-            I'm
-            <span id="homeJobs"></span><span style="animation: line 1s infinite;">|</span>
-          </span>
-        </div>
+        <span id="homeHi" class="shadow" style="font-size: calc(1rem + 0.390625vw);">
+          <span id="homeIm">I'm</span>
+          <span id="homeJobs"></span><span style="animation: line 1s infinite;">|</span>
+        </span>
       </div>
     </div>
 
@@ -743,8 +766,8 @@
     </div>
 
     <div class="seeMy">
-      <div class="seeMyText" onclick="scrollElem('about')">See About Me</div>
-      <div class="seeMyTriangle" onclick="scrollElem('about')"></div>
+      <div id="homeAbout" onclick="scrollElem('about')">See About Me</div>
+      <div onclick="scrollElem('about')"></div>
     </div>
   </div>
 
@@ -765,11 +788,11 @@
     <div id="aboutContainer" class="hc" style="width: 80%; height: fit-content; margin: 4rem 10%; gap: 4rem;">
       <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); aspect-ratio: 1/1; border-radius: 20px; object-fit: cover;">
       <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); min-height: fit-content; height: 100%; justify-content: center; gap: 1rem;">
-        <span style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
-        <span style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
-        <span style="font-family: Poppins;">I am a UI/UX Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
-        <span style="font-family: Poppins;">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
-        <span class="borderButton" onclick="scrollElem('projects')">See My Projects</span>
+        <span id="aboutHi" style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
+        <span id="aboutIm" style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
+        <span id="aboutAb1" style="font-family: Poppins;">I am a UI/UX Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
+        <span id="aboutAb2" style="font-family: Poppins;">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
+        <span id="aboutSee" class="borderButton" onclick="scrollElem('projects')">See My Projects</span>
       </div>
     </div>
   </div>
@@ -795,7 +818,7 @@
         <div>
           Oriøn Assistant
         </div>
-        <div onclick="createProject('assistant')">
+        <div id="projectsSee1" onclick="createProject('assistant')">
           See More
         </div>
       </div>
@@ -805,7 +828,7 @@
         <div>
           Oriøn Framework
         </div>
-        <div onclick="createProject('framework')">
+        <div id="projectsSee2" onclick="createProject('framework')">
           See More
         </div>
       </div>
@@ -815,7 +838,7 @@
         <div>
           Futuristic Hoodie
         </div>
-        <div onclick="createProject('hoodie')">
+        <div id="projectsSee3" onclick="createProject('hoodie')">
           See More
         </div>
       </div>
@@ -825,7 +848,7 @@
         <div>
           PC Modding
         </div>
-        <div onclick="createProject('modding')">
+        <div id="projectsSee4" onclick="createProject('modding')">
           See More
         </div>
       </div>
@@ -835,7 +858,7 @@
         <div>
           Discord Bots
         </div>
-        <div onclick="createProject('disbots')">
+        <div id="projectsSee5" onclick="createProject('disbots')">
           See More
         </div>
       </div>
@@ -845,7 +868,7 @@
         <div>
           Other Projects
         </div>
-        <div onclick="createProject('other')">
+        <div id="projectsSee6" onclick="createProject('other')">
           See More
         </div>
       </div>
@@ -900,15 +923,15 @@
       </div>
     </div>
     <div class="hc" style="gap: 20px;">
-      <div class="mbutton2" title="Copy Email" onclick="copyEmail()">
+      <div class="mbutton2 m2f3" onclick="copyEmail()">
         <img src="Data/Images/Icons/email.png">
         <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
       </div>
-      <div class="mbutton2" title="My GitHub" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+      <div class="mbutton2 m2f3" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
         <img src="Data/Images/Icons/git.png">
       </div>
-      <div class="mbutton2" title="My Instagram" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
-        <img style="filter: none;" src="Data/Images/Icons/ig.png">
+      <div class="mbutton2 m2f4" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+        <img src="Data/Images/Icons/ig.png">
       </div>
     </div>
   </div>
@@ -923,6 +946,142 @@
 
 
 <script>
+   /*$        /$$$$$$  /$$   /$$  /$$$$$$  /$$   /$$  /$$$$$$   /$$$$$$  /$$$$$$$$
+  | $$       /$$__  $$| $$$ | $$ /$$__  $$| $$  | $$ /$$__  $$ /$$__  $$| $$_____/
+  | $$      | $$  \ $$| $$$$| $$| $$  \__/| $$  | $$| $$  \ $$| $$  \__/| $$      
+  | $$      | $$$$$$$$| $$ $$ $$| $$ /$$$$| $$  | $$| $$$$$$$$| $$ /$$$$| $$$$$   
+  | $$      | $$__  $$| $$  $$$$| $$|_  $$| $$  | $$| $$__  $$| $$|_  $$| $$__/   
+  | $$      | $$  | $$| $$\  $$$| $$  \ $$| $$  | $$| $$  | $$| $$  \ $$| $$      
+  | $$$$$$$$| $$  | $$| $$ \  $$|  $$$$$$/|  $$$$$$/| $$  | $$|  $$$$$$/| $$$$$$$$
+  |________/|__/  |__/|__/  \__/ \______/  \______/ |__/  |__/ \______/ |_______*/
+
+  let lans = {
+    en: {
+      top: { //TOP MENU
+        h: 'Home',
+        a: 'About',
+        p: 'Projects'
+      },
+      hm: { //HOME
+        im: "I'm",
+        jobs: ['a UI/UX Designer', 
+               'a Web Developer', 
+               'an Android Developer', 
+               'a Videogame Enjoyer', 
+               'a 3D Printing Fan'],
+        see: 'See About Me'
+      },
+      ab: { //ABOUT
+        tit: 'About Me',
+        hi: 'HOWDY!',
+        im: "I'm Alejandro Paniagua",
+        ab1: 'I am a UI/UX designer and a web and android developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.',
+        ab2: 'I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.',
+        see: 'See My Projects'
+      },
+      pr: { //PROJECTS
+        tit: 'My Projects',
+        see: 'See More',
+        tags: {
+          ui: 'UI/UX Design',
+          sketch: 'Sketching',
+          dM: '3D Modeling',
+          dP: '3D Printing',
+          elec: 'Electronics',
+          diy: 'DIY'
+        }
+      },
+      bot: { //BOTTOM MENU
+        mail: 'Email Copied'
+      }
+    },
+    es: {
+      top: { //TOP MENU
+        h: 'Inicio',
+        a: 'Sobre Mí',
+        p: 'Proyectos'
+      },
+      hm: { //HOME
+        im: 'Soy',
+        jobs: ['Diseñador de UI/UX', 
+               'Desarrollador Web', 
+               'Desarrollador de Android', 
+               'Entusiasta de los Videojuegos', 
+               'Fan de la Impresión 3D'],
+        see: 'Ver Sobre Mí'
+      },
+      ab: { //ABOUT
+        tit: 'Sobre Mí',
+        hi: '¡HOLA!',
+        im: 'Soy Alejandro Paniagua',
+        ab1: 'Soy un diseñador de UI/UX y un desarrollador web y de android que vive en Madrid, España. Mi objetivo es crear productos fantásticos e interfaces faciles de usar para paginas web y aplicaciones multiplataforma.',
+        ab2: 'Tambien estoy interesado en otros campos en los que he desarrollado mis capacidades como desarrollo de videojuegos, impresión 3D y edición de multimedia.',
+        see: 'Ver Mis Proyectos'
+      },
+      pr: { //PROJECTS
+        tit: 'Mis Proyectos',
+        see: 'Ver Más',
+        tags: {
+          ui: 'Diseño UI/UX',
+          sketch: 'Dibujo',
+          dM: 'Modelado 3D',
+          dP: 'Impresión 3D',
+          elec: 'Electrónica',
+          diy: 'Manualidades'
+        }
+      },
+      bot: { //BOTTOM MENU
+        mail: 'Email Copiado'
+      }
+    }
+  }
+
+  let lan = lans.es
+  if (localStorage.getItem('pancoLan') == 'en') {
+    lan = lans.en
+    document.getElementById('lanImg').src = 'Data/Images/Icons/en.png'
+  }
+
+  setLan()
+  function setLan() {
+    //TOP
+    document.getElementById('topHome').innerHTML = lan.top.h
+    document.getElementById('topAbout').innerHTML = lan.top.a
+    document.getElementById('topProjects').innerHTML = lan.top.p
+    //HOME
+    document.getElementById('homeIm').innerHTML = lan.hm.im
+    document.getElementById('homeAbout').innerHTML = lan.hm.see
+    //ABOUT
+    document.getElementById('aboutTitle').innerHTML = lan.ab.tit
+    document.getElementById('aboutHi').innerHTML = lan.ab.hi
+    document.getElementById('aboutIm').innerHTML = lan.ab.im
+    document.getElementById('aboutAb1').innerHTML = lan.ab.ab1
+    document.getElementById('aboutAb2').innerHTML = lan.ab.ab2
+    document.getElementById('aboutSee').innerHTML = lan.ab.see
+    //PROJECTS
+    document.getElementById('projectsTitle').innerHTML = lan.pr.tit
+    document.getElementById('projectsSee1').innerHTML = lan.pr.see
+    document.getElementById('projectsSee2').innerHTML = lan.pr.see
+    document.getElementById('projectsSee3').innerHTML = lan.pr.see
+    document.getElementById('projectsSee4').innerHTML = lan.pr.see
+    document.getElementById('projectsSee5').innerHTML = lan.pr.see
+    document.getElementById('projectsSee6').innerHTML = lan.pr.see
+  }
+
+  function switchLan() {
+    if (localStorage.getItem('pancoLan') == 'en') {
+      lan = lans.es
+      localStorage.setItem('pancoLan', 'es')
+      document.getElementById('lanImg').src = 'Data/Images/Icons/es.png'
+    } else {
+      lan = lans.en
+      localStorage.setItem('pancoLan', 'en')
+      document.getElementById('lanImg').src = 'Data/Images/Icons/en.png'
+    }
+    setLan()
+  }
+
+
    /*$      /$$  /$$$$$$  /$$$$$$ /$$   /$$
   | $$$    /$$$ /$$__  $$|_  $$_/| $$$ | $$
   | $$$$  /$$$$| $$  \ $$  | $$  | $$$$| $$
@@ -945,14 +1104,11 @@
       document.getElementById('homeTitle').style.textOrientation = 'upright'
       document.getElementById('homeTitle').style.fontSize = '9vh'
       document.getElementById('homeJap').style.fontSize = '3.25vh'
-      document.getElementById('homeHi').classList.remove('hc')
-      document.getElementById('homeHi').classList.add('vc')
       //ABOUT
       document.getElementById('aboutTitle').style.fontSize = '10vw'
       document.getElementById('aboutContainer').classList.add('vc')
       document.getElementById('aboutContainer').classList.remove('hc')
       document.getElementById('aboutContainerImage').style.width = '100%'
-      document.getElementById('aboutContainerImage').style.height = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.width = '100%'
       document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
       //PROJECTS
@@ -981,14 +1137,11 @@
       document.getElementById('homeTitle').style.textOrientation = 'sideways'
       document.getElementById('homeTitle').style.fontSize = '13vw'
       document.getElementById('homeJap').style.fontSize = '4vw'
-      document.getElementById('homeHi').classList.add('hc')
-      document.getElementById('homeHi').classList.remove('vc')
       //ABOUT
       document.getElementById('aboutTitle').style.fontSize = '5vw'
       document.getElementById('aboutContainer').classList.add('hc')
       document.getElementById('aboutContainer').classList.remove('vc')
       document.getElementById('aboutContainerImage').style.width = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainerImage').style.height = '100%'
       document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.height = '100%'
       //PROJECTS
@@ -1011,6 +1164,19 @@
     }
   }
     
+  //MENU
+  let menuOpen = false
+  function switchMenu() {
+    menuOpen = !menuOpen
+    if (menuOpen) {
+      document.getElementById('topMenu').style.pointerEvents = 'all'
+      document.getElementById('topMenu').style.opacity = '1'
+    } else {
+      document.getElementById('topMenu').style.pointerEvents = 'none'
+      document.getElementById('topMenu').style.opacity = '0'
+    }
+  }
+
   //THEME
   let themeDark = true
   if (localStorage.getItem('pancoTheme') == 'light') switchTheme()
@@ -1027,7 +1193,9 @@
       document.body.style.setProperty('--text2', '#C7C9CA')
       document.body.style.setProperty('--button', '#202225')
       document.body.style.setProperty('--textShadow', '#00000049')
-      document.body.style.setProperty('--filter', '')
+      document.body.style.setProperty('--filter', 'drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow))')
+      document.body.style.setProperty('--filter2', 'drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow))')
+      document.body.style.setProperty('--filter3', '')
     } else {
       localStorage.setItem('pancoTheme', 'light')
       document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
@@ -1039,7 +1207,9 @@
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
       document.body.style.setProperty('--textShadow', '#ffffff49')
-      document.body.style.setProperty('--filter', 'invert(100%)')
+      document.body.style.setProperty('--filter', 'invert(100%) drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow))')
+      document.body.style.setProperty('--filter2', 'drop-shadow(1px 1px 5px var(--textShadow)) drop-shadow(1px -1px 5px var(--textShadow)) drop-shadow(-1px -1px 5px var(--textShadow)) drop-shadow(-1px 1px 5px var(--textShadow))')
+      document.body.style.setProperty('--filter3', 'invert(100%)')
     }
   }
   
@@ -1062,18 +1232,16 @@
   typeAnim()
   function typeAnim() {
     const elem = document.getElementById('homeJobs')
-    let jobs = ['a UI Designer', 
-                'a Web Developer', 
-                'an Android Developer', 
-                'a Videogame Enjoyer', 
-                'a 3D Printing Fan']
+    let jobs = lan.hm.jobs
     let i = 0
     let length
     let letters
     let time
     setTimeout(prepare, 1000)
 
-    function prepare() {      
+    function prepare() {
+      if (jobs != lan.hm.jobs)
+        jobs = lan.hm.jobs
       length = jobs[i].length
       letters = length
       time = 1000/length
@@ -1111,7 +1279,7 @@
                  'コード']      //Code
     let q = Math.floor(Math.random() * words.length)
     document.getElementById('homeJap').innerHTML = `[${words[q]}]`
-  }           
+  }                    
 
 
     /*$$$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
@@ -1133,7 +1301,8 @@
                  'Data/Images/About/finisterre.jpg',
                  'Data/Images/About/mushroom.jpg',
                  'Data/Images/About/santiago.jpg',
-                 'Data/Images/About/fo.jpg']
+                 'Data/Images/About/fo.jpg',
+                 'Data/Images/About/whale.jpg']
     document.getElementById('aboutContainerImage').src = words[Math.floor(Math.random() * words.length)]
   }
 
