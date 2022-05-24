@@ -220,7 +220,6 @@
 
   .aboutPage {
     width: 100%;
-    min-height: max(fit-content, 100%);
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1111,6 +1110,7 @@
       document.getElementById('aboutContainerImage').style.width = '100%'
       document.getElementById('aboutContainerText').style.width = '100%'
       document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
+      document.getElementById('aboutContainerText').style.justifyContent = ''
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -1144,6 +1144,7 @@
       document.getElementById('aboutContainerImage').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.height = '100%'
+      document.getElementById('aboutContainerText').style.justifyContent = 'center'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
