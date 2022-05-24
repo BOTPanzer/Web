@@ -25,7 +25,6 @@
   }
 
   body {
-    height: 100%; 
     width: 100%;
     margin: 0;
     padding: 0;
@@ -101,20 +100,20 @@
   |__/     |__/|________/|__/  \__/ \_____*/ 
 
   .menu {
-    width: calc(100% - 10px);
+    width: calc(100% - 6vw);
     height: fit-content;
-    padding: 5px;
+    padding: 5px 3vw;
     position: fixed;
     top: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     z-index: 50;
   }
 
   /*MENU BUTTON*/
-  .mbutton {
+  .menuButton {
     width: fit-content;
     position: relative;
     padding: 10px;
@@ -126,7 +125,7 @@
     transition: background .2s;
   }
 
-  .mbutton div:nth-of-type(1) {
+  .menuButton div:nth-of-type(1) {
     padding: 0 5px; 
     display: flex; 
     flex-direction: row; 
@@ -134,7 +133,7 @@
     text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
   }
 
-  .mbutton div:nth-of-type(2) {
+  .menuButton div:nth-of-type(2) {
     width: calc(100% - 20px); 
     height: 5px; 
     margin: 3px 0;
@@ -146,17 +145,17 @@
     transition: opacity .2s;
   }
 
-  .mbutton:hover {
+  .menuButton:hover {
     background-color: #69696920;
     opacity: 1;
   }
 
-  .mbutton:hover div:nth-of-type(2) {
+  .menuButton:hover div:nth-of-type(2) {
     opacity: 1;
   }
 
-  /*MENU BUTTON 2*/
-  .mbutton2 {
+  /*MENU IMAGE BUTTON*/
+  .imageButton {
     width: 25px; 
     height: 25px;
     padding: 10px;
@@ -167,12 +166,12 @@
     transition: background .2s;
   }
 
-  .mbutton2:hover {
+  .imageButton:hover {
     background-color: #69696920;
     opacity: 1;
   }
 
-  .mbutton2 img {
+  .imageButton img {
     width: 25px;
     object-fit: cover;
     filter: var(--filter);
@@ -200,12 +199,113 @@
   | $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
   |__/  |__/ \______/ |__/     |__/|_______*/
 
-  .homePage {
+  /*PATTERN*/
+  .homePatt {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+  }
+
+  /*MY PIC*/
+  .homeGuy {
+    height: calc(100% - 55px);
+    pointer-events: none;
+    object-fit: contain;
+    object-position: bottom center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+  }
+
+  /*NAME & JAPANESE & HI*/
+  .homeTitle {
+    font-size: 13vw;
+    z-index: 6;
+  }
+
+  .homeJap {
+    font-size: 4vw;
+    z-index: 3;
+  }
+
+  .homeHi {
+    margin: 1vw 0 0 1vw; 
+    gap: 40px; 
+    z-index: 6; 
+    font-size: calc(1rem + 0.390625vw);
+  }
+
+  /*WRITE LINE*/
+  @keyframes line {
+    0% { opacity: 0; }
+    1% { opacity: 1; }
+    50% { opacity: 1; }
+    51% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  /*101 CODE*/
+  .home101 {
     width: 100%;
-    min-height: 100%;
-    position: relative;
+    margin-left: 1vw;
+    display: flex;
+    font-family: Lemon Milk;
+    z-index: 1;
+  }
+  
+  .home101 span:nth-child(1) {
+    font-size: 12vw;
+    line-height: 12vw;
+  }
+  
+  .home101 span:nth-child(2) {
+    font-size: 2vw;
+    line-height: 2vw;
+    color: var(--text2);
+    height: fit-content;
+    transform-origin: bottom left;
+    transform: translateY(-.5vw) rotate(90deg);
+  }
+
+
+  /*SEE ABOUT*/
+  .homeSee {
+    width: 100%; 
+    position: absolute; 
+    bottom: 0; 
+    z-index: 5;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    animation: jump 2s ease infinite;
+    animation-delay: 2s;
+  }
+
+  .homeSee div:nth-child(1) {
+    padding: 5px 10px;
+    background-color: var(--button);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .homeSee div:nth-child(2) {
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--button);
+    cursor: pointer;
+  }
+
+  @keyframes jump {
+    70% { transform:translateY(0); }
+    80% { transform:translateY(-15px); }
+    90% { transform:translateY(0); }
+    95% { transform:translateY(-7px); }
+    100% { transform:translateY(0); }
   }
 
 
@@ -218,12 +318,25 @@
   | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
   |__/  |__/|_______/  \______/  \______/    |_*/
 
-  .aboutPage {
-    width: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .aboutContainer {
+    width: 80%; 
+    height: fit-content; 
+    margin: auto 10%; 
+    padding: 4rem 0; 
+    gap: 4rem;
+  }
+
+  .aboutContainerImage {
+    width: calc(50% - 2rem);
+    aspect-ratio: 1;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .aboutContainerText {
+    width: calc(50% - 2rem);
+    margin: auto 0;
+    gap: 1rem;
   }
 
 
@@ -235,15 +348,6 @@
   | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
-
-  .projectPage {
-    width: 100%;
-    min-height: max(fit-content, 100%);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
 
   /*PROJECT*/
   .project {
@@ -356,6 +460,22 @@
     filter: var(--filter);
   }
 
+  /*LOADING*/
+  .loading {
+    width: 50px; 
+    height: 50px;
+    position: relative;
+    border-radius: 25px;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--accent);
+    animation: default 1s linear infinite;
+  }
+
+  @keyframes default {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
 
   /*PROJECT CLOSE*/
   .pclose {
@@ -457,7 +577,30 @@
   |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
    \______/    |__/   |__/  |__/|________/|__/  |_*/
 
-  /*TITLE*/
+  /*FONTS*/
+  .poppins {
+    font-family: Poppins;
+  }
+
+  .lemon {
+    font-family: Lemon Milk;
+  }
+
+  .comfortaa {
+    font-family: Comfortaa;
+  }
+
+  /*PAGES*/
+  .page {
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .title {
     margin: 4rem 0 0 0;
     font-family: Lemon Milk;
@@ -558,44 +701,6 @@
     border: solid 1px #90c3c6;
   }
 
-  /*SEE MY THINGIES*/
-  .seeMy {
-    width: 100%; 
-    position: absolute; 
-    bottom: 0; 
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-    animation: jump 2s ease infinite;
-    animation-delay: 3s;
-  }
-
-  .seeMy div:nth-child(1) {
-    padding: 5px 10px;
-    background-color: var(--button);
-    border-radius: 10px;
-    cursor: pointer;
-  }
-
-  .seeMy div:nth-child(2) {
-    width: 0; 
-    height: 0; 
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid var(--button);
-    cursor: pointer;
-  }
-
-  @keyframes jump {
-    70% { transform:translateY(0); }
-    80% { transform:translateY(-15px); }
-    90% { transform:translateY(0); }
-    95% { transform:translateY(-7px); }
-    100% { transform:translateY(0); }
-  }
-
   /*BORDER BUTTON*/
   .borderButton {
     width: fit-content;
@@ -613,36 +718,10 @@
     background: #69696920;
   }
 
-  /*WRITE LINE*/
-  @keyframes line {
-    0% { opacity: 0; }
-    1% { opacity: 1; }
-    50% { opacity: 1; }
-    51% { opacity: 0; }
-    100% { opacity: 0; }
-  }
-
   /*TEXT SHADOW*/
   .shadow {
     /*text-shadow: 0px 0px 10px var(--textShadow);*/
     text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
-  }
-
-  /*LOADING*/
-  .loading {
-    width: 30px; 
-    height: 30px;
-    position: relative;
-    border-radius: 50%;
-    box-sizing: border-box;
-    border: 2px solid transparent;
-    border-top: 2px solid var(--accent);
-    animation: default 1s linear infinite;
-  }
-
-  @keyframes default {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
   }
 
   /*SNACKBAR*/
@@ -692,29 +771,29 @@
      |__/   \______/ |-->
 
   <div class="menu">
-    <div class="mbutton" onclick="scrollElem('home')">
+    <div class="menuButton" onclick="scrollElem('home')">
       <div id="topHome">Home</div>
       <div></div>
     </div>
-    <div class="mbutton" onclick="scrollElem('about')">
+    <div class="menuButton" onclick="scrollElem('about')">
       <div id="topAbout">About</div>
       <div></div>
     </div>
-    <div class="mbutton" onclick="scrollElem('projects')">
+    <div class="menuButton" onclick="scrollElem('projects')">
       <div id="topProjects">Projects</div>
       <div></div>
     </div>
     <div class="vc" style="width: fit-content; position: relative;">
-      <div class="mbutton2" onclick="switchMenu()">
+      <div class="imageButton" onclick="switchMenu()">
         <img src="Data/Images/Icons/menu.png">
       </div>
 
       <div id="topMenu" class="vc" style="position: absolute; right: 0; top: 55px; gap: 10px; pointer-events: none; opacity: 0; transition: opacity .2s;">
-        <div class="mbutton2 m2f2" onclick="switchLan()">
+        <div class="imageButton m2f2" onclick="switchLan()">
           <img id="lanImg" src="Data/Images/Icons/es.png">
         </div>
-        <div class="mbutton2" onclick="switchTheme()">
-          <img id="themeImg" src="Data/Images/Icons/theme_light.png">
+        <div class="imageButton" onclick="switchTheme()">
+          <img id="themeImg" src="Data/Images/Icons/theme_dark.png">
         </div>
       </div>
     </div>
@@ -730,41 +809,31 @@
   | $$  | $$|  $$$$$$/| $$ \/  | $$| $$$$$$$$
   |__/  |__/ \______/ |__/     |__/|______-->
 
-  <div id="home" class="homePage" style="overflow: hidden; align-items: center; justify-content: space-between;">
-    <img style="height: 100%; position: absolute; right: 0; z-index: 0;" src="Data/Images/home.svg">
+  <div id="home" class="page" style="overflow: hidden; justify-content: space-between;">
+    <img class="homePatt" src="Data/Images/home.svg">
     
-    <img id="homeGuy" style="height: calc(100% - 55px); pointer-events: none; object-fit: contain; object-position: bottom center; position: absolute; right: 0; bottom: 0; z-index: 4;" src="Data/Images/me.png">
+    <img id="homeGuy" class="homeGuy" src="Data/Images/me.png">
 
     <div></div>
 
     <div class="vc" style="width: 90%;">
-      <div class="shadow hc" style="font-family: Lemon Milk;">
-        <div id="homeTitle" class="shadow" style="font-size: 13vw; z-index: 6;">
-          Panco
-        </div>
-        <div id="homeJap" class="shadow" style="font-size: 4vw; z-index: 3;">
-          []
-        </div>
+      <div class="shadow hc lemon">
+        <span id="homeTitle" class="homeTitle shadow">Panco</span>
+        <span id="homeJap" class="homeJap shadow">[]</span>
       </div>
 
-      <div class="vc" style="margin: 1vw 0 0 1vw; gap: 40px; z-index: 6;">
-        <span id="homeHi" class="shadow" style="font-size: calc(1rem + 0.390625vw);">
-          <span id="homeIm">I'm</span>
-          <span id="homeJobs"></span><span style="animation: line 1s infinite;">|</span>
-        </span>
-      </div>
+      <span id="homeHi" class="homeHi shadow">
+        <span id="homeIm">I'm</span>
+        <span id="homeJobs"></span><span style="animation: line 1s infinite;">|</span>
+      </span>
     </div>
 
-    <div class="hc shadow" style="width: 100%; margin-left: 1vw; font-family: Lemon Milk; z-index: 1;">
-      <div style="font-size: 12vw; line-height: 12vw;">
-        101
-      </div>
-      <div style="font-size: 2vw; line-height: 2vw; color: var(--text2); height: fit-content; transform-origin: bottom left; transform: translateY(-.5vw) rotate(90deg);">
-        code
-      </div>
+    <div class="home101 shadow">
+      <span>101</span>
+      <span>code</span>
     </div>
 
-    <div class="seeMy">
+    <div class="homeSee">
       <div id="homeAbout" onclick="scrollElem('about')">See About Me</div>
       <div onclick="scrollElem('about')"></div>
     </div>
@@ -780,17 +849,17 @@
   | $$  | $$| $$$$$$$/|  $$$$$$/|  $$$$$$/   | $$   
   |__/  |__/|_______/  \______/  \______/    |-->
   
-  <div id="about" class="aboutPage">
+  <div id="about" class="page">
     <div id="aboutTitle" class="title shadow">
       About Me
     </div>
-    <div id="aboutContainer" class="hc" style="width: 80%; height: fit-content; margin: 4rem 10%; gap: 4rem;">
-      <img id="aboutContainerImage" class="vc" style="width: calc(50% - 2rem); aspect-ratio: 1/1; border-radius: 20px; object-fit: cover;">
-      <div id="aboutContainerText" class="vc" style="width: calc(50% - 2rem); min-height: fit-content; height: 100%; justify-content: center; gap: 1rem;">
-        <span id="aboutHi" style="font-family: Comfortaa; font-size: 1.5rem;">HOWDY!</span>
-        <span id="aboutIm" style="font-family: Lemon Milk; font-size: 2rem;">I'm Alejandro Paniagua</span>
-        <span id="aboutAb1" style="font-family: Poppins;">I am a UI/UX Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
-        <span id="aboutAb2" style="font-family: Poppins;">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
+    <div id="aboutContainer" class="hc aboutContainer">
+      <img id="aboutContainerImage" class="vc aboutContainerImage">
+      <div id="aboutContainerText" class="vc aboutContainerText">
+        <span id="aboutHi" class="comfortaa" style="font-size: 1.5rem;">HOWDY!</span>
+        <span id="aboutIm" class="lemon" style="font-size: 2rem;">I'm Alejandro Paniagua</span>
+        <span id="aboutAb1">I am a UI/UX Designer and a Web and Android Developer who lives in Madrid, Spain. My aim is to create awesome products and user friendly interfaces for multiplatform apps and websites.</span>
+        <span id="aboutAb2">I am also interested in other fields in which I have developed my skills such as videogame development, 3D printing and media editing.</span>
         <span id="aboutSee" class="borderButton" onclick="scrollElem('projects')">See My Projects</span>
       </div>
     </div>
@@ -806,7 +875,7 @@
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \____--> 
 
-  <div id="projects" class="projectPage">
+  <div id="projects" class="page">
     <div id="projectsTitle" class="title shadow">
       My projects
     </div>
@@ -886,7 +955,7 @@
       </div>
 
       <div class="projectImages">
-        <div class="loading" style="position: absolute; top: calc(50% - 15px); left: calc(50% - 15px);"></div>
+        <div class="loading" style="position: absolute; top: calc(50% - 25px); left: calc(50% - 25px);"></div>
         <img id="projectImage" style="width: 100%; height: 100%; object-fit: contain; position: absolute; ">
         <div id="projectArrow1" class="projectArrow" style="left: 0;">&#8249;</div>
         <div id="projectArrow2" class="projectArrow" style="right: 0;">&#8250;</div>
@@ -922,14 +991,14 @@
       </div>
     </div>
     <div class="hc" style="gap: 20px;">
-      <div class="mbutton2 m2f3" onclick="copyEmail()">
+      <div class="imageButton m2f3" onclick="copyEmail()">
         <img src="Data/Images/Icons/email.png">
         <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
       </div>
-      <div class="mbutton2 m2f3" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+      <div class="imageButton m2f3" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
         <img src="Data/Images/Icons/git.png">
       </div>
-      <div class="mbutton2 m2f4" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+      <div class="imageButton m2f4" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
         <img src="Data/Images/Icons/ig.png">
       </div>
     </div>
@@ -1109,8 +1178,6 @@
       document.getElementById('aboutContainer').classList.remove('hc')
       document.getElementById('aboutContainerImage').style.width = '100%'
       document.getElementById('aboutContainerText').style.width = '100%'
-      document.getElementById('aboutContainerText').style.height = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainerText').style.justifyContent = ''
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '10vw'
       document.body.style.setProperty('--cardW', '70%')
@@ -1143,8 +1210,6 @@
       document.getElementById('aboutContainer').classList.remove('vc')
       document.getElementById('aboutContainerImage').style.width = 'calc(50% - 2rem)'
       document.getElementById('aboutContainerText').style.width = 'calc(50% - 2rem)'
-      document.getElementById('aboutContainerText').style.height = '100%'
-      document.getElementById('aboutContainerText').style.justifyContent = 'center'
       //PROJECTS
       document.getElementById('projectsTitle').style.fontSize = '5vw'
       document.body.style.setProperty('--cardW', '25%')
@@ -1185,7 +1250,7 @@
     themeDark = !themeDark
     if (themeDark) {
       localStorage.setItem('pancoTheme', 'dark')
-      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_light.png'
+      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
       document.body.style.setProperty('--menu', '#1e2023')
       document.body.style.setProperty('--background', '#18191c')
       document.body.style.setProperty('--scrollbar', '#f5f5f5')
@@ -1199,7 +1264,7 @@
       document.body.style.setProperty('--filter3', '')
     } else {
       localStorage.setItem('pancoTheme', 'light')
-      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_dark.png'
+      document.getElementById('themeImg').src = 'Data/Images/Icons/theme_light.png'
       document.body.style.setProperty('--menu', '#F2F3F5')
       document.body.style.setProperty('--background', '#FFFFFF')
       document.body.style.setProperty('--scrollbar', '#2b2b2b')
