@@ -133,16 +133,24 @@
     text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
   }
 
-  .menuButton div:nth-of-type(2) {
-    width: calc(100% - 20px); 
+  .menuButton div:nth-of-type(2), .menuButton div:nth-of-type(3) {
+    width: 0; 
     height: 5px; 
     margin: 3px 0;
     position: absolute;
+    right: 10px;
     bottom: 0;
     border-radius: 2.5px; 
+    transition: opacity .2s, width .2s;
+  }
+
+  .menuButton div:nth-of-type(2) {
+    background-color: #FF8D29;
+    transition-delay: .1s;
+  }
+
+  .menuButton div:nth-of-type(3) {
     background-color: var(--accent);
-    opacity: 0;
-    transition: opacity .2s;
   }
 
   .menuButton:hover {
@@ -151,7 +159,14 @@
   }
 
   .menuButton:hover div:nth-of-type(2) {
-    opacity: 1;
+    width: calc(100% - 20px); 
+    left: 10px;
+  }
+
+  .menuButton:hover div:nth-of-type(3) {
+    width: calc(100% - 20px); 
+    left: 10px;
+    transition-delay: .1s;
   }
 
   /*MENU IMAGE BUTTON*/
@@ -774,13 +789,16 @@
     <div class="menuButton" onclick="scrollElem('home')">
       <div id="topHome">Home</div>
       <div></div>
+      <div></div>
     </div>
     <div class="menuButton" onclick="scrollElem('about')">
       <div id="topAbout">About</div>
       <div></div>
+      <div></div>
     </div>
     <div class="menuButton" onclick="scrollElem('projects')">
       <div id="topProjects">Projects</div>
+      <div></div>
       <div></div>
     </div>
     <div class="vc" style="width: fit-content; position: relative;">
@@ -983,7 +1001,7 @@
 
   <div id="bottom" style="width: calc(100% - 100px); padding: 30px 50px; background: var(--menu); display: flex; flex-direction: row; gap: 20px; align-items: center;">
     <div id="bottomText" style="flex-grow: 1; font-family: Lemon Milk; display: flex; flex-direction: row;">
-      <div id="bottomQuote" style="font-size: 25px;">
+      <div id="bottomQuote" style="font-size: 25px; text-align: end;">
         War Never Changes
       </div>
       <div id="bottomAuthor" style="font-size: 15px; margin: auto 0 3px 15px;">
@@ -1268,7 +1286,7 @@
       document.body.style.setProperty('--menu', '#F2F3F5')
       document.body.style.setProperty('--background', '#FFFFFF')
       document.body.style.setProperty('--scrollbar', '#2b2b2b')
-      document.body.style.setProperty('--accent', '#E78EA9')
+      document.body.style.setProperty('--accent', '#ed285f')
       document.body.style.setProperty('--text1', '#060607')
       document.body.style.setProperty('--text2', '#72767D')
       document.body.style.setProperty('--button', '#f2f3f5')
@@ -1626,6 +1644,7 @@
     document.getElementById('projectTitle2').innerHTML = title
     document.getElementById('projectTitle3').innerHTML = title
     document.getElementById('projectImage').src = ''
+    document.getElementById('projectDescription').scrollTop = 0
     document.getElementById('projectDescription2').innerHTML = description
     let balls = document.getElementById('projectBalls')
     balls.innerHTML = ''
