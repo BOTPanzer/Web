@@ -1043,6 +1043,7 @@
 
   let lans = {
     en: {
+      tag: 'en',
       top: { //TOP MENU
         h: 'Home',
         a: 'About',
@@ -1096,7 +1097,11 @@
           tit: 'PC Modding'
         },
         bots: {
-          tit: 'Discord Bots'
+          tit: 'Discord Bots',
+          p1: `After checking out the cool things you can do with discord bots I got the idea of creating my own.`,
+          p2: `At first I created a simple bot called Syrup and, after becoming better at making them, I created a more advanced version called Coscu.
+               This new version could jump into a call with people and play sounds so I used Adobe Audition to edit them and make them sound better.`,
+          p3: `Syrup Repository`,
         },
         other: {
           tit: 'Other Projects'
@@ -1107,6 +1112,7 @@
       }
     },
     es: {
+      tag: 'es',
       top: { //TOP MENU
         h: 'Inicio',
         a: 'Sobre Mí',
@@ -1151,7 +1157,7 @@
           tit: 'Sudadera Futurística',
           p1: `Aunque no soy el tipo de persona a la que le gusta salir de compras, me gusta ver ropa online.`,
           p2: `Un día me encontré con una sudadera streetwear, un estilo que no había visto antes, y me inspiró para crear la mía.
-               No es exactamente streetwear pero si es una sudadera futuristica.
+               No es exactamente streetwear, pero sí es una sudadera futuristica.
                Comencé dibujando unos diseños en mi cuaderno para digitalizarlos más tarde usando Adobe Illustrator.
                Tras eso, hice una simulación en Photoshop de como se vería la sudadera si fuese real.`,
           p3: `Estoy planeando imprimirla pero el verano se acerca mientras escribo esto, por lo que tendré que esperar a que haga un poco de frío.`
@@ -1160,7 +1166,11 @@
           tit: 'PC Modding'
         },
         bots: {
-          tit: 'Bots de Discord'
+          tit: 'Bots de Discord',
+          p1: `Tras ver las cosas que puedes hacer con bots de discord se me ocurrió crear mi propio bot.`,
+          p2: `Al principio creé un bot simple al que llamé Syrup y, después de mejorar creando bots, creé una versión más avanzada llamada Coscu.
+          Esta nueva versión podía entrar a una llamada con gente y reproducir sonidos, por lo que usé Adobe Audition para editarlos y hacerlos sonar mejor.`,
+          p3: `Repositorio de Syrup`,
         },
         other: {
           tit: 'Otros Proyectos'
@@ -1173,13 +1183,14 @@
   }
 
   let lan = lans.es
-  if (localStorage.getItem('pancoLan') == 'en') {
-    lan = lans.en
-    document.getElementById('lanImg').src = 'Data/Images/Icons/en.png'
-  }
+  if (localStorage.getItem('pancoLan') == 'en') lan = lans.en
 
   setLan()
   function setLan() {
+    if (lan.tag == 'es') 
+      document.getElementById('lanImg').src = 'Data/Images/Icons/es.png'
+    else 
+      document.getElementById('lanImg').src = 'Data/Images/Icons/en.png'
     //TOP
     document.getElementById('topHome').innerHTML = lan.top.h
     document.getElementById('topAbout').innerHTML = lan.top.a
@@ -1214,11 +1225,9 @@
     if (localStorage.getItem('pancoLan') == 'en') {
       lan = lans.es
       localStorage.setItem('pancoLan', 'es')
-      document.getElementById('lanImg').src = 'Data/Images/Icons/es.png'
     } else {
       lan = lans.en
       localStorage.setItem('pancoLan', 'en')
-      document.getElementById('lanImg').src = 'Data/Images/Icons/en.png'
     }
     setLan()
   }
@@ -1593,12 +1602,11 @@
             <span class="tag tagAU">Audition</span>
           </div>
           <br>
-          After checking out the cool things you can do with discord bots I got the idea of creating my own.
+          ${lan.pr.bots.p1}
           <br><br>
-          At first I created a simple bot called Syrup and, after becoming better at making them, I created a more advanced version called Coscu.
-          This new version could junp into a call with people and play sounds so I used Adobe Audition to edit them and make them sound better.
+          ${lan.pr.bots.p2}
           <br><br>
-          <span class="borderButton" onclick="window.open('https://github.com/BOTPanzer/Syrup')">Syrup Repository</span>`
+          <span class="borderButton" onclick="window.open('https://github.com/BOTPanzer/Syrup')">${lan.pr.bots.p3}</span>`
         images = ['Data/Images/Projects/Disbots/help.png',
                   'Data/Images/Projects/Disbots/games.png']
         break
