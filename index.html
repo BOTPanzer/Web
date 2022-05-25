@@ -368,11 +368,6 @@
   .project {
     width: 100%;
     height: 100%;
-    /*width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: var(--shadow2);*/
     position: fixed;
     background: var(--background); 
     display: flex;
@@ -610,6 +605,7 @@
     width: 100%;
     height: fit-content;
     min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -768,6 +764,46 @@
     }
   }
 
+  /*ARTYOM*/
+  @keyframes artyom {
+    0% { 
+      left: -10px; 
+      opacity: 0;
+    }
+    15% { 
+      left: 0;
+      opacity: 1; 
+    }
+    85% { 
+      left: 0;
+      opacity: 1; 
+    }
+    100% { 
+      left: -10px; 
+      opacity: 0;
+    }
+  }
+
+  /*DRILL*/
+  @keyframes drill {
+    0% { 
+      right: -10px; 
+      opacity: 0;
+    }
+    15% { 
+      right: 0;
+      opacity: 1; 
+    }
+    85% { 
+      right: 0;
+      opacity: 1; 
+    }
+    100% { 
+      right: -10px; 
+      opacity: 0;
+    }
+  }
+
   /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
@@ -804,6 +840,7 @@
     <div class="vc" style="width: fit-content; position: relative;">
       <div class="imageButton" onclick="switchMenu()">
         <img src="Data/Images/Icons/menu.png">
+        <div id="topBall" style="width: 10px; height: 10px; border-radius: 5px; background: var(--accent); opacity: 0; position: absolute; top: 5px; right: 0; transition: opacity .2s;"></div>
       </div>
 
       <div id="topMenu" class="vc" style="position: absolute; right: 0; top: 55px; gap: 10px; pointer-events: none; opacity: 0; transition: opacity .2s;">
@@ -812,6 +849,10 @@
         </div>
         <div class="imageButton" onclick="switchTheme()">
           <img id="themeImg" src="Data/Images/Icons/theme_dark.png">
+        </div>
+        <div id="topAchieve" class="imageButton" style="display: none;" onclick="showAchievements()">
+          <img src="Data/Images/Icons/cup.png">
+          <div id="topBall2" style="width: 10px; height: 10px; border-radius: 5px; background: var(--accent); position: absolute; top: 5px; right: 0; transition: opacity .2s;"></div>
         </div>
       </div>
     </div>
@@ -960,6 +1001,8 @@
       </div>
       <!-- 3d models (blender, shishkebab), city page (work in progress), IG t45 filter, old games (Unity, UE), photoshow & illustrator (Calop,, svgs) -->
     </div>
+    <img id="easterArtyom" onclick="createProject('artyom')" style="width: 5vw; display: none; cursor: pointer; position: absolute; left: 0; bottom: 0; animation: artyom 5s forwards;" src="Data/Images/Projects/Artyom/easteregg.png">
+    <img id="easterDrill" onclick="createProject('drill')" style="width: 5vw; display: none; cursor: pointer; position: absolute; right: 0; bottom: 0; animation: drill 5s forwards;" src="Data/Images/Projects/Drill/easteregg.png">
   </div>
 
   <div id="projectsWindow" class="project">
@@ -1339,39 +1382,45 @@
     if (sGit && sIG) giveAchievement('socials')
   }
 
-  //GIVE & RESET ACHIEVEMENTS
+  //GIVE & RESET & SHOW ACHIEVEMENTS
   function giveAchievement(name) {
-    //ADD CONFETI
+    let added = false
     switch(name) {
       case 'socials':
         if (ach.socials == true) return
         ach.socials = true
         localStorage.setItem('pancoAchSocials', 'true')
         createSnackbar('🏆 Open my Socials')
-        createConfetti()
+        added = true
         break
       case 'projects':
         if (ach.projects == true) return
         ach.projects = true
         localStorage.setItem('pancoAchProjects', 'true')
         createSnackbar('🏆 Open my Projects')
-        createConfetti()
+        added = true
         break
       case 'artyom':
         if (ach.artyom == true) return
         ach.artyom = true
         localStorage.setItem('pancoAchArtyom', 'true')
         createSnackbar('🏆 Find Artyom!!')
-        createConfetti()
+        added = true
         break
       case 'drill':
         if (ach.drill == true) return
         ach.drill = true
         localStorage.setItem('pancoAchDrill', 'true')
         createSnackbar('🏆 WHAT ARE THOSE??!!')
-        createConfetti()
+        added = true
         break
-      
+    }
+    if (added) {
+      createConfetti()
+      if (!menuOpen)
+        document.getElementById('topBall').style.opacity = '1'
+      document.getElementById('topBall2').style.opacity = '1'
+      document.getElementById('topAchieve').style.display = 'flex'
     }
   }
 
@@ -1386,6 +1435,10 @@
     localStorage.setItem('pancoAchProjects', '')
     localStorage.setItem('pancoAchArtyom', '')
     localStorage.setItem('pancoAchDrill', '')
+  }
+  
+  function showAchievements() {
+    document.getElementById('topBall2').style.opacity = '0'
   }
   
   //CONFETTI 🎊
@@ -1441,6 +1494,8 @@
       document.getElementById('projectDescription').style.width = 'calc(100% - 4vw - 4vh)'
       document.getElementById('projectDescription').style.minHeight = 'auto'
       document.getElementById('projectDescription').style.overflowY = ''
+      document.getElementById('easterArtyom').style.width = '15vw'
+      document.getElementById('easterDrill').style.width = '15vw'
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'column'
     } else {
@@ -1473,6 +1528,8 @@
       document.getElementById('projectDescription').style.width = 'calc(50% - 4vw - 4vh)'
       document.getElementById('projectDescription').style.minHeight = 'calc(100% - 4vw - 4vh)'
       document.getElementById('projectDescription').style.overflowY = 'auto'
+      document.getElementById('easterArtyom').style.width = '5vw'
+      document.getElementById('easterDrill').style.width = '5vw'
       //BOTTOM
       document.getElementById('bottom').style.flexDirection = 'row'
     }
@@ -1489,6 +1546,7 @@
       document.getElementById('topMenu').style.pointerEvents = 'none'
       document.getElementById('topMenu').style.opacity = '0'
     }
+    document.getElementById('topBall').style.opacity = '0'
   }
 
   //THEME
@@ -1642,7 +1700,7 @@
   | $$      | $$  \ $$| $$  | $$| $$  | $$| $$      | $$    $$   | $$   /$$  \ $$
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
-    
+  
   //SHOW PROJECTS WINDOW
   function showProjectsWindow(show) {
     if (show) {
@@ -1928,6 +1986,21 @@
     scrollElem('projectPreview')
   }
   
+  //ARTYOM/DRILL EASTEREGGS
+  showEasteregg()
+  function showEasteregg() {
+    let ids = ['easterArtyom',
+               'easterDrill']
+    let id = ids[Math.floor(Math.random() * ids.length)]
+    setTimeout(function() {
+      document.getElementById(id).style.display = 'block'
+      setTimeout(function() {
+        document.getElementById(id).style.display = 'none'
+        showEasteregg()
+      }, 5000)
+    }, 35000)
+  }
+
 
    /*$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
   | $$__  $$ /$$__  $$|__  $$__/|__  $$__//$$__  $$| $$$    /$$$
