@@ -901,7 +901,7 @@
       <!-- Oriøn Assistant -->
       <div class="pcard">
         <img src="Data/Images/Projects/Assistant/mobile.png">
-        <div>
+        <div id="projectsTit1">
           Oriøn Assistant
         </div>
         <div id="projectsSee1" onclick="createProject('assistant')">
@@ -911,7 +911,7 @@
       <!-- Oriøn Framework -->
       <div class="pcard">
         <img src="Data/Images/Projects/Framework/docs1.png">
-        <div>
+        <div id="projectsTit2">
           Oriøn Framework
         </div>
         <div id="projectsSee2" onclick="createProject('framework')">
@@ -921,7 +921,7 @@
       <!-- Futuristic Hoodie -->
       <div class="pcard">
         <img src="Data/Images/Projects/Hoodie/front.png">
-        <div>
+        <div id="projectsTit3">
           Futuristic Hoodie
         </div>
         <div id="projectsSee3" onclick="createProject('hoodie')">
@@ -931,7 +931,7 @@
       <!-- PC Modding -->
       <div class="pcard">
         <img src="Data/Images/Projects/Modding/3d.png">
-        <div>
+        <div id="projectsTit4">
           PC Modding
         </div>
         <div id="projectsSee4" onclick="createProject('modding')">
@@ -941,7 +941,7 @@
       <!-- Discord Bots -->
       <div class="pcard">
         <img src="Data/Images/Projects/Disbots/help.png">
-        <div>
+        <div id="projectsTit5">
           Discord Bots
         </div>
         <div id="projectsSee5" onclick="createProject('disbots')">
@@ -951,7 +951,7 @@
       <!-- Other Projects -->
       <div class="pcard">
         <img src="Data/Images/Projects/Other/t45.jpg">
-        <div>
+        <div id="projectsTit6">
           Other Projects
         </div>
         <div id="projectsSee6" onclick="createProject('other')">
@@ -966,7 +966,7 @@
     <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
     <div id="projectPreview" class="projectHalf1">
-      <div id="projectTitle" class="vc" style="font-size: 4vw; line-height: 4vw; font-family: Lemon Milk;">
+      <div id="projectTitle" class="vc lemon" style="font-size: 3.8vw; line-height: 3.8vw; white-space: nowrap;">
         <div id="projectTitle1">Title</div>
         <div id="projectTitle2" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; opacity: .5;">Title</div>
         <div id="projectTitle3" style="margin-top: -1.8vw; -webkit-text-stroke: 2px var(--text1); color: transparent; opacity: .2;">Title</div>
@@ -1075,7 +1075,32 @@
           dP: '3D Printing',
           elec: 'Electronics',
           diy: 'DIY'
-        }
+        },
+        //PROJECTS
+        assist: {
+          tit: 'Oriøn Assistant'
+        },
+        frame: {
+          tit: 'Oriøn Framework'
+        },
+        hoodie: {
+          tit: 'Futuristic Hoodie',
+          p1: `Although I'm not the kind of guy who likes shopping, I do love checking out clothes online.`,
+          p2: `One day I stumbled upon a streetwear hoodie, a new style of clothing I had never seen, and I got inspired to create my own.
+               It isn't exactly streetwear but is indeed a futuristic hoodie design.
+               I started by sketching some designs in my notebook which were then digitalized using Adobe Illustrator.
+               Then I made a preview in Photoshop of how the hoodie would look like if it was real.`,
+          p3: `I am planning on printing it, but summer is starting at the time of writing this so I'll have to wait until it gets colder.`
+        },
+        mod: {
+          tit: 'PC Modding'
+        },
+        bots: {
+          tit: 'Discord Bots'
+        },
+        other: {
+          tit: 'Other Projects'
+        },
       },
       bot: { //BOTTOM MENU
         mail: 'Email Copied'
@@ -1114,7 +1139,32 @@
           dP: 'Impresión 3D',
           elec: 'Electrónica',
           diy: 'Manualidades'
-        }
+        },
+        //PROJECTS
+        assist: {
+          tit: 'Asistente Oriøn'
+        },
+        frame: {
+          tit: 'Framework Oriøn'
+        },
+        hoodie: {
+          tit: 'Sudadera Futurística',
+          p1: `Aunque no soy el tipo de persona a la que le gusta salir de compras, me gusta ver ropa online.`,
+          p2: `Un dia me encontre con una sudadera streetwear, un estilo que no habia visto antes, y me inspiró para crear la mia.
+               No es exactamente streetwear pero si es una sudadera futuristica.
+               I started by sketching some designs in my notebook which were then digitalized using Adobe Illustrator.
+               Then I made a preview in Photoshop of how the hoodie would look like if it was real.`,
+          p3: `I am planning on printing it, but summer is starting at the time of writing this so I'll have to wait until it gets colder.`
+        },
+        mod: {
+          tit: 'PC Modding'
+        },
+        bots: {
+          tit: 'Bots de Discord'
+        },
+        other: {
+          tit: 'Otros Proyectos'
+        },
       },
       bot: { //BOTTOM MENU
         mail: 'Email Copiado'
@@ -1147,11 +1197,17 @@
     //PROJECTS
     document.getElementById('projectsTitle').innerHTML = lan.pr.tit
     document.getElementById('projectsSee1').innerHTML = lan.pr.see
+    document.getElementById('projectsTit1').innerHTML = lan.pr.assist.tit
     document.getElementById('projectsSee2').innerHTML = lan.pr.see
+    document.getElementById('projectsTit2').innerHTML = lan.pr.frame.tit
     document.getElementById('projectsSee3').innerHTML = lan.pr.see
+    document.getElementById('projectsTit3').innerHTML = lan.pr.hoodie.tit
     document.getElementById('projectsSee4').innerHTML = lan.pr.see
+    document.getElementById('projectsTit4').innerHTML = lan.pr.mod.tit
     document.getElementById('projectsSee5').innerHTML = lan.pr.see
+    document.getElementById('projectsTit5').innerHTML = lan.pr.bots.tit
     document.getElementById('projectsSee6').innerHTML = lan.pr.see
+    document.getElementById('projectsTit6').innerHTML = lan.pr.other.tit
   }
 
   function switchLan() {
@@ -1236,8 +1292,8 @@
       document.getElementById('projectsWindow').style.overflowY = ''
       document.getElementById('projectPreview').style.width = 'calc(50% - 4vw - 4vh)'
       document.getElementById('projectPreview').style.minHeight = 'calc(100% - 4vw - 4vh)'
-      document.getElementById('projectTitle').style.fontSize = '4vw'
-      document.getElementById('projectTitle').style.lineHeight = '4vw'
+      document.getElementById('projectTitle').style.fontSize = '3.8vw'
+      document.getElementById('projectTitle').style.lineHeight = '3.8vw'
       document.getElementById('projectArrow1').style.fontSize = '6vw'
       document.getElementById('projectArrow2').style.fontSize = '6vw'
       document.getElementById('projectDescription').style.width = 'calc(50% - 4vw - 4vh)'
@@ -1420,7 +1476,7 @@
     let images = ['Data/Images/Projects/Other/other.jpg']
     switch(project) {
       case 'assistant':
-        title = 'Oriøn Assistant'
+        title = lan.pr.assist.tit
         description = `
           <div class="tags">
             <span class="tag tagJava">Java</span>
@@ -1466,7 +1522,7 @@
                   'Data/Images/Projects/Assistant/pc.png']
         break
       case 'framework':
-        title = 'Oriøn Framework' // · 
+        title = lan.pr.frame.tit
         description = `
           <div class="tags">
             <span class="tag tagHTML">HTML</span>
@@ -1485,7 +1541,7 @@
                   'Data/Images/Projects/Framework/docs2.png']
         break
       case 'hoodie':
-        title = 'Futuristic Hoodie'        
+        title = lan.pr.hoodie.tit       
         description = `
           <div class="tags">
             <span class="tag tagAI">Illustrator</span>
@@ -1493,14 +1549,11 @@
             <span class="tag tagDraw">Sketching</span>
           </div>
           <br>
-          Although I'm not the kind of guy who likes shopping, I do love checking out clothes online.
+          ${lan.pr.hoodie.p1}
           <br><br>
-          One day I stumbled upon a streetwear hoodie, a new style of clothing I had never seen, and I got inspired to create my own.
-          It isn't exactly streetwear but is indeed a futuristic hoodie design.
-          I started by sketching some designs in my notebook which were then digitalized using Adobe Illustrator.
-          Then I made a preview in Photoshop of how the hoodie would look like if it was real.
+          ${lan.pr.hoodie.p2}
           <br><br>
-          I am planning on printing it, but summer is starting at the time of writing this so I'll have to wait until it gets colder.`
+          ${lan.pr.hoodie.p3}`
         images = ['Data/Images/Projects/Hoodie/front.png',
                  'Data/Images/Projects/Hoodie/back.png',
                   'Data/Images/Projects/Hoodie/design1.jpg',
@@ -1508,7 +1561,7 @@
                   'Data/Images/Projects/Hoodie/design3.jpg']
         break
       case 'modding':
-        title = 'PC Modding'
+        title = lan.pr.mod.tit
         description = `
           <div class="tags">
             <span class="tag tag3D">3D Modeling</span>
@@ -1533,7 +1586,7 @@
                   'Data/Images/Projects/Modding/inside2.jpg']
         break
       case 'disbots':
-        title = 'Discord Bots'
+        title = lan.pr.bots.tit
         description = `
           <div class="tags">
             <span class="tag tagJS">JS</span>
@@ -1550,7 +1603,7 @@
                   'Data/Images/Projects/Disbots/games.png']
         break
       case 'other':
-        title = 'Other Projects'
+        title = lan.pr.other.tit
         description = `
           <div class="tags">
             <span class="tag tag3DP">3D Printing</span>
