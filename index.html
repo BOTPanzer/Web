@@ -4,6 +4,7 @@
   <title>Panco's Web</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/x-icon" href="Data/Images/artyom.png">
+  <script src="Data/Scripts/confetti.browser.min.js"></script>
   <!-- PRELOAD -->
   <link rel="preload" as="image" href="Data/Images/home.svg">
   <link rel="preload" as="image" href="Data/Images/me.png">
@@ -296,7 +297,6 @@
     align-items: center;
     margin-bottom: 10px;
     animation: jump 2s ease infinite;
-    animation-delay: 2s;
   }
 
   .homeSee div:nth-child(1) {
@@ -1009,20 +1009,20 @@
       </div>
     </div>
     <div class="hc" style="gap: 20px;">
-      <div class="imageButton m2f3" onclick="copyEmail()">
+      <div class="imageButton m2f3" onclick="social('email')">
         <img src="Data/Images/Icons/email.png">
         <img id="bottomEmailCheck" style="width: 15px; opacity: 0; position: absolute; top: 5px; right: 0; filter: none; transition: opacity .2s;" src="Data/Images/Icons/check.png">
       </div>
-      <div class="imageButton m2f3" onclick="window.open('https://github.com/BOTPanzer/', '_blank');">
+      <div class="imageButton m2f3" onclick="social('github')">
         <img src="Data/Images/Icons/git.png">
       </div>
-      <div class="imageButton m2f4" onclick="window.open('https://www.instagram.com/bot_panzer/', '_blank');">
+      <div class="imageButton m2f4" onclick="social('ig')">
         <img src="Data/Images/Icons/ig.png">
       </div>
     </div>
   </div>
 
-  <div style="width: 100%; position: fixed; bottom: 0; display: flex; flex-direction: column-reverse; align-items: center; pointer-events: none; z-index: 9;">
+  <div style="width: 100%; position: fixed; bottom: 0; display: flex; flex-direction: column-reverse; align-items: center; pointer-events: none; z-index: 999;">
     <div id="snackbar"></div>
   </div>
 </body>
@@ -1250,9 +1250,11 @@
     }
   }
 
+  //GET LANGUAGE
   let lan = lans.es
   if (localStorage.getItem('pancoLan') == 'en') lan = lans.en
 
+  //SET AND SWITCH LANGUAGE
   setLan()
   function setLan() {
     if (lan.tag == 'es') 
@@ -1296,6 +1298,103 @@
       lan = lans.es
     localStorage.setItem('pancoLan', lan.tag)
     setLan()
+  }
+
+
+    /*$$$$$   /$$$$$$  /$$   /$$ /$$$$$$ /$$$$$$$$ /$$    /$$ /$$$$$$$$ /$$      /$$ /$$$$$$$$ /$$   /$$ /$$$$$$$$
+   /$$__  $$ /$$__  $$| $$  | $$|_  $$_/| $$_____/| $$   | $$| $$_____/| $$$    /$$$| $$_____/| $$$ | $$|__  $$__/
+  | $$  \ $$| $$  \__/| $$  | $$  | $$  | $$      | $$   | $$| $$      | $$$$  /$$$$| $$      | $$$$| $$   | $$   
+  | $$$$$$$$| $$      | $$$$$$$$  | $$  | $$$$$   |  $$ / $$/| $$$$$   | $$ $$/$$ $$| $$$$$   | $$ $$ $$   | $$   
+  | $$__  $$| $$      | $$__  $$  | $$  | $$__/    \  $$ $$/ | $$__/   | $$  $$$| $$| $$__/   | $$  $$$$   | $$   
+  | $$  | $$| $$    $$| $$  | $$  | $$  | $$        \  $$$/  | $$      | $$\  $ | $$| $$      | $$\  $$$   | $$   
+  | $$  | $$|  $$$$$$/| $$  | $$ /$$$$$$| $$$$$$$$   \  $/   | $$$$$$$$| $$ \/  | $$| $$$$$$$$| $$ \  $$   | $$   
+  |__/  |__/ \______/ |__/  |__/|______/|________/    \_/    |________/|__/     |__/|________/|__/  \__/   |_*/   
+
+  let ach = {
+    socials: false,
+    projects: false,
+    artyom: false,
+    drill: false,
+  }
+
+  //GET ACHIEVEMENTS
+  /*if (localStorage.getItem('pancoAchSocials') == 'true') ach.socials = true
+  if (localStorage.getItem('pancoAchProjects') == 'true') ach.projects = true
+  if (localStorage.getItem('pancoAchArtyom') == 'true') ach.artyom = true
+  if (localStorage.getItem('pancoAchDrill') == 'true') ach.drill = true*/
+
+  //TEMP VARIABLES
+  let sGit = false
+  let sIG = false
+  let sGive = false
+  let p1 = false
+  let p2 = false
+  let p3 = false
+  let p4 = false
+  let p5 = false
+  let p6 = false
+
+  //GIVE SOCIALS ACHIEVENT ON REFOCUS
+  window.onfocus = function() {
+    if (sGit && sIG) giveAchievement('socials')
+  }
+
+  //GIVE & RESET ACHIEVEMENTS
+  function giveAchievement(name) {
+    //ADD CONFETI
+    switch(name) {
+      case 'socials':
+        if (ach.socials == true) return
+        ach.socials = true
+        localStorage.setItem('pancoAchSocials', 'true')
+        createSnackbar('🏆 Open my Socials')
+        createConfetti()
+        break
+      case 'projects':
+        if (ach.projects == true) return
+        ach.projects = true
+        localStorage.setItem('pancoAchProjects', 'true')
+        createSnackbar('🏆 Open my Projects')
+        createConfetti()
+        break
+      case 'artyom':
+        if (ach.artyom == true) return
+        ach.artyom = true
+        localStorage.setItem('pancoAchArtyom', 'true')
+        createSnackbar('🏆 Find Artyom!!')
+        createConfetti()
+        break
+      case 'drill':
+        if (ach.drill == true) return
+        ach.drill = true
+        localStorage.setItem('pancoAchDrill', 'true')
+        createSnackbar('🏆 WHAT ARE THOSE??!!')
+        createConfetti()
+        break
+      
+    }
+  }
+
+  function resetAchievements() {
+    ach = {
+      socials: false,
+      projects: false,
+      artyom: false,
+      drill: false,
+    }
+    localStorage.setItem('pancoAchSocials', '')
+    localStorage.setItem('pancoAchProjects', '')
+    localStorage.setItem('pancoAchArtyom', '')
+    localStorage.setItem('pancoAchDrill', '')
+  }
+  
+  //CONFETTI 🎊
+  function createConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 1 }
+    })
   }
 
 
@@ -1433,6 +1532,19 @@
     document.getElementById(id).scrollIntoView({behavior: "smooth"})
   }
 
+  //CREATE SNACKBAR
+  function createSnackbar(text) {
+    const snack = document.getElementById('snackbar')
+    if (!snack.classList.contains('snackbar')) {
+      snack.innerHTML = text
+      snack.classList.add('snackbar')
+      setTimeout(() => {
+        snack.innerHTML = ''
+        snack.classList.remove('snackbar')
+      }, 3000)
+    }
+  }
+
 
    /*$   /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
   | $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
@@ -1551,6 +1663,7 @@
     let images = []
     switch(project) {
       case 'assistant':
+        p1 = true
         title = lan.pr.assist.tit
         description = `
           <div class="tags">
@@ -1592,6 +1705,7 @@
                   'Data/Images/Projects/Assistant/pc.png']
         break
       case 'framework':
+        p2 = true
         title = lan.pr.frame.tit
         description = `
           <div class="tags">
@@ -1610,6 +1724,7 @@
                   'Data/Images/Projects/Framework/docs2.png']
         break
       case 'hoodie':
+        p3 = true
         title = lan.pr.hoodie.tit       
         description = `
           <div class="tags">
@@ -1630,6 +1745,7 @@
                   'Data/Images/Projects/Hoodie/design3.jpg']
         break
       case 'modding':
+        p4 = true
         title = lan.pr.mod.tit
         description = `
           <div class="tags">
@@ -1653,6 +1769,7 @@
                   'Data/Images/Projects/Modding/inside2.jpg']
         break
       case 'disbots':
+        p5 = true
         title = lan.pr.bots.tit
         description = `
           <div class="tags">
@@ -1669,6 +1786,7 @@
                   'Data/Images/Projects/Disbots/games.png']
         break
       case 'other':
+        p6 = true
         title = lan.pr.other.tit
         description = `
           <div class="tags">
@@ -1725,6 +1843,7 @@
         break
       //EASTEREGGS JIJIJI
       case 'artyom':
+        giveAchievement('artyom')
         title = 'Artyom 💘'
         description = `
           <div class="tags">
@@ -1737,6 +1856,7 @@
                   'Data/Images/Projects/Artyom/3.jpg']
         break
       case 'drill':
+        giveAchievement('drill')
         title = 'Gafas to Drill'
         description = `
           <div class="tags">
@@ -1799,6 +1919,7 @@
       balls.appendChild(ball)
     }
     showProjectsWindow(true)
+    if (p1 & p2 & p3 & p4 & p5 & p6) giveAchievement('projects')
   }
 
   //CHANGE IMAGE
@@ -1849,31 +1970,27 @@
     document.getElementById('bottomAuthor').innerHTML = autors[q]
   }           
   
-  //COPY EMAIL
-  let emailChecked = false
-  function copyEmail() {
-    navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
-    if (!emailChecked) {
-      emailChecked = true
-      createSnackbar('Email Copied')
-      document.getElementById('bottomEmailCheck').style.opacity = '1'
-      setTimeout(function() {
-        emailChecked = false
-        document.getElementById('bottomEmailCheck').style.opacity = '0'
-      }, 3000)
-    }
-  }
-
-  //CREATE SNACKBAR
-  function createSnackbar(text) {
-    const snack = document.getElementById('snackbar')
-    if (!snack.classList.contains('snackbar')) {
-      snack.innerHTML = text
-      snack.classList.add('snackbar')
-      setTimeout(() => {
-        snack.innerHTML = ''
-        snack.classList.remove('snackbar')
-      }, 3000)
+  //SOCIALS
+  function social(name) {
+    switch (name) {
+      case 'github':
+        sGit = true
+        window.open('https://github.com/BOTPanzer/', '_blank')
+        break
+      case 'ig':
+        sIG = true
+        window.open('https://www.instagram.com/bot_panzer/', '_blank')
+        break
+      case 'email':
+        navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
+        if (document.getElementById('bottomEmailCheck').style.opacity == '0') {
+          createSnackbar('Email Copied')
+          document.getElementById('bottomEmailCheck').style.opacity = '1'
+          setTimeout(function() {
+            document.getElementById('bottomEmailCheck').style.opacity = '0'
+          }, 3000)
+        }
+        break
     }
   }
 </script>
