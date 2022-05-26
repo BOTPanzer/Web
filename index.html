@@ -1194,7 +1194,7 @@
         a: 'About',
         p: 'Projects'
       },
-      ach: {
+      ach: { //ACHIEVEMENTS
         tit: 'Achievements',
         none: 'You have no achievements 😣',
         a1: {
@@ -2250,7 +2250,7 @@
       case 'email':
         navigator.clipboard.writeText('alex.paniagua.moreno@gmail.com')
         if (document.getElementById('bottomEmailCheck').style.opacity == '0') {
-          createSnackbar('Email Copied')
+          createSnackbar(lan.bot.mail)
           document.getElementById('bottomEmailCheck').style.opacity = '1'
           setTimeout(function() {
             document.getElementById('bottomEmailCheck').style.opacity = '0'
