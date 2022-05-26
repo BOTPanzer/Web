@@ -300,7 +300,6 @@
     height: 100%;
     position: fixed;
     display: flex;
-    align-items: center;
     justify-content: center;
     z-index: 100;
     pointer-events: none;
@@ -309,14 +308,51 @@
   }
 
   .ach2 {
-    min-width: 100px;
-    min-height: 100px;
+    width: 350px;
+    max-height: calc(100% - 126px);
+    padding: 20px;
+    padding-top: 66px;
+    margin: auto;
+    overflow-y: auto;
+    gap: 20px;
     position: relative;
     background: var(--background); 
     display: flex;
     flex-direction: column;
     border-radius: 15px;
     box-shadow: var(--shadow2);
+  }
+
+  .achItem {
+    width: 100%; 
+    height: 100px; 
+    display: none;
+    background: var(--button); 
+    border-radius: 15px; 
+    box-shadow: var(--shadow2);
+  }
+
+  .achItem img {
+    height: 80px; 
+    margin: 10px;
+    aspect-ratio: 1;
+    background: var(--button); 
+    border-radius: 15px; 
+    object-fit: cover;
+  }
+
+  .achItem div {
+    height: 80px; 
+    margin: 10px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .achItem div span:nth-child(2) {
+    font-size: .9rem;
+    color: var(--text2);
   }
 </style>
 
@@ -883,8 +919,44 @@
 
   <div id="achWindow" class="ach">
     <div class="ach2">
+      <div class="lemon" style="width: calc(100% - 40px); height: 66px; position: absolute; top: 0; display: flex; align-items: center; justify-content: center;">Achievements</div>
       <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showAchievementsWindow(false)">
 
+      <div id="achNone" style="width: 100%; min-height: 100px; display: flex; align-items: center; justify-content: center;">
+        You have no achievements 😣
+      </div>
+
+      <div id="achItem1" class="achItem">
+        <img src="Data/Images/Icons/ig.png">
+        <div>
+          <span>Open my Socials</span>
+          <span>Awarded for opening my socials</span>
+        </div>
+      </div>
+
+      <div id="achItem2" class="achItem">
+        <img src="Data/Images/Projects/Other/t45.jpg">
+        <div>
+          <span>Open my Projects</span>
+          <span>Awarded for opening my projects</span>
+        </div>
+      </div>
+
+      <div id="achItem3" class="achItem">
+        <img src="Data/Images/Projects/Artyom/1.jpg">
+        <div>
+          <span>Find Artyom!!!</span>
+          <span>Awarded for finding Artyom</span>
+        </div>
+      </div>
+
+      <div id="achItem4" class="achItem">
+        <img src="Data/Images/Projects/Drill/drill4.jpg">
+        <div>
+          <span>WHAT ARE THOSE??!!</span>
+          <span>Awarded for finding the Drill Glasses</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -1391,14 +1463,14 @@
   }
 
   //LOAD ACHIEVEMENTS
-  /*if (localStorage.getItem('pancoAchSocials') == 'true') 
+  if (localStorage.getItem('pancoAchSocials') == 'true') 
     addAchievement('socials')
   if (localStorage.getItem('pancoAchProjects') == 'true') 
     addAchievement('projects')
   if (localStorage.getItem('pancoAchArtyom') == 'true') 
     addAchievement('artyom')
   if (localStorage.getItem('pancoAchDrill') == 'true') 
-    addAchievement('drill')*/
+    addAchievement('drill')
 
   //TEMP VARIABLES
   let sGit = false
@@ -1451,24 +1523,32 @@
   }
 
   function addAchievement(name) {
+    let added = true
     switch(name) {
       case 'socials':
         ach.socials = true
         localStorage.setItem('pancoAchSocials', 'true')
+        document.getElementById('achItem1').style.display = 'flex'
         break
       case 'projects':
         ach.projects = true
         localStorage.setItem('pancoAchProjects', 'true')
+        document.getElementById('achItem2').style.display = 'flex'
         break
       case 'artyom':
         ach.artyom = true
         localStorage.setItem('pancoAchArtyom', 'true')
+        document.getElementById('achItem3').style.display = 'flex'
         break
       case 'drill':
         ach.drill = true
         localStorage.setItem('pancoAchDrill', 'true')
+        document.getElementById('achItem4').style.display = 'flex'
         break
+      default:
+        added = false
     }
+    if (added) document.getElementById('achNone').style.display = 'none'
   }
 
   function resetAchievements() {
