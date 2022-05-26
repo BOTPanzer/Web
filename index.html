@@ -919,7 +919,7 @@
 
   <div id="achWindow" class="ach">
     <div class="ach2">
-      <div class="lemon" style="width: calc(100% - 40px); height: 66px; position: absolute; top: 0; display: flex; align-items: center; justify-content: center;">Achievements</div>
+      <div id="achTitle" class="lemon" style="width: calc(100% - 40px); height: 66px; position: absolute; top: 0; display: flex; align-items: center; justify-content: center;">Achievements</div>
       <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showAchievementsWindow(false)">
 
       <div id="achNone" style="width: 100%; min-height: 100px; display: flex; align-items: center; justify-content: center;">
@@ -929,32 +929,32 @@
       <div id="achItem1" class="achItem">
         <img src="Data/Images/Icons/ig.png">
         <div>
-          <span>Open my Socials</span>
-          <span>Awarded for opening my socials</span>
+          <span id="achItem1T">Open my Socials</span>
+          <span id="achItem1D">Awarded for opening my socials</span>
         </div>
       </div>
 
       <div id="achItem2" class="achItem">
         <img src="Data/Images/Projects/Other/t45.jpg">
         <div>
-          <span>Open my Projects</span>
-          <span>Awarded for opening my projects</span>
+          <span id="achItem2T">Open my Projects</span>
+          <span id="achItem2D">Awarded for opening my projects</span>
         </div>
       </div>
 
       <div id="achItem3" class="achItem">
         <img src="Data/Images/Projects/Artyom/1.jpg">
         <div>
-          <span>Find Artyom!!!</span>
-          <span>Awarded for finding Artyom</span>
+          <span id="achItem3T">Find Artyom!!!</span>
+          <span id="achItem3D">Awarded for finding Artyom</span>
         </div>
       </div>
 
       <div id="achItem4" class="achItem">
         <img src="Data/Images/Projects/Drill/drill4.jpg">
         <div>
-          <span>WHAT ARE THOSE??!!</span>
-          <span>Awarded for finding the Drill Glasses</span>
+          <span id="achItem4T">WHAT ARE THOSE??!!</span>
+          <span id="achItem4D">Awarded for finding the Drill Glasses</span>
         </div>
       </div>
     </div>
@@ -1194,6 +1194,25 @@
         a: 'About',
         p: 'Projects'
       },
+      ach: {
+        tit: 'Achievements',
+        a1: {
+          tit: 'Open my Socials',
+          desc: 'Awarded for opening my socials'
+        },
+        a2: {
+          tit: 'Open my Projects',
+          desc: 'Awarded for opening my projects'
+        },
+        a3: {
+          tit: 'Find Artyom!!!',
+          desc: 'Awarded for finding Artyom'
+        },
+        a4: {
+          tit: 'WHAT ARE THOSE??!!',
+          desc: 'Awarded for finding the Drill glasses'
+        }
+      },
       hm: { //HOME
         im: "I'm",
         jobs: ['a UI/UX Designer', 
@@ -1296,6 +1315,25 @@
         h: 'Inicio',
         a: 'Sobre Mí',
         p: 'Proyectos'
+      },
+      ach: {
+        tit: 'Logros',
+        a1: {
+          tit: 'Abre mis Redes',
+          desc: 'Obtenido por abrir mis redes'
+        },
+        a2: {
+          tit: 'Abre mis Proyectos',
+          desc: 'Obtenido por abrir mis proyectos'
+        },
+        a3: {
+          tit: 'Encuentra a Artyom!!!',
+          desc: 'Obtenido por encontrar a Artyom'
+        },
+        a4: {
+          tit: 'WHAT ARE THOSE??!!',
+          desc: 'Obtenido por encontrar las gafas Drill'
+        }
       },
       hm: { //HOME
         im: 'Soy',
@@ -1410,6 +1448,16 @@
     document.getElementById('topHome').innerHTML = lan.top.h
     document.getElementById('topAbout').innerHTML = lan.top.a
     document.getElementById('topProjects').innerHTML = lan.top.p
+    //ACHIEVEMENTS
+    document.getElementById('achTitle').innerHTML = lan.ach.tit
+    document.getElementById('achItem1T').innerHTML = lan.ach.a1.tit
+    document.getElementById('achItem1D').innerHTML = lan.ach.a1.desc
+    document.getElementById('achItem2T').innerHTML = lan.ach.a2.tit
+    document.getElementById('achItem2D').innerHTML = lan.ach.a2.desc
+    document.getElementById('achItem3T').innerHTML = lan.ach.a3.tit
+    document.getElementById('achItem3D').innerHTML = lan.ach.a3.desc
+    document.getElementById('achItem4T').innerHTML = lan.ach.a4.tit
+    document.getElementById('achItem4D').innerHTML = lan.ach.a4.desc
     //HOME
     document.getElementById('homeIm').innerHTML = lan.hm.im
     document.getElementById('homeAbout').innerHTML = lan.hm.see
@@ -1494,22 +1542,22 @@
     switch(name) {
       case 'socials':
         if (ach.socials == true) return
-        createSnackbar('🏆 Open my Socials')
+        createSnackbar(`🏆 ${lan.ach.a1.tit}`)
         added = true
         break
       case 'projects':
         if (ach.projects == true) return
-        createSnackbar('🏆 Open my Projects')
+        createSnackbar(`🏆 ${lan.ach.a2.tit}`)
         added = true
         break
       case 'artyom':
         if (ach.artyom == true) return
-        createSnackbar('🏆 Find Artyom!!')
+        createSnackbar(`🏆 ${lan.ach.a3.tit}`)
         added = true
         break
       case 'drill':
         if (ach.drill == true) return
-        createSnackbar('🏆 WHAT ARE THOSE??!!')
+        createSnackbar(`🏆 ${lan.ach.a4.tit}`)
         added = true
         break
     }
@@ -1671,7 +1719,7 @@
       document.getElementById('bottom').style.flexDirection = 'row'
     }
   }
-    
+  
   //MENU
   let menuOpen = false
   function switchMenu() {
@@ -1803,8 +1851,8 @@
   //JAPANESE TEXT WORDS
   (function() {
     let words = ['アレックス', //Alex
-                 'ラザニア',    //Lasagne
-                 'コード']      //Code
+                 'ラザニア',   //Lasagne
+                 'コード']     //Code
     let q = Math.floor(Math.random() * words.length)
     document.getElementById('homeJap').innerHTML = `[${words[q]}]`
   })();
@@ -2065,7 +2113,7 @@
             <span class="tag tagBatch">Calle</span>
           </div>
           <br>
-          ¡¡¡CUANTO DRILL COÑO!!!
+          ¡¡¡CUANTO DRILL!!!
           <br><br>
           <span class="borderButton" onclick="window.open('https://gafastodrill.wixsite.com/gafasdrill')">MÁS DRILL??!!</span>`
         images = ['Data/Images/Projects/Drill/drill1.jpg',
