@@ -1190,6 +1190,8 @@
     en: {
       tag: 'en',
       top: { //TOP MENU
+        focus: "Panco's Web",
+        blur: "Don't leave 😥",
         h: 'Home',
         a: 'About',
         p: 'Projects'
@@ -1313,6 +1315,8 @@
     es: {
       tag: 'es',
       top: { //TOP MENU
+        focus: "Web de Panco",
+        blur: "No te vayas 😥",
         h: 'Inicio',
         a: 'Sobre Mí',
         p: 'Proyectos'
@@ -1534,7 +1538,13 @@
   let p5 = false
   let p6 = false
 
+  //FOCUS/BLUR TITLE CHANGE
+  document.title = lan.top.focus
+  window.onblur = function() {
+    document.title = lan.top.blur
+  }
   window.onfocus = function() {
+    document.title = lan.top.focus
     //GIVE SOCIALS ACHIEVENT ON REFOCUS
     if (sGit && sIG) giveAchievement('socials')
   }
