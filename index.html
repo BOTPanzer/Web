@@ -14,6 +14,7 @@
 
 
 
+<!-- MAIN -->
 <style>
   @font-face { font-family: Poppins; src: url('Data/Fonts/Poppins.ttf'); }
   @font-face { font-family: Comfortaa; src: url('Data/Fonts/Comfortaa.ttf'); }
@@ -90,7 +91,95 @@
     flex-direction: column;
   }
 
+  /*FONTS*/
+  .poppins {
+    font-family: Poppins;
+  }
 
+  .lemon {
+    font-family: Lemon Milk;
+  }
+
+  .comfortaa {
+    font-family: Comfortaa;
+  }
+
+  /*PAGES*/
+  .page {
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .title {
+    margin: 4rem 0 0 0;
+    font-family: Lemon Milk;
+    font-size: 5vw; 
+    text-align: center;
+  }
+
+  /*BORDER BUTTON*/
+  .borderButton {
+    width: fit-content;
+    min-height: fit-content;
+    padding: 5px 15px;
+    border-radius: 50px;
+    transition: all .2s;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: solid 1px var(--text1);
+    transition: background .2s;
+  }
+
+  .borderButton:hover {
+    background: #69696920;
+  }
+
+  /*TEXT SHADOW*/
+  .shadow {
+    /*text-shadow: 0px 0px 10px var(--textShadow);*/
+    text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
+  }
+
+  /*SNACKBAR*/
+  .snackbar {
+    padding: 15px; 
+    border-radius: 15px; 
+    background: var(--button); 
+    box-shadow: var(--shadow2);
+    opacity: 0;
+    animation: snackbar 3s forwards;
+  }
+
+  @keyframes snackbar {
+    0% { 
+      transform: translateY(0); 
+      opacity: 0;
+    }
+    25% { 
+      transform: translateY(-20px);
+      opacity: 1; 
+    }
+    75% { 
+      transform: translateY(-20px);
+      opacity: 1; 
+    }
+    100% { 
+      transform: translateY(0); 
+      opacity: 0;
+    }
+  }
+
+  /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
+</style>
+
+<!-- MENU -->
+<style>
    /*$      /$$ /$$$$$$$$ /$$   /$$ /$$   /$$
   | $$$    /$$$| $$_____/| $$$ | $$| $$  | $$
   | $$$$  /$$$$| $$      | $$$$| $$| $$  | $$
@@ -205,7 +294,34 @@
     filter: none;
   }
 
+  /*ACHIEVEMENTS*/
+  .ach {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+  }
 
+  .ach2 {
+    min-width: 100px;
+    min-height: 100px;
+    position: relative;
+    background: var(--background); 
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: var(--shadow2);
+  }
+</style>
+
+<!-- HOME -->
+<style>
    /*$   /$$  /$$$$$$  /$$      /$$ /$$$$$$$$
   | $$  | $$ /$$__  $$| $$$    /$$$| $$_____/
   | $$  | $$| $$  \ $$| $$$$  /$$$$| $$      
@@ -322,8 +438,10 @@
     95% { transform:translateY(-7px); }
     100% { transform:translateY(0); }
   }
+</style>
 
-
+<!-- ABOUT -->
+<style>
     /*$$$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
    /$$__  $$| $$__  $$ /$$__  $$| $$  | $$|__  $$__/
   | $$  \ $$| $$  \ $$| $$  \ $$| $$  | $$   | $$   
@@ -353,8 +471,10 @@
     margin: auto 0;
     gap: 1rem;
   }
+</style>
 
-
+<!-- PROJECTS -->
+<style>
    /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
   | $$__  $$| $$__  $$ /$$__  $$   |__  $$| $$_____/ /$$__  $$|__  $$__//$$__  $$
   | $$  \ $$| $$  \ $$| $$  \ $$      | $$| $$      | $$  \__/   | $$  | $$  \__/
@@ -364,7 +484,7 @@
   | $$      | $$  | $$|  $$$$$$/|  $$$$$$/| $$$$$$$$|  $$$$$$/   | $$  |  $$$$$$/
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
 
-  /*PROJECT*/
+  /*PROJECT*/  
   .project {
     width: 100%;
     height: 100%;
@@ -376,6 +496,23 @@
     pointer-events: none;
     opacity: 0;
     transition: opacity .3s;
+  }
+
+  .projectClose {
+    width: 24px; 
+    height: 24px; 
+    padding: 11px; 
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 25px; 
+    cursor: pointer;
+    filter: var(--filter);
+    transition: background .2s;
+  }
+
+  .projectClose:hover {
+    background: #69696920;
   }
 
   .projectHalf1 {
@@ -487,24 +624,6 @@
     100% { transform: rotate(360deg); }
   }
 
-  /*PROJECT CLOSE*/
-  .pclose {
-    width: 24px; 
-    height: 24px; 
-    padding: 11px; 
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border-radius: 25px; 
-    cursor: pointer;
-    filter: var(--filter);
-    transition: background .2s;
-  }
-
-  .pclose:hover {
-    background: #69696920;
-  }
-
   /*CARDS CONTAINER*/
   .pcards {
     width: 80%; 
@@ -575,48 +694,6 @@
 
   .pcard div:nth-of-type(2):hover {
     background: #69696920;
-  }
-
-
-    /*$$$$$  /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$ 
-   /$$__  $$|__  $$__/| $$  | $$| $$_____/| $$__  $$
-  | $$  \ $$   | $$   | $$  | $$| $$      | $$  \ $$
-  | $$  | $$   | $$   | $$$$$$$$| $$$$$   | $$$$$$$/
-  | $$  | $$   | $$   | $$__  $$| $$__/   | $$__  $$
-  | $$  | $$   | $$   | $$  | $$| $$      | $$  \ $$
-  |  $$$$$$/   | $$   | $$  | $$| $$$$$$$$| $$  | $$
-   \______/    |__/   |__/  |__/|________/|__/  |_*/
-
-  /*FONTS*/
-  .poppins {
-    font-family: Poppins;
-  }
-
-  .lemon {
-    font-family: Lemon Milk;
-  }
-
-  .comfortaa {
-    font-family: Comfortaa;
-  }
-
-  /*PAGES*/
-  .page {
-    width: 100%;
-    height: fit-content;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .title {
-    margin: 4rem 0 0 0;
-    font-family: Lemon Milk;
-    font-size: 5vw; 
-    text-align: center;
   }
 
   /*TAGS*/
@@ -712,58 +789,6 @@
     border: solid 1px #90c3c6;
   }
 
-  /*BORDER BUTTON*/
-  .borderButton {
-    width: fit-content;
-    min-height: fit-content;
-    padding: 5px 15px;
-    border-radius: 50px;
-    transition: all .2s;
-    cursor: pointer;
-    box-sizing: border-box;
-    border: solid 1px var(--text1);
-    transition: background .2s;
-  }
-
-  .borderButton:hover {
-    background: #69696920;
-  }
-
-  /*TEXT SHADOW*/
-  .shadow {
-    /*text-shadow: 0px 0px 10px var(--textShadow);*/
-    text-shadow: 1px 1px 5px var(--textShadow), 1px -1px 5px var(--textShadow), -1px -1px 5px var(--textShadow), -1px 1px 5px var(--textShadow);
-  }
-
-  /*SNACKBAR*/
-  .snackbar {
-    padding: 15px; 
-    border-radius: 15px; 
-    background: var(--button); 
-    box-shadow: var(--shadow2);
-    opacity: 0;
-    animation: snackbar 3s forwards;
-  }
-
-  @keyframes snackbar {
-    0% { 
-      transform: translateY(0); 
-      opacity: 0;
-    }
-    25% { 
-      transform: translateY(-20px);
-      opacity: 1; 
-    }
-    75% { 
-      transform: translateY(-20px);
-      opacity: 1; 
-    }
-    100% { 
-      transform: translateY(0); 
-      opacity: 0;
-    }
-  }
-
   /*ARTYOM*/
   @keyframes artyom {
     0% { 
@@ -803,8 +828,6 @@
       opacity: 0;
     }
   }
-
-  /* ASCII FONT: Big Money-ne - https://manytools.org/hacker-tools/ascii-banner */
 </style>
 
 
@@ -850,11 +873,18 @@
         <div class="imageButton" onclick="switchTheme()">
           <img id="themeImg" src="Data/Images/Icons/theme_dark.png">
         </div>
-        <div id="topAchieve" class="imageButton" style="display: none;" onclick="showAchievements()">
+        <div id="topAchieve" class="imageButton" onclick="showAchievementsWindow(true)">
           <img src="Data/Images/Icons/cup.png">
-          <div id="topBall2" style="width: 10px; height: 10px; border-radius: 5px; background: var(--accent); position: absolute; top: 5px; right: 0; transition: opacity .2s;"></div>
+          <div id="topBall2" style="width: 10px; height: 10px; border-radius: 5px; background: var(--accent); opacity: 0; position: absolute; top: 5px; right: 0; transition: opacity .2s;"></div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div id="achWindow" class="ach">
+    <div class="ach2">
+      <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showAchievementsWindow(false)">
+
     </div>
   </div>
 
@@ -1006,7 +1036,7 @@
   </div>
 
   <div id="projectsWindow" class="project">
-    <img class="pclose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
+    <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
 
     <div id="projectPreview" class="projectHalf1">
       <div id="projectTitle" class="vc lemon" style="font-size: 3.8vw; line-height: 3.8vw; white-space: nowrap;">
@@ -1147,7 +1177,7 @@
         hoodie: {
           tit: 'Futuristic Hoodie',
           p1: `Although I'm not the kind of guy who likes shopping, I do love checking out clothes online.`,
-          p2: `One day I stumbled upon a streetwear hoodie, a new style of clothing I had never seen, and I got inspired to create my own.
+          p2: `One day I came across a streetwear hoodie, a new style of clothing I had never seen, and I got inspired to create my own.
                It isn't exactly streetwear but is indeed a futuristic hoodie design.
                I started by sketching some designs in my notebook which were then digitalized using Adobe Illustrator.
                Then I made a preview in Photoshop of how the hoodie would look like if it was real.`,
@@ -1360,11 +1390,15 @@
     drill: false,
   }
 
-  //GET ACHIEVEMENTS
-  /*if (localStorage.getItem('pancoAchSocials') == 'true') ach.socials = true
-  if (localStorage.getItem('pancoAchProjects') == 'true') ach.projects = true
-  if (localStorage.getItem('pancoAchArtyom') == 'true') ach.artyom = true
-  if (localStorage.getItem('pancoAchDrill') == 'true') ach.drill = true*/
+  //LOAD ACHIEVEMENTS
+  /*if (localStorage.getItem('pancoAchSocials') == 'true') 
+    addAchievement('socials')
+  if (localStorage.getItem('pancoAchProjects') == 'true') 
+    addAchievement('projects')
+  if (localStorage.getItem('pancoAchArtyom') == 'true') 
+    addAchievement('artyom')
+  if (localStorage.getItem('pancoAchDrill') == 'true') 
+    addAchievement('drill')*/
 
   //TEMP VARIABLES
   let sGit = false
@@ -1377,8 +1411,8 @@
   let p5 = false
   let p6 = false
 
-  //GIVE SOCIALS ACHIEVENT ON REFOCUS
   window.onfocus = function() {
+    //GIVE SOCIALS ACHIEVENT ON REFOCUS
     if (sGit && sIG) giveAchievement('socials')
   }
 
@@ -1388,39 +1422,52 @@
     switch(name) {
       case 'socials':
         if (ach.socials == true) return
-        ach.socials = true
-        localStorage.setItem('pancoAchSocials', 'true')
         createSnackbar('🏆 Open my Socials')
         added = true
         break
       case 'projects':
         if (ach.projects == true) return
-        ach.projects = true
-        localStorage.setItem('pancoAchProjects', 'true')
         createSnackbar('🏆 Open my Projects')
         added = true
         break
       case 'artyom':
         if (ach.artyom == true) return
-        ach.artyom = true
-        localStorage.setItem('pancoAchArtyom', 'true')
         createSnackbar('🏆 Find Artyom!!')
         added = true
         break
       case 'drill':
         if (ach.drill == true) return
-        ach.drill = true
-        localStorage.setItem('pancoAchDrill', 'true')
         createSnackbar('🏆 WHAT ARE THOSE??!!')
         added = true
         break
     }
     if (added) {
+      addAchievement(name)
       createConfetti()
       if (!menuOpen)
         document.getElementById('topBall').style.opacity = '1'
       document.getElementById('topBall2').style.opacity = '1'
-      document.getElementById('topAchieve').style.display = 'flex'
+    }
+  }
+
+  function addAchievement(name) {
+    switch(name) {
+      case 'socials':
+        ach.socials = true
+        localStorage.setItem('pancoAchSocials', 'true')
+        break
+      case 'projects':
+        ach.projects = true
+        localStorage.setItem('pancoAchProjects', 'true')
+        break
+      case 'artyom':
+        ach.artyom = true
+        localStorage.setItem('pancoAchArtyom', 'true')
+        break
+      case 'drill':
+        ach.drill = true
+        localStorage.setItem('pancoAchDrill', 'true')
+        break
     }
   }
 
@@ -1436,11 +1483,21 @@
     localStorage.setItem('pancoAchArtyom', '')
     localStorage.setItem('pancoAchDrill', '')
   }
-  
-  function showAchievements() {
-    document.getElementById('topBall2').style.opacity = '0'
+    
+  //SHOW PROJECTS WINDOW
+  function showAchievementsWindow(show) {
+    if (show) {
+      document.getElementById('topBall2').style.opacity = '0'
+      document.body.style.overflowY = 'hidden'
+      document.getElementById('achWindow').style.pointerEvents = 'all'
+      document.getElementById('achWindow').style.opacity = '1'
+    } else {
+      document.body.style.overflowY = 'scroll'
+      document.getElementById('achWindow').style.pointerEvents = 'none'
+      document.getElementById('achWindow').style.opacity = '0'
+    }
   }
-  
+
   //CONFETTI 🎊
   function createConfetti() {
     confetti({
@@ -1542,11 +1599,13 @@
     if (menuOpen) {
       document.getElementById('topMenu').style.pointerEvents = 'all'
       document.getElementById('topMenu').style.opacity = '1'
+      document.getElementById('topBall').style.opacity = '0'
     } else {
       document.getElementById('topMenu').style.pointerEvents = 'none'
       document.getElementById('topMenu').style.opacity = '0'
+      if (document.getElementById('topBall2').style.opacity == '1')
+        document.getElementById('topBall').style.opacity = '1'
     }
-    document.getElementById('topBall').style.opacity = '0'
   }
 
   //THEME
@@ -1614,8 +1673,7 @@
   |__/  |__/ \______/ |__/     |__/|_______*/
 
   //TYPE ANIMATION
-  typeAnim()
-  function typeAnim() {
+  (function() {
     const elem = document.getElementById('homeJobs')
     let jobs = lan.hm.jobs
     let i = 0
@@ -1625,8 +1683,6 @@
     setTimeout(prepare, 1000)
 
     function prepare() {
-      if (jobs != lan.hm.jobs)
-        jobs = lan.hm.jobs
       length = jobs[i].length
       letters = length
       time = 1000/length
@@ -1637,34 +1693,41 @@
       elem.innerText = jobs[i].substring(0, length - letters)
       letters--
       if (letters >= 0)
-        setTimeout(writeLetter, time)
+        tim(writeLetter, time)
       else
-        setTimeout(removeLetter, 1500)
+        tim(removeLetter, 1500)
     }
 
     function removeLetter() {
       elem.innerText = jobs[i].substring(0, length - letters)
       letters++ 
       if (letters > length) {
-        setTimeout(function() {
+        tim(function() {
           i++
           if (jobs[i] == undefined) i = 0
           prepare()
         }, 500)
       } else
-        setTimeout(removeLetter, time)
+        tim(removeLetter, time)
     }
-  }
+
+    function tim(lol, time) {
+      if (jobs != lan.hm.jobs) {
+        jobs = lan.hm.jobs
+        prepare()
+      } else
+        setTimeout(lol, time)
+    }
+  })();
 
   //JAPANESE TEXT WORDS
-  changeJapaneseText()
-  function changeJapaneseText() {
+  (function() {
     let words = ['アレックス', //Alex
                  'ラザニア',    //Lasagne
                  'コード']      //Code
     let q = Math.floor(Math.random() * words.length)
     document.getElementById('homeJap').innerHTML = `[${words[q]}]`
-  }                    
+  })();
 
 
     /*$$$$$  /$$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$
@@ -1677,8 +1740,7 @@
   |__/  |__/|_______/  \______/  \______/    |_*/
 
   //ABOUT IMAGE
-  changeAboutImage()
-  function changeAboutImage() {
+  (function() {
     let words = ['Data/Images/About/artyom.jpg',
                  'Data/Images/About/ball.jpg',
                  'Data/Images/About/canary.jpg',
@@ -1689,7 +1751,7 @@
                  'Data/Images/About/fo.jpg',
                  'Data/Images/About/whale.jpg']
     document.getElementById('aboutContainerImage').src = words[Math.floor(Math.random() * words.length)]
-  }
+  })();
 
 
    /*$$$$$$  /$$$$$$$   /$$$$$$     /$$$$$ /$$$$$$$$  /$$$$$$  /$$$$$$$$ /$$$$$$ 
@@ -1987,19 +2049,20 @@
   }
   
   //ARTYOM/DRILL EASTEREGGS
-  showEasteregg()
-  function showEasteregg() {
-    let ids = ['easterArtyom',
-               'easterDrill']
-    let id = ids[Math.floor(Math.random() * ids.length)]
+  let easterId
+  (function showEasteregg() {
+    if (easterId == 'easterArtyom')
+      easterId = 'easterDrill'
+    else
+      easterId = 'easterArtyom'
     setTimeout(function() {
-      document.getElementById(id).style.display = 'block'
+      document.getElementById(easterId).style.display = 'block'
       setTimeout(function() {
-        document.getElementById(id).style.display = 'none'
+        document.getElementById(easterId).style.display = 'none'
         showEasteregg()
       }, 5000)
     }, 35000)
-  }
+  })();
 
 
    /*$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$$$ /$$$$$$  /$$      /$$
@@ -2012,8 +2075,7 @@
   |_______/  \______/    |__/      |__/   \______/ |__/     |_*/
 
   //BOTTOM TEXT QUOTES
-  changeBottomText()
-  function changeBottomText() {  
+  (function() {  
     let quotes = ['War never changes', 
                 'Truth Is, The Game Was Rigged From The Start', 
                 'OPA! Artyom!', 
@@ -2026,7 +2088,7 @@
                 'Your brother needs you', 
                 "I can't believe we did that!",
                 "It's only been a week, but it feels like a year"]
-    let autors = ['Fallout', 
+    let authors = ['Fallout', 
                 'Fallout NV', 
                 'Metro Exodus', 
                 'Cyberpunk 2077', 
@@ -2040,8 +2102,8 @@
                 'Katana Zero']
     let q = Math.floor(Math.random() * quotes.length)
     document.getElementById('bottomQuote').innerHTML = quotes[q]
-    document.getElementById('bottomAuthor').innerHTML = autors[q]
-  }           
+    document.getElementById('bottomAuthor').innerHTML = authors[q]
+  })();
   
   //SOCIALS
   function social(name) {
