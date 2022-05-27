@@ -335,7 +335,7 @@
   }
 
   .achItem:hover {
-    transform: rotate(-2deg) scale(1.05);
+    transform: rotate(-1deg) scale(1.025);
   }
 
   .achItem img {
@@ -2157,11 +2157,8 @@
         break
     }
     //CHANGE URL
-    if (pop) {
-      let queryParams = new URLSearchParams(window.location.search)
-      queryParams.set('sub', project)
-      history.pushState(null, null, '?'+queryParams.toString())
-    }
+    if (pop) 
+      history.pushState(null, null, '?p='+project)
     //SET DATA
     document.getElementById('projectTitle1').innerHTML = title
     document.getElementById('projectTitle2').innerHTML = title
@@ -2306,15 +2303,16 @@
   |  $$$$$$/|  $$$$$$/| $$$$$$$/| $$      | $$  | $$|  $$$$$$/| $$$$$$$$|  $$$$$$/
    \______/  \______/ |_______/ |__/      |__/  |__/ \______/ |________/ \_____*/ 
 
+  parseQuery(event)
   window.addEventListener('popstate', parseQuery)
-  function parseQuery() {
+  function parseQuery(event) {
     var parts = window.location.search.substr(1).split("&")
     var $_GET = {}
     for (var i = 0; i < parts.length; i++) {
         var temp = parts[i].split("=")
         $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1])
     }
-    let subpage = $_GET['sub']
+    let subpage = $_GET['p']
     switch(subpage) {
       case 'assistant':
       case 'framework':
@@ -2322,7 +2320,10 @@
       case 'modding':
       case 'disbots':
       case 'other':
-        createProject(subpage, false, false)
+        if (event != undefined)
+          createProject(subpage, true, false)
+        else
+          createProject(subpage, false, false)
         break
       default:
         showProjectsWindow(false, true, false)
