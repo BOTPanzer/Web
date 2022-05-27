@@ -1114,7 +1114,7 @@
   </div>
 
   <div id="projectsWindow" class="project">
-    <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false)">
+    <img class="projectClose" src="Data/Images/Icons/close.png" onclick="showProjectsWindow(false, true)">
 
     <div id="projectPreview" class="projectHalf1">
       <div id="projectTitle" class="vc lemon" style="font-size: 3.8vw; line-height: 3.8vw; white-space: nowrap;">
@@ -1916,8 +1916,9 @@
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
   
   //SHOW PROJECTS WINDOW
-  function showProjectsWindow(show, anim) {
+  function showProjectsWindow(show, anim, pop) {
     if (anim == undefined) anim = true
+    if (pop == undefined) pop = true
     if (anim) 
       document.getElementById('projectsWindow').style.transition = 'opacity .3s'
     else
@@ -1931,13 +1932,13 @@
       document.body.style.overflowY = 'scroll'
       document.getElementById('projectsWindow').style.pointerEvents = 'none'
       document.getElementById('projectsWindow').style.opacity = '0'
-      history.pushState(null, null, '?')
+      if (pop) history.pushState(null, null, '?')
     }
   }
 
   //CREATE PROJECT
-  function createProject(project, anim) {
-    if (anim == undefined) anim = true
+  function createProject(project, anim, pop) {
+    if (pop == undefined) pop = true
     let title = 'Title'
     let description = 'Description'
     let images = []
@@ -2156,9 +2157,11 @@
         break
     }
     //CHANGE URL
-    let queryParams = new URLSearchParams(window.location.search)
-    queryParams.set('sub', project)
-    history.pushState(null, null, '?'+queryParams.toString())
+    if (pop) {
+      let queryParams = new URLSearchParams(window.location.search)
+      queryParams.set('sub', project)
+      history.pushState(null, null, '?'+queryParams.toString())
+    }
     //SET DATA
     document.getElementById('projectTitle1').innerHTML = title
     document.getElementById('projectTitle2').innerHTML = title
@@ -2319,12 +2322,13 @@
       case 'modding':
       case 'disbots':
       case 'other':
-        createProject(subpage, false)
+        createProject(subpage, false, false)
         break
       default:
-        showProjectsWindow(false)
+        showProjectsWindow(false, true, false)
         break
     }
+    return false
   }
 </script>
 </html>
