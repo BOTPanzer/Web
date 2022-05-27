@@ -330,6 +330,12 @@
     background: var(--button); 
     border-radius: 15px; 
     box-shadow: var(--shadow2);
+    transform-origin: center;
+    transition: all .2s;
+  }
+
+  .achItem:hover {
+    transform: rotate(-2deg) scale(1.05);
   }
 
   .achItem img {
@@ -991,7 +997,7 @@
 
     <div class="home101 shadow">
       <span>101</span>
-      <span>code</span>
+      <a href="hoodie.html">code</a>
     </div>
 
     <div class="homeSee">
@@ -1623,6 +1629,11 @@
     localStorage.setItem('pancoAchProjects', '')
     localStorage.setItem('pancoAchArtyom', '')
     localStorage.setItem('pancoAchDrill', '')
+    document.getElementById('achNone').style.display = 'flex'
+    document.getElementById('achItem1').style.display = 'none'
+    document.getElementById('achItem2').style.display = 'none'
+    document.getElementById('achItem3').style.display = 'none'
+    document.getElementById('achItem4').style.display = 'none'
   }
     
   //SHOW PROJECTS WINDOW
