@@ -997,7 +997,7 @@
 
     <div class="home101 shadow">
       <span>101</span>
-      <a href="hoodie.html">code</a>
+      <span>code</span>
     </div>
 
     <div class="homeSee">
@@ -1916,7 +1916,13 @@
   |__/      |__/  |__/ \______/  \______/ |________/ \______/    |__/   \_____*/ 
   
   //SHOW PROJECTS WINDOW
-  function showProjectsWindow(show) {
+  function showProjectsWindow(show, anim) {
+    if (anim == undefined) anim = true
+    if (anim) 
+      document.getElementById('projectsWindow').style.transition = 'opacity .3s'
+    else
+      document.getElementById('projectsWindow').style.transition = 'opacity 0s'
+    //SHOW/HIDE
     if (show) {
       document.body.style.overflowY = 'hidden'
       document.getElementById('projectsWindow').style.pointerEvents = 'all'
@@ -1925,11 +1931,13 @@
       document.body.style.overflowY = 'scroll'
       document.getElementById('projectsWindow').style.pointerEvents = 'none'
       document.getElementById('projectsWindow').style.opacity = '0'
+      history.pushState(null, null, '?')
     }
   }
 
   //CREATE PROJECT
-  function createProject(project) {
+  function createProject(project, anim) {
+    if (anim == undefined) anim = true
     let title = 'Title'
     let description = 'Description'
     let images = []
@@ -2147,6 +2155,10 @@
                   'Data/Images/Projects/Drill/drill5.jpg']
         break
     }
+    //CHANGE URL
+    let queryParams = new URLSearchParams(window.location.search)
+    queryParams.set('sub', project)
+    history.pushState(null, null, '?'+queryParams.toString())
     //SET DATA
     document.getElementById('projectTitle1').innerHTML = title
     document.getElementById('projectTitle2').innerHTML = title
@@ -2190,7 +2202,7 @@
       //ADD BALL
       balls.appendChild(ball)
     }
-    showProjectsWindow(true)
+    showProjectsWindow(true, anim)
     if (p1 & p2 & p3 & p4 & p5 & p6) giveAchievement('projects')
   }
 
@@ -2277,6 +2289,40 @@
             document.getElementById('bottomEmailCheck').style.opacity = '0'
           }, 3000)
         }
+        break
+    }
+  }
+
+
+    /*$$$$$  /$$   /$$ /$$$$$$$  /$$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$$$  /$$$$$$ 
+   /$$__  $$| $$  | $$| $$__  $$| $$__  $$ /$$__  $$ /$$__  $$| $$_____/ /$$__  $$
+  | $$  \__/| $$  | $$| $$  \ $$| $$  \ $$| $$  \ $$| $$  \__/| $$      | $$  \__/
+  |  $$$$$$ | $$  | $$| $$$$$$$ | $$$$$$$/| $$$$$$$$| $$ /$$$$| $$$$$   |  $$$$$$ 
+   \____  $$| $$  | $$| $$__  $$| $$____/ | $$__  $$| $$|_  $$| $$__/    \____  $$
+   /$$  \ $$| $$  | $$| $$  \ $$| $$      | $$  | $$| $$  \ $$| $$       /$$  \ $$
+  |  $$$$$$/|  $$$$$$/| $$$$$$$/| $$      | $$  | $$|  $$$$$$/| $$$$$$$$|  $$$$$$/
+   \______/  \______/ |_______/ |__/      |__/  |__/ \______/ |________/ \_____*/ 
+
+  window.addEventListener('popstate', parseQuery)
+  function parseQuery() {
+    var parts = window.location.search.substr(1).split("&")
+    var $_GET = {}
+    for (var i = 0; i < parts.length; i++) {
+        var temp = parts[i].split("=")
+        $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1])
+    }
+    let subpage = $_GET['sub']
+    switch(subpage) {
+      case 'assistant':
+      case 'framework':
+      case 'hoodie':
+      case 'modding':
+      case 'disbots':
+      case 'other':
+        createProject(subpage, false)
+        break
+      default:
+        showProjectsWindow(false)
         break
     }
   }
